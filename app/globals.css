@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16.5px;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #FFFFFF;
+  color: #102435;
+  overflow-x: hidden;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4F8FC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #16769C;
+}
+
+/* Modal animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Stately, Cinematic Hero Text Animations (Slow and Luxurious) */
+@keyframes heroReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slowShimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-hero-headline {
+  animation: slowTitleReveal 2.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.animate-gradient-text {
+  background-size: 200% auto;
+  animation: slowShimmer 7s ease-in-out infinite;
+}
+
+/* Solutions Page Staggered Animated Text (Smooth, Dignified, Modern) */
+@keyframes slowTitleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes solutionsFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-solutions-badge {
+  animation: solutionsFadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.animate-solutions-title {
+  animation: slowTitleReveal 2.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.animate-solutions-subtext {
+  animation: solutionsFadeUp 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+}
+
+.animate-solutions-actions {
+  animation: solutionsFadeUp 2.0s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
+}
+

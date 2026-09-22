@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 60" width="260" height="60">
+  <defs>
+    <linearGradient id="qt-box-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00AEEF" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0.04" />
+    </linearGradient>
+    <filter id="qt-subtle-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Modern App Badge Icon -->
+  <g transform="translate(4, 7)">
+    <rect x="0" y="0" width="46" height="46" rx="12" fill="#ffffff" stroke="#00AEEF" stroke-width="1.2" stroke-opacity="0.4" filter="url(#qt-subtle-shadow)" />
+    <rect x="0" y="0" width="46" height="46" rx="12" fill="url(#qt-box-grad)" />
+    <!-- Authentic Cyan Arrow Mark from quantutech.com -->
+    <g transform="translate(8.5, 8.5) scale(0.098)">
+      <path fill="#00AEEF" d="M99.6,126.7c0.3-0.3,0.1-1.2,1.1-0.6c2.9,2.1,3.9,5.2,6.9,7.2c0.2-0.1,0.5-0.3,0.7-0.4
+        c1.8,2.1,3.6,4.3,5.5,6.6c4,3.5,8.1,7,12.2,10.4c0.1-0.3,0.2-0.5,0.7-0.3c1.8,1.3,3.9,3.6,6.2,5.8c0.4,0.3,0.8,0.6,1.1,0.8
+        c0.4,0.1,0.6,0,0.8-0.1c1,1,1.9,1.9,2.8,2.8c12.6,9.4,25.5,18.7,39.4,29c3.2,1.9,6.3,3.8,9.1,5.9c4,3.3,8.6,8.1,12.3,11.6
+        c1.3-2.6,11.3,4.7,11.4,1c2.4,2.3,6.1,5.8,6.8,5.4c2.2-1.2,5.9-1.5,13.5,3.5c2.8,2.1,6.1,6.5,7.4,7c1.9,0.8-2.2-4.3-0.3-3.5
+        c-18.7-18.2-37.9-34.3-57.2-52c-7.4-5.1-52.2-45.3-63.3-56.1c-0.4-0.3-0.7-0.6-1.1-0.9c-6.1-5.8-13.8-12.5-19.8-16.6
+        c-2.9-1.7-5.8-3.4-8.8-5.1c0.8,1.4,1.6,2.7,2.2,3.8c-2.5-2.3-4.9-4.6-6.2-5.1c-6.1-4-4-0.2-3.3,3.1c0.9,1.9-1.9,1.1-0.2,3.8
+        c-1.6-1.5-2.4-2.3-4.1-3.9c-0.7,0.4,5.4,4.4,3.4,4.3c-1.4-1.7-3.5-3-5.1-4.5c-0.1,1.3,5.5,5.5,4.5,6.1C77,95,74.4,90.4,73.2,91
+        c-0.2,0.1,1.4,1.7,2.2,2.5c-5.4-4.4-9-6-5.3-0.7c-1.6-1.5-3.5-4-5.3-5.4c0,0,0,0,0,0c0.8,0.8,2.1,2.4,2.9,3.1
+        c-1-0.9-1.9-1.8-2.9-2.7c0,0.3,0.1,0.6,0.1,0.9c0.6,0.8,1.3,1.5,2,2.2c-0.6-0.6-1.3-1.2-1.9-1.8c0.2,0.8,0.5,1.6,0.8,2.4
+        c1.7,2.7,3.1,5.6,4.3,6.8C79.8,107.9,89.6,117.4,99.6,126.7z"/>
+    </g>
+  </g>
+
+  <!-- Typography matching quantutech.com -->
+  <text x="62" y="32" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20.5" font-weight="700" fill="#0B2B45" letter-spacing="-0.3">Quantutech</text>
+  <text x="63" y="46" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#0284c7" letter-spacing="1.8">DIGITAL SOLUTIONS</text>
+</svg>
