@@ -252,8 +252,8 @@ export default function ServicesPage() {
                 </p>
               </div>
 
-              {/* Animated Subtitle with 3cm spacing from the headline group above */}
-              <div className="animate-solutions-subtext mt-[3cm]">
+              {/* Animated Subtitle with responsive spacing */}
+              <div className="animate-solutions-subtext mt-6 sm:mt-8 md:mt-[3cm]">
                 <p className="text-sm sm:text-base text-slate-100 leading-relaxed max-w-2xl bg-corp-navyDark/40 backdrop-blur-xs p-3 rounded-md border border-white/10 drop-shadow-sm">
                   Full-spectrum consulting, enterprise AI enablement, nationwide workforce mobilization, and mission-critical operations anchored by 14+ years of verified past performance for bilateral donors and global corporations.
                 </p>

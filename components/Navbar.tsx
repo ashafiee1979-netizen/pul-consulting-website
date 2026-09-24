@@ -131,7 +131,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
             </span>
           </div>
 
-          <div className="flex items-center gap-5 text-slate-300 text-xs">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-5 text-slate-300 text-xs">
             <a 
               href="tel:+93786199696" 
               className="flex items-center gap-1.5 hover:text-white transition-colors"
@@ -163,25 +163,25 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-200 ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-corp-line py-2.5"
-            : "bg-white border-b border-corp-line py-3"
+            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-corp-line py-2"
+            : "bg-white border-b border-corp-line py-2.5 sm:py-3"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between">
           {/* Logo with Slogan Directly Underneath */}
           <Link href="/" onClick={handleHomeClick} className="flex flex-col items-center justify-center group py-0.5">
-            <div className="relative h-14 sm:h-16 w-auto flex items-center justify-center">
+            <div className="relative h-12 sm:h-16 w-auto flex items-center justify-center">
               <Image
                 src="/assets/brand/pul-consulting-logo.jpg"
                 alt="PUL Consulting Logo"
                 width={190}
                 height={64}
-                className="h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-[1.01]"
+                className="h-10 sm:h-14 w-auto object-contain transition-transform group-hover:scale-[1.01]"
                 priority
               />
             </div>
             {/* Slogan directly underneath the logo as in official corporate documents */}
-            <span className="text-[11px] sm:text-xs font-serif italic text-corp-blue font-semibold tracking-wide -mt-0.5">
+            <span className="text-[10px] sm:text-xs font-serif italic text-corp-blue font-semibold tracking-wide -mt-0.5">
               &ldquo;Bridging the Gap&rdquo;
             </span>
           </Link>
@@ -321,16 +321,16 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex lg:hidden items-center gap-2">
+          <div className="flex lg:hidden items-center gap-1.5 sm:gap-2">
             <button
               onClick={onOpenConsultation}
-              className="px-3 py-1.5 rounded bg-corp-blue text-white font-semibold text-xs"
+              className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded bg-corp-blue text-white font-semibold text-[11px] sm:text-xs"
             >
               Consultation
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded border border-slate-200 text-corp-ink hover:bg-slate-100"
+              className="p-1.5 sm:p-2 rounded border border-slate-200 text-corp-ink hover:bg-slate-100"
               aria-label="Toggle navigation"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

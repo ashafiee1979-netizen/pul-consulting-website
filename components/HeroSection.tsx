@@ -183,7 +183,7 @@ export default function HeroSection({ onOpenConsultation }: HeroSectionProps) {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 py-4 sm:py-6">
           <div className="max-w-4xl lg:max-w-5xl xl:max-w-6xl">
             {/* Enlarged & Animated Headline with unhurried, stately speed */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-serif font-normal tracking-tight text-white leading-[1.1] animate-hero-headline">
+            <h1 className="text-[28px] xs:text-3xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-serif font-normal tracking-tight text-white leading-[1.15] sm:leading-[1.1] animate-hero-headline">
               Bridging Strategy and <br className="hidden sm:inline" />
               <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-sky-200 via-sky-300 to-sky-100 animate-gradient-text drop-shadow-[0_2px_10px_rgba(56,189,248,0.2)]">
                 Field Execution
@@ -191,8 +191,8 @@ export default function HeroSection({ onOpenConsultation }: HeroSectionProps) {
             </h1>
 
             {/* Subtitle & Action Group with balanced spacing */}
-            <div className="mt-6 sm:mt-8 animate-solutions-subtext">
-              <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed max-w-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+            <div className="mt-5 sm:mt-8 animate-solutions-subtext">
+              <p className="text-xs sm:text-base text-slate-100 font-light leading-relaxed max-w-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
                 Operating continuously from Kabul since 2010. PUL Consulting Services delivers 
                 institutional governance, nationwide workforce mobilization, and audited project delivery 
                 for multilateral donors, global contractors, and industry leaders.
@@ -202,7 +202,7 @@ export default function HeroSection({ onOpenConsultation }: HeroSectionProps) {
               <div className="mt-5 flex items-center gap-4">
                 <button
                   onClick={onOpenConsultation}
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-all active:scale-98"
+                  className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-lg transition-all active:scale-98"
                 >
                   <span>Request Consultation</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -215,22 +215,22 @@ export default function HeroSection({ onOpenConsultation }: HeroSectionProps) {
 
       {/* 
         Key Performance Indicators Strip
-        - Larger numbers font size (text-3xl sm:text-4xl lg:text-5xl)
-        - Animated counting numbers aligned with unhurried animation pace
+        - Mobile-optimized grid: 2 columns on mobile, 5th item cleanly spanning both columns
+        - Responsive typography
       */}
       <section 
         ref={statsSectionRef}
-        className="bg-white border-b border-corp-line py-8 sm:py-10" 
+        className="bg-white border-b border-corp-line py-6 sm:py-10" 
         aria-label="Key performance indicators"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:divide-x lg:divide-slate-200">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 lg:divide-x lg:divide-slate-200">
             {STATS_DATA.map((stat, idx) => (
               <div
                 key={stat.id}
-                className={`${idx > 0 ? "lg:pl-6" : ""}`}
+                className={`${idx > 0 ? "lg:pl-6" : ""} ${idx === 4 ? "col-span-2 md:col-span-1 pt-2 sm:pt-0 border-t border-slate-100 sm:border-0" : ""}`}
               >
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-corp-navy tracking-tight">
+                <div className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-corp-navy tracking-tight">
                   <AnimatedStat
                     start={stat.start}
                     target={stat.target}
