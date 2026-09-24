@@ -55,9 +55,10 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
 
         {/* 3 Featured Flagship Program Cards */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featuredProjects.map((project, idx) => (
-            <div
+          {featuredProjects.map((project) => (
+            <Link
               key={project.id}
+              href="/projects"
               className="bg-white rounded-lg p-6 border border-slate-200 hover:border-corp-blue hover:shadow-card transition-all duration-200 flex flex-col justify-between group"
             >
               <div>
@@ -103,7 +104,7 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
                 <span>Audited Program Scope</span>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

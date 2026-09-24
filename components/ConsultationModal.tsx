@@ -43,6 +43,23 @@ export default function ConsultationModal({
     }
   }, [initialService]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      setSubmitted(false);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        setSubmitted(false);
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -56,7 +73,14 @@ export default function ConsultationModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-corp-navyDark/70 backdrop-blur-sm animate-fade-in">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-corp-navyDark/70 backdrop-blur-sm animate-fade-in"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          handleReset();
+        }
+      }}
+    >
       <div className="relative w-full max-w-2xl max-h-[92vh] sm:max-h-[88vh] rounded-md bg-white border border-corp-line shadow-executive flex flex-col overflow-hidden">
         {/* Pinned Header - Executive Navy */}
         <div className="px-6 py-4 border-b border-corp-navySubtle flex items-center justify-between bg-corp-navy text-white flex-shrink-0">
@@ -69,7 +93,7 @@ export default function ConsultationModal({
             </p>
           </div>
           <button
-            onClick={onClose}
+            onClick={handleReset}
             className="p-1.5 rounded text-slate-300 hover:text-white hover:bg-corp-navySubtle transition-colors"
           >
             <X className="w-5 h-5" />
