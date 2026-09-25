@@ -217,18 +217,18 @@ export default function ServicesPage() {
       <main className="flex-1">
         {/* Solutions Page Hero - Bright, Shorter Panoramic Executive Visual & Animated Typography */}
         <section className="relative bg-corp-navyDark text-white py-12 sm:py-16 lg:py-18 overflow-hidden border-b border-corp-navySubtle">
-          {/* Panoramic Background Image - Bright and Unobstructed */}
+          {/* Panoramic Background Image - 20% Brighter & Aligned */}
           <div className="absolute inset-0 z-0">
             <Image
               src="/assets/services/solutions-hero.jpg"
               alt="PUL Consulting Strategic Advisory & Field Operations"
               fill
-              className="object-cover object-center filter brightness-[1.05] contrast-[1.02]"
+              className="object-cover object-center filter brightness-[1.22] contrast-[1.03]"
               priority
             />
-            {/* Lighter Gradient Overlays: Preserving bright natural light and executive boardroom */}
-            <div className="absolute inset-0 bg-gradient-to-r from-corp-navyDark/80 via-corp-navyDark/55 to-corp-navyDark/20 lg:to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-corp-navyDark/60 via-transparent to-black/20" />
+            {/* Soft Balanced Gradient Overlays: Preserving bright natural light and executive boardroom */}
+            <div className="absolute inset-0 bg-gradient-to-r from-corp-navyDark/65 via-corp-navyDark/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-corp-navyDark/45 via-transparent to-transparent" />
           </div>
 
           {/* Hero Content with Animated Typography */}

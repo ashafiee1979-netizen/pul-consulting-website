@@ -169,20 +169,20 @@ export default function HeroSection({ onOpenConsultation }: HeroSectionProps) {
         id="hero" 
         className="relative min-h-[460px] sm:min-h-[490px] lg:min-h-[520px] flex items-center bg-slate-900 overflow-hidden text-white py-12 sm:py-16"
       >
-        {/* Full-bleed Panoramic Background Image */}
+        {/* Full-bleed Panoramic Background Image - 20% Brighter & Aligned */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/assets/photos/kabul-executive-hero.jpg"
             alt="PUL Consulting executive strategy center overlooking Kabul valley and the Hindu Kush mountains"
             fill
-            className="object-cover object-[center_35%] transform scale-100 transition-transform duration-1000 ease-out"
+            className="object-cover object-[center_35%] transform scale-100 transition-transform duration-1000 ease-out filter brightness-[1.20] contrast-[1.04]"
             priority
             quality={95}
           />
           
-          {/* Subtle multi-stop gradient scrim to preserve clarity of the mountain landscape and team */}
-          <div className="absolute inset-0 bg-gradient-to-r from-corp-navyDark/85 via-corp-navyDark/50 to-transparent/15" />
-          <div className="absolute inset-0 bg-gradient-to-t from-corp-navyDark/75 via-transparent to-corp-navyDark/30" />
+          {/* Balanced soft gradient scrims preserving clarity, sunlight and mountain vista */}
+          <div className="absolute inset-0 bg-gradient-to-r from-corp-navyDark/65 via-corp-navyDark/35 to-transparent/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-corp-navyDark/50 via-transparent to-black/10" />
         </div>
 
         {/* Foreground Content */}

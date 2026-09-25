@@ -26,18 +26,18 @@ export default function ProjectsPage() {
       <main className="flex-1">
         {/* Projects Page Hero - Bright, Elegant Panoramic Executive Banner */}
         <section className="relative bg-corp-navyDark text-white py-12 sm:py-16 lg:py-18 overflow-hidden border-b border-corp-navySubtle">
-          {/* Panoramic Background Image */}
+          {/* Panoramic Background Image - 20% Brighter & Aligned */}
           <div className="absolute inset-0 z-0">
             <Image
               src="/assets/photos/projects-hero.jpg"
               alt="PUL Consulting Audited Program Execution and Project Delivery"
               fill
-              className="object-cover object-center filter brightness-[1.05] contrast-[1.02]"
+              className="object-cover object-center filter brightness-[1.22] contrast-[1.03]"
               priority
             />
-            {/* Lighter Gradient Overlays preserving sunlight and vista */}
-            <div className="absolute inset-0 bg-gradient-to-r from-corp-navyDark/85 via-corp-navyDark/60 to-corp-navyDark/25 lg:to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-corp-navyDark/65 via-transparent to-black/20" />
+            {/* Soft Balanced Gradient Overlays preserving sunlight and vista */}
+            <div className="absolute inset-0 bg-gradient-to-r from-corp-navyDark/65 via-corp-navyDark/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-corp-navyDark/45 via-transparent to-transparent" />
           </div>
 
           {/* Hero Content with Animated Typography */}
