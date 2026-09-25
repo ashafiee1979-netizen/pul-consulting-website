@@ -87,9 +87,9 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Animated Subtitle with responsive spacing */}
+              {/* Animated Subtitle with responsive spacing & high contrast */}
               <div className="animate-solutions-subtext mt-6 sm:mt-8 md:mt-[3cm]">
-                <p className="text-sm sm:text-base text-slate-100 leading-relaxed max-w-2xl bg-corp-navyDark/40 backdrop-blur-xs p-3 rounded-md border border-white/10 drop-shadow-sm">
+                <p className="text-sm sm:text-base text-white leading-relaxed max-w-2xl bg-corp-navyDark/90 backdrop-blur-md p-4 sm:p-5 rounded-lg border border-white/20 shadow-md">
                   Established in Kabul in 2010, PUL Consulting Services is the parent advisory and operational delivery enterprise combining rigorous PMP® project governance with an international partner ecosystem across the United States, Europe, and Central Asia.
                 </p>
               </div>

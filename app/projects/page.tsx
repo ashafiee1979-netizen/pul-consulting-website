@@ -61,9 +61,9 @@ export default function ProjectsPage() {
                 </p>
               </div>
 
-              {/* Animated Subtitle with responsive spacing */}
+              {/* Animated Subtitle with responsive spacing & high contrast */}
               <div className="animate-solutions-subtext mt-6 sm:mt-8 md:mt-[3cm]">
-                <p className="text-sm sm:text-base text-slate-100 leading-relaxed max-w-2xl bg-corp-navyDark/40 backdrop-blur-xs p-3 rounded-md border border-white/10 drop-shadow-sm">
+                <p className="text-sm sm:text-base text-white leading-relaxed max-w-2xl bg-corp-navyDark/90 backdrop-blur-md p-4 sm:p-5 rounded-lg border border-white/20 shadow-md">
                   Comprehensive archive of multi-year operational contracts, capacity building initiatives, nationwide telecom management, and strategic PMO programs executed for multilateral donors and global contractors.
                 </p>
               </div>

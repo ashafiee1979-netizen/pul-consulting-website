@@ -252,9 +252,9 @@ export default function ServicesPage() {
                 </p>
               </div>
 
-              {/* Animated Subtitle with responsive spacing */}
+              {/* Animated Subtitle with responsive spacing & high contrast */}
               <div className="animate-solutions-subtext mt-6 sm:mt-8 md:mt-[3cm]">
-                <p className="text-sm sm:text-base text-slate-100 leading-relaxed max-w-2xl bg-corp-navyDark/40 backdrop-blur-xs p-3 rounded-md border border-white/10 drop-shadow-sm">
+                <p className="text-sm sm:text-base text-white leading-relaxed max-w-2xl bg-corp-navyDark/90 backdrop-blur-md p-4 sm:p-5 rounded-lg border border-white/20 shadow-md">
                   Full-spectrum consulting, enterprise AI enablement, nationwide workforce mobilization, and mission-critical operations anchored by 14+ years of verified past performance for bilateral donors and global corporations.
                 </p>
               </div>
@@ -316,9 +316,12 @@ export default function ServicesPage() {
 
                     {/* Middle: Title, Description & Methodology */}
                     <div className="lg:col-span-5 space-y-3">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-semibold text-corp-blue uppercase tracking-wider">
-                          {service.category}
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-[11px] font-bold text-corp-blue uppercase tracking-wider bg-corp-ice px-2.5 py-0.5 rounded border border-slate-200">
+                          {service.pillar}
+                        </span>
+                        <span className="text-[11px] font-medium text-corp-navy bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                          {service.deliveryBy}
                         </span>
                       </div>
 

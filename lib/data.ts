@@ -13,6 +13,8 @@ export interface ServiceCard {
   shortDesc: string;
   image: string;
   category: 'Strategic PMO' | 'Technology & AI' | 'Workforce & Operations' | 'Governance & Support';
+  deliveryBy: string;
+  pillar: 'Pillar I: Strategic PMO & Governance' | 'Pillar II: Technology & Enterprise AI' | 'Pillar III: Workforce & Operations' | 'Pillar IV: Language & Logistics';
 }
 
 export interface ClientPartner {
@@ -81,8 +83,8 @@ export const KEY_STATS: StatItem[] = [
   {
     id: "projects",
     value: "30+",
-    label: "Flagship Programs",
-    description: "Multidisciplinary projects delivered for USAID, World Bank, GIZ, and telecom operators",
+    label: "Cumulative Contracts",
+    description: "16 featured program dossiers from 30+ cumulative donor and prime contracts executed since 2010",
   },
   {
     id: "personnel",
@@ -113,6 +115,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "End-to-end PMO governance, Result-Based Management (RBM), strategic roadmaps, and administrative execution.",
     image: "/assets/services/service-pmo.jpg",
     category: "Strategic PMO",
+    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    pillar: "Pillar I: Strategic PMO & Governance",
   },
   {
     id: "ai-transformation",
@@ -122,6 +126,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Enterprise AI adoption, automated document intelligence, workflow automation, and responsible LLM knowledge systems.",
     image: "/assets/services/service-ai.jpg",
     category: "Technology & AI",
+    deliveryBy: "Synergy: Quantu Tech LLC (Virginia, USA)",
+    pillar: "Pillar II: Technology & Enterprise AI",
   },
   {
     id: "training-capacity",
@@ -131,6 +137,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Master Training of Trainers (MToT), certified engineering management, and large-scale public sector workforce training.",
     image: "/assets/services/service-training.jpg",
     category: "Strategic PMO",
+    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    pillar: "Pillar I: Strategic PMO & Governance",
   },
   {
     id: "hr-workforce",
@@ -140,6 +148,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Nationwide staffing, compliant payroll administration, regulatory permits, and multi-year employment agreements.",
     image: "/assets/services/service-hr.jpg",
     category: "Workforce & Operations",
+    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    pillar: "Pillar III: Workforce & Operations",
   },
   {
     id: "monitoring-evaluation",
@@ -149,6 +159,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Third-party independent monitoring, baseline/endline studies, data integrity verification, and donor reporting.",
     image: "/assets/services/service-me.jpg",
     category: "Strategic PMO",
+    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    pillar: "Pillar I: Strategic PMO & Governance",
   },
   {
     id: "it-infrastructure",
@@ -158,6 +170,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Enterprise networking, structured cabling, cybersecurity architecture, and private cloud implementations.",
     image: "/assets/services/service-it.jpg",
     category: "Technology & AI",
+    deliveryBy: "PUL Consulting & Quantu Tech Engineers",
+    pillar: "Pillar II: Technology & Enterprise AI",
   },
   {
     id: "translation-interpretation",
@@ -167,6 +181,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Official certified multi-pair translation, conference interpretation booths, and localization across 100+ languages.",
     image: "/assets/services/service-translation.jpg",
     category: "Governance & Support",
+    deliveryBy: "Synergy: Linguist Point International",
+    pillar: "Pillar IV: Language & Logistics",
   },
   {
     id: "events-management",
@@ -176,6 +192,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Protocol coordination, AV logistics, and delegate management for ministerial summits, conferences, and national Jirgas.",
     image: "/assets/services/service-events.jpg",
     category: "Workforce & Operations",
+    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    pillar: "Pillar III: Workforce & Operations",
   },
   {
     id: "call-center-operations",
@@ -185,6 +203,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Turnkey contact center staffing, multi-shift workforce supervision, trilingual routing, and KPI management.",
     image: "/assets/services/service-callcenter.jpg",
     category: "Workforce & Operations",
+    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    pillar: "Pillar III: Workforce & Operations",
   },
   {
     id: "business-registration",
@@ -194,6 +214,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Comprehensive foreign commercial entry, MoCI licensing, corporate structuring, and legal compliance.",
     image: "/assets/services/service-business-reg.jpg",
     category: "Governance & Support",
+    deliveryBy: "PUL Consulting & PUL Global Partners LLC",
+    pillar: "Pillar I: Strategic PMO & Governance",
   },
   {
     id: "financial-tax-compliance",
@@ -203,6 +225,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Standardized accounting systems, cloud ERP, financial audits, and Ministry of Finance taxation clearance.",
     image: "/assets/services/service-finance.jpg",
     category: "Governance & Support",
+    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    pillar: "Pillar I: Strategic PMO & Governance",
   },
   {
     id: "supply-chain-logistics",
@@ -212,6 +236,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Secure transportation, specialized material procurement, warehouse distribution, and austere field logistics.",
     image: "/assets/services/service-logistics.jpg",
     category: "Workforce & Operations",
+    deliveryBy: "PUL Consulting In-Country Network",
+    pillar: "Pillar IV: Language & Logistics",
   },
   {
     id: "empowerment-initiatives",
@@ -221,6 +247,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Targeted vocational upskilling, mentorship, entrepreneurship facilitation, and inclusive private sector employment.",
     image: "/assets/services/service-empowerment.jpg",
     category: "Strategic PMO",
+    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    pillar: "Pillar I: Strategic PMO & Governance",
   },
   {
     id: "media-communications",
@@ -230,6 +258,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Strategic communications, civic outreach campaigns, professional 3D animation, and high-definition video production.",
     image: "/assets/services/service-media.jpg",
     category: "Technology & AI",
+    deliveryBy: "PUL Media Production Division",
+    pillar: "Pillar II: Technology & Enterprise AI",
   },
   {
     id: "secure-facilities",
@@ -239,6 +269,8 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Protected lodging coordination, compound maintenance, life support, and protocol services within secure zones.",
     image: "/assets/services/service-facilities.jpg",
     category: "Governance & Support",
+    deliveryBy: "PUL Consulting Secure Services Cadre",
+    pillar: "Pillar IV: Language & Logistics",
   },
 ];
 
@@ -513,6 +545,86 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     status: "Completed",
     badge: "Historic Diplomatic Gathering",
   },
+  {
+    id: "finland-embassy-support",
+    title: "Diplomatic Mission Facility Support, Logistics & Technical Translation",
+    client: "Embassy of Finland in Kabul",
+    period: "2013 – 2017",
+    category: "Diplomatic & Governance",
+    location: "Kabul, Afghanistan",
+    description: "Multi-year turnkey administrative support, secure compound facility maintenance coordination, expatriate protocol logistics, and official diplomatic document translation for the Embassy of Finland in Kabul.",
+    keyOutputs: [
+      "Diplomatic compound maintenance and protocol life-support coordination",
+      "Certified English-to-Dari/Pashto translation of bilateral diplomatic correspondence",
+      "Full adherence to European Union mission security and confidentiality standards",
+    ],
+    status: "Completed",
+    badge: "Diplomatic Mission Delivery",
+  },
+  {
+    id: "harakat-investment-climate",
+    title: "Private Sector Regulatory Reform & Commercial Feasibility Studies",
+    client: "Harakat – Afghanistan Investment Climate Facility",
+    period: "2015 – 2018",
+    category: "Diplomatic & Governance",
+    location: "Kabul, Herat & Mazar-e-Sharif",
+    description: "Delivered comprehensive research, regulatory barrier analysis, and public-private dialogue workshops to streamline commercial licensing and remove operational bottlenecks for Afghan enterprises.",
+    keyOutputs: [
+      "Conducted nationwide commercial surveys analyzing municipal licensing hurdles",
+      "Facilitated multi-stakeholder workshops with Ministry of Commerce and ACCI",
+      "Produced actionable policy recommendations for private sector investment reform",
+    ],
+    status: "Completed",
+    badge: "Economic Growth Initiative",
+  },
+  {
+    id: "mofa-diplomatic-training",
+    title: "Diplomatic Academy Pre-Service Training & Administrative Capacity Building",
+    client: "Ministry of Foreign Affairs (MoFA) – Institute of Diplomacy",
+    period: "2011 – 2013",
+    category: "Capacity Building",
+    location: "Kabul, Afghanistan",
+    description: "Designed and facilitated intensive pre-service diplomatic administration, international protocol, and professional English courses for newly inducted civil servants entering the Afghan foreign service.",
+    keyOutputs: [
+      "Trained 120+ foreign service officers in international protocol and diplomatic correspondence",
+      "Curriculum design covering public policy, treaty administration, and bilateral negotiation",
+      "Pre- and post-competency examinations showing a 42% average gain in core competencies",
+    ],
+    status: "Completed",
+    badge: "Sovereign Ministry Support",
+  },
+  {
+    id: "british-council-curriculum",
+    title: "Nationwide Educational Materials Localization & Quality Assurance",
+    client: "British Council Afghanistan",
+    period: "2014 – 2017",
+    category: "Linguistics & IT",
+    location: "Kabul, Jalalabad & Herat",
+    description: "Turnkey translation, cultural localization, and proofreading of primary and secondary educational curricula, teacher training guides, and assessment rubrics.",
+    keyOutputs: [
+      "Localized over 850,000 words across educational modules into standard Dari and Pashto",
+      "Strict multi-tier editorial QA workflow ensuring zero terminology inconsistency",
+      "Supported nationwide rollout across regional educational development centers",
+    ],
+    status: "Completed",
+    badge: "Multilateral Education Delivery",
+  },
+  {
+    id: "isaf-media-monitoring",
+    title: "Provincial Civic Outreach & Media Monitoring Impact Assessment",
+    client: "ISAF / Regional Media Coordination Office",
+    period: "2011 – 2012",
+    category: "Diplomatic & Governance",
+    location: "Kabul, Kandahar & Eastern Provinces",
+    description: "Daily broadcast media tracking, sentiment analysis, and community perception reporting across radio, print, and regional television networks.",
+    keyOutputs: [
+      "Daily 24-hour media briefs tracking broadcast sentiment across Dari and Pashto channels",
+      "Quarterly qualitative public perception reports from provincial community leaders",
+      "Strict data integrity protocols and rapid reporting turnaround times",
+    ],
+    status: "Completed",
+    badge: "Civic Media Monitoring",
+  },
 ];
 
 export const PARTNER_COMPANIES: PartnerCompany[] = [
@@ -586,7 +698,7 @@ export const INSTITUTIONAL_STRENGTHS = [
     icon: "GraduationCap",
   },
   {
-    title: "100% Audit & Fiduciary Compliance Record",
+    title: "Clean Fiduciary & Audit Compliance Record",
     description: "Unblemished compliance record through rigorous third-party audits by USAID, The World Bank, GIZ, and the Ministry of Finance, supported by active licenses, TIN 9000010281, and AISA registration.",
     icon: "ShieldCheck",
   },

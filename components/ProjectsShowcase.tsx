@@ -24,7 +24,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedFilter, setSelectedFilter] = useState<string>("All");
 
-  const categories = ["All", "Telecom Operations", "International Donors", "Capacity Building", "Linguistics & IT"];
+  const categories = ["All", "Telecom Operations", "International Donors", "Capacity Building", "Linguistics & IT", "Diplomatic & Governance"];
 
   const filteredProjects = COMPREHENSIVE_PROJECT_DATABASE.filter((p) => {
     const matchesSearch = 
@@ -34,9 +34,10 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
 
     if (selectedFilter === "All") return matchesSearch;
     if (selectedFilter === "Telecom Operations") return matchesSearch && p.category.includes("Telecom");
-    if (selectedFilter === "International Donors") return matchesSearch && (p.client.includes("USAID") || p.client.includes("GIZ") || p.client.includes("World Bank") || p.client.includes("DAI"));
+    if (selectedFilter === "International Donors") return matchesSearch && (p.client.includes("USAID") || p.client.includes("GIZ") || p.client.includes("World Bank") || p.client.includes("DAI") || p.client.includes("British Council") || p.client.includes("Harakat"));
     if (selectedFilter === "Capacity Building") return matchesSearch && (p.category.includes("Capacity") || p.category.includes("Training") || p.category.includes("Workforce"));
-    if (selectedFilter === "Linguistics & IT") return matchesSearch && (p.category.includes("Linguistic") || p.category.includes("IT") || p.category.includes("Translation"));
+    if (selectedFilter === "Linguistics & IT") return matchesSearch && (p.category.includes("Linguistic") || p.category.includes("IT") || p.category.includes("Translation") || p.category.includes("Networking"));
+    if (selectedFilter === "Diplomatic & Governance") return matchesSearch && (p.category.includes("Diplomatic") || p.category.includes("Governance") || p.category.includes("Events") || p.category.includes("Trade") || p.client.includes("Embassy") || p.client.includes("Ministry") || p.client.includes("OAA") || p.client.includes("ISAF"));
     return matchesSearch;
   });
 
@@ -55,7 +56,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
               Audited Performance Registry
             </h2>
             <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-              14+ years of verified program delivery, nationwide workforce mobilization, and technical operations for multilateral donors and global contractors.
+              Curated portfolio of 16 landmark programs representing over 14 years and 30+ cumulative contracts across 15+ provinces. Complete completion certificates and audit documentation available on file.
             </p>
           </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { 
   X, 
   Send, 
@@ -9,7 +9,10 @@ import {
   User, 
   Mail, 
   Phone, 
-  FileText 
+  FileText,
+  AlertCircle,
+  ExternalLink,
+  MessageSquare
 } from "lucide-react";
 import { SERVICE_CARDS_15, COMPANY_INFO } from "@/lib/data";
 
@@ -35,7 +38,14 @@ export default function ConsultationModal({
     timeline: "Immediate (Within 30 Days)",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
+  const [submissionResult, setSubmissionResult] = useState<{
+    referenceId: string;
+    receivedAt: string;
+  } | null>(null);
+
+  const firstInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (initialService) {
@@ -45,36 +55,90 @@ export default function ConsultationModal({
 
   useEffect(() => {
     if (!isOpen) {
-      setSubmitted(false);
+      setSubmissionResult(null);
+      setSubmissionError(null);
+      setIsSubmitting(false);
+    } else {
+      // Auto-focus first input for screen-reader & keyboard accessibility
+      setTimeout(() => {
+        firstInputRef.current?.focus();
+      }, 100);
     }
   }, [isOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
-        setSubmitted(false);
-        onClose();
+        handleReset();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setSubmissionError(null);
+
+    try {
+      const response = await fetch("/api/consultation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Failed to log inquiry. Please use direct institutional contact channels.");
+      }
+
+      setSubmissionResult({
+        referenceId: data.referenceId,
+        receivedAt: data.receivedAt,
+      });
+    } catch (err: unknown) {
+      const errorMsg = err instanceof Error ? err.message : "Unable to reach PMO server. Please reach us via direct email or telephone.";
+      setSubmissionError(errorMsg);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
-    setSubmitted(false);
+    setSubmissionResult(null);
+    setSubmissionError(null);
+    setIsSubmitting(false);
     onClose();
   };
 
+  // Generate mailto link with pre-filled subject and body
+  const mailtoSubject = encodeURIComponent(`[RFP / Project Inquiry] ${formData.service} - ${formData.organization}`);
+  const mailtoBody = encodeURIComponent(
+    `Dear PUL Consulting Services PMO,\n\n` +
+    `I am submitting an official project inquiry with reference details below:\n\n` +
+    `Reference ID: ${submissionResult?.referenceId || "Pending"}\n` +
+    `Contact Name: ${formData.name}\n` +
+    `Official Email: ${formData.email}\n` +
+    `Organization: ${formData.organization}\n` +
+    `Phone/WhatsApp: ${formData.phone}\n` +
+    `Service Line: ${formData.service}\n` +
+    `Deployment Timeline: ${formData.timeline}\n` +
+    `Project Scope & Parameters:\n${formData.projectScope || "To be discussed during initial terms-of-reference consultation."}\n\n` +
+    `Respectfully,\n${formData.name}`
+  );
+
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-corp-navyDark/70 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-corp-navyDark/75 backdrop-blur-sm animate-fade-in"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="consultation-modal-title"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           handleReset();
@@ -85,7 +149,7 @@ export default function ConsultationModal({
         {/* Pinned Header - Executive Navy */}
         <div className="px-6 py-4 border-b border-corp-navySubtle flex items-center justify-between bg-corp-navy text-white flex-shrink-0">
           <div>
-            <h3 className="text-base font-serif font-bold text-white">
+            <h3 id="consultation-modal-title" className="text-base font-serif font-bold text-white">
               Project Consultation &amp; RFP Inquiry
             </h3>
             <p className="text-xs text-sky-200">
@@ -95,6 +159,7 @@ export default function ConsultationModal({
           <button
             onClick={handleReset}
             className="p-1.5 rounded text-slate-300 hover:text-white hover:bg-corp-navySubtle transition-colors"
+            aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
@@ -102,47 +167,95 @@ export default function ConsultationModal({
 
         {/* Modal Body */}
         <div className="p-6 overflow-y-auto space-y-4">
-          {submitted ? (
-            <div className="text-center py-8 px-4 space-y-4">
+          {submissionResult ? (
+            /* Verified Delivery Screen */
+            <div className="text-center py-6 px-4 space-y-4">
               <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-600 flex items-center justify-center mx-auto">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h4 className="text-xl font-serif font-bold text-corp-ink">
-                Inquiry Successfully Logged
-              </h4>
-              <p className="text-xs text-corp-muted max-w-md mx-auto leading-relaxed">
-                Thank you, <span className="font-semibold text-corp-ink">{formData.name}</span>. 
-                Our senior project management office has received your request regarding{" "}
-                <span className="text-corp-blue font-semibold">{formData.service}</span>. 
-                A practice lead will respond to {formData.email} within 24 business hours.
+              <div>
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                  Tracking Code: {submissionResult.referenceId}
+                </span>
+                <h4 className="text-xl font-serif font-bold text-corp-ink mt-2">
+                  Inquiry Officially Logged &amp; Verified
+                </h4>
+              </div>
+              <p className="text-xs sm:text-sm text-corp-muted max-w-md mx-auto leading-relaxed">
+                Thank you, <strong className="text-corp-ink">{formData.name}</strong>. Your requirement for{" "}
+                <strong className="text-corp-blue">{formData.service}</strong> on behalf of{" "}
+                <strong className="text-corp-ink">{formData.organization}</strong> has been transmitted directly 
+                to our Project Management Office. A practice lead will reply to <span className="font-semibold text-corp-ink">{formData.email}</span> within 24 business hours.
               </p>
 
-              <div className="p-4 rounded bg-corp-ice border border-slate-200 text-xs text-corp-ink max-w-md mx-auto text-left space-y-1">
-                <div className="font-bold text-corp-navy">Direct Institutional Channels:</div>
-                <div>Kabul HQ: +93 (786) 19 96 96 / +93 (786) 600 597</div>
-                <div>Executive Email: info@pulconsulting.com</div>
+              {/* Direct Institutional Dispatch Options */}
+              <div className="p-4 rounded-lg bg-corp-ice border border-slate-200 text-xs text-corp-ink max-w-md mx-auto text-left space-y-2">
+                <div className="font-bold text-corp-navy flex items-center gap-1.5">
+                  <FileText className="w-4 h-4 text-corp-blue" />
+                  <span>Immediate Direct Dispatch Channels:</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                  <a
+                    href={`mailto:info@pulconsulting.com?subject=${mailtoSubject}&body=${mailtoBody}`}
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded bg-white hover:bg-slate-50 border border-slate-300 text-corp-ink font-semibold text-xs transition-colors"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-corp-blue" />
+                    <span>Open in Outlook / Mail</span>
+                  </a>
+                  <a
+                    href={`https://wa.me/93786199696?text=${encodeURIComponent(`Hello PUL Consulting, I am inquiring about reference ${submissionResult.referenceId} regarding ${formData.service}.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    <span>Direct WhatsApp PMO</span>
+                  </a>
+                </div>
+                <div className="text-[11px] text-slate-500 pt-1 border-t border-slate-200">
+                  Direct PMO Phone: +93 (786) 19 96 96 / +93 (786) 600 597 • Email: info@pulconsulting.com
+                </div>
               </div>
 
-              <div className="pt-3">
+              <div className="pt-2">
                 <button
                   onClick={handleReset}
                   className="px-6 py-2 rounded bg-corp-navy text-white font-bold text-xs uppercase tracking-wider shadow-xs hover:bg-corp-navyDark transition-colors"
                 >
-                  Close
+                  Done
                 </button>
               </div>
             </div>
           ) : (
             <form id="consultation-form" onSubmit={handleSubmit} className="space-y-4">
+              {/* Error banner if submission fails */}
+              {submissionError && (
+                <div className="p-3 rounded bg-red-50 border border-red-200 text-xs text-red-700 flex items-start gap-2">
+                  <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="font-semibold">{submissionError}</p>
+                    <p className="mt-1">
+                      You can also reach our PMO directly at{" "}
+                      <a href="mailto:info@pulconsulting.com" className="underline font-bold">
+                        info@pulconsulting.com
+                      </a>{" "}
+                      or call +93 (786) 19 96 96.
+                    </p>
+                  </div>
+                </div>
+              )}
+
               {/* Row 1: Name & Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-corp-ink mb-1">
+                  <label htmlFor="consult-name" className="block text-xs font-bold text-corp-ink mb-1">
                     Contact Name *
                   </label>
                   <div className="relative">
                     <User className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
                     <input
+                      ref={firstInputRef}
+                      id="consult-name"
                       type="text"
                       required
                       placeholder="e.g. John Doe / Ahmad Wahidi"
@@ -154,12 +267,13 @@ export default function ConsultationModal({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-corp-ink mb-1">
+                  <label htmlFor="consult-email" className="block text-xs font-bold text-corp-ink mb-1">
                     Official Email *
                   </label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
                     <input
+                      id="consult-email"
                       type="email"
                       required
                       placeholder="e.g. j.doe@organization.org"
@@ -174,12 +288,13 @@ export default function ConsultationModal({
               {/* Row 2: Organization & Phone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-corp-ink mb-1">
+                  <label htmlFor="consult-organization" className="block text-xs font-bold text-corp-ink mb-1">
                     Organization / Entity *
                   </label>
                   <div className="relative">
                     <Building2 className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
                     <input
+                      id="consult-organization"
                       type="text"
                       required
                       placeholder="e.g. USAID Contractor / Enterprise"
@@ -191,12 +306,13 @@ export default function ConsultationModal({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-corp-ink mb-1">
+                  <label htmlFor="consult-phone" className="block text-xs font-bold text-corp-ink mb-1">
                     Phone / WhatsApp *
                   </label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
                     <input
+                      id="consult-phone"
                       type="text"
                       required
                       placeholder="+93 ... / +1 ..."
@@ -211,10 +327,11 @@ export default function ConsultationModal({
               {/* Row 3: Practice Area & Timeline */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-corp-ink mb-1">
+                  <label htmlFor="consult-service" className="block text-xs font-bold text-corp-ink mb-1">
                     Primary Service Requirement
                   </label>
                   <select
+                    id="consult-service"
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                     className="w-full px-3 py-2 rounded border border-slate-300 text-corp-ink text-xs focus:outline-none focus:border-corp-blue"
@@ -228,10 +345,11 @@ export default function ConsultationModal({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-corp-ink mb-1">
+                  <label htmlFor="consult-timeline" className="block text-xs font-bold text-corp-ink mb-1">
                     Deployment Timeline
                   </label>
                   <select
+                    id="consult-timeline"
                     value={formData.timeline}
                     onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
                     className="w-full px-3 py-2 rounded border border-slate-300 text-corp-ink text-xs focus:outline-none focus:border-corp-blue"
@@ -246,10 +364,11 @@ export default function ConsultationModal({
 
               {/* Row 4: Scope */}
               <div>
-                <label className="block text-xs font-bold text-corp-ink mb-1">
+                <label htmlFor="consult-scope" className="block text-xs font-bold text-corp-ink mb-1">
                   Project Scope &amp; Geographic Parameters
                 </label>
                 <textarea
+                  id="consult-scope"
                   rows={3}
                   placeholder="Outline geographic scope (provinces), personnel numbers, or specific terms of reference..."
                   value={formData.projectScope}
@@ -262,7 +381,7 @@ export default function ConsultationModal({
         </div>
 
         {/* Pinned Footer */}
-        {!submitted && (
+        {!submissionResult && (
           <div className="px-6 py-3.5 border-t border-slate-200 bg-corp-ice flex items-center justify-between flex-shrink-0">
             <span className="text-[11px] text-corp-muted">
               Confidentiality assured under NDA.
@@ -270,7 +389,7 @@ export default function ConsultationModal({
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={onClose}
+                onClick={handleReset}
                 className="px-3.5 py-1.5 rounded text-xs font-semibold text-corp-muted hover:text-corp-ink hover:bg-slate-200 transition-colors"
               >
                 Cancel
@@ -278,10 +397,20 @@ export default function ConsultationModal({
               <button
                 type="submit"
                 form="consultation-form"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-colors"
+                disabled={isSubmitting}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-corp-blue hover:bg-corp-blueHover disabled:bg-slate-400 text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-colors"
               >
-                <Send className="w-3.5 h-3.5" />
-                <span>Submit Inquiry</span>
+                {isSubmitting ? (
+                  <>
+                    <span className="inline-block w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <span>Verifying...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-3.5 h-3.5" />
+                    <span>Submit Inquiry</span>
+                  </>
+                )}
               </button>
             </div>
           </div>

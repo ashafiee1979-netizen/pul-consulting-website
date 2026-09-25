@@ -126,3 +126,15 @@ body {
   animation: solutionsFadeUp 2.0s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
 }
 
+/* Accessibility: Respect user system reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

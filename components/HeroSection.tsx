@@ -83,6 +83,12 @@ function AnimatedStat({
       return;
     }
 
+    // Check if user prefers reduced motion
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCurrent(target);
+      return;
+    }
+
     let startTime: number | null = null;
     const duration = 2400; // 2.4s unhurried speed aligned with headline and subtext animations
     let animationFrameId: number;

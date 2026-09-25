@@ -48,7 +48,7 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
             href="/projects"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-corp-navy hover:bg-corp-navyDark text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-xs flex-shrink-0"
           >
-            <span>View Full Projects Registry (30+)</span>
+            <span>View Full Project Registry (16 Featured)</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -119,7 +119,7 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
                 Need Complete Project Deliverables, Client Verifications &amp; RFP Evidence?
               </h4>
               <p className="text-xs text-corp-muted mt-0.5">
-                Explore our full searchable catalog with 30+ multi-year programs delivered across 15+ provinces.
+                Explore our searchable registry featuring 16 detailed programs from 30+ cumulative contracts across 15+ provinces.
               </p>
             </div>
           </div>

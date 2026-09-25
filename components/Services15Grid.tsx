@@ -60,13 +60,37 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
           </div>
         </div>
 
+        {/* 4 Strategic Pillars Overview Bar */}
+        <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="p-3.5 rounded-lg bg-corp-ice/70 border border-slate-200">
+            <span className="text-[10px] font-bold text-corp-blue uppercase tracking-wider block">Pillar I</span>
+            <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Strategic PMO &amp; Governance</h4>
+            <span className="text-[11px] text-corp-muted mt-1 block">Delivered by PUL Consulting HQ</span>
+          </div>
+          <div className="p-3.5 rounded-lg bg-corp-ice/70 border border-slate-200">
+            <span className="text-[10px] font-bold text-sky-600 uppercase tracking-wider block">Pillar II</span>
+            <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Technology &amp; Enterprise AI</h4>
+            <span className="text-[11px] text-corp-muted mt-1 block">In Synergy with Quantu Tech LLC</span>
+          </div>
+          <div className="p-3.5 rounded-lg bg-corp-ice/70 border border-slate-200">
+            <span className="text-[10px] font-bold text-corp-blue uppercase tracking-wider block">Pillar III</span>
+            <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Workforce &amp; Operations</h4>
+            <span className="text-[11px] text-corp-muted mt-1 block">Delivered by PUL Consulting HQ</span>
+          </div>
+          <div className="p-3.5 rounded-lg bg-corp-ice/70 border border-slate-200">
+            <span className="text-[10px] font-bold text-sky-600 uppercase tracking-wider block">Pillar IV</span>
+            <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Language &amp; Austere Logistics</h4>
+            <span className="text-[11px] text-corp-muted mt-1 block">Synergy: Linguist Point Int&apos;l</span>
+          </div>
+        </div>
+
         {/* 
           Modern, Spacious Executive Card Grid
           - Split-card design: Top photo window + bottom pristine white content base
-          - Eliminates crowding by separating image from typography
+          - Clear delivery lead tag differentiating Core vs. Partner capabilities
           - Ample breathing room across a clean 3-column responsive layout
         */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {filteredCards.map((service) => {
             return (
               <Link
@@ -107,11 +131,17 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
                     <p className="mt-2 text-xs text-corp-muted leading-relaxed line-clamp-2">
                       {service.shortDesc}
                     </p>
+
+                    {/* Distinct Delivery Ownership Badge */}
+                    <div className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-50 border border-slate-200/80 text-[11px] text-corp-navy font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-corp-blue flex-shrink-0" />
+                      <span className="truncate">{service.deliveryBy}</span>
+                    </div>
                   </div>
 
                   {/* Bottom Action Footer */}
                   <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-corp-blue group-hover:text-corp-navy transition-colors">
-                    <span>Explore Capabilities</span>
+                    <span>Explore Detailed Deliverables</span>
                     <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
