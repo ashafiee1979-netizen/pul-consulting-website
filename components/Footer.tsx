@@ -147,7 +147,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
               </li>
               <li>
                 <Link href="/projects" className="text-sky-300 font-semibold hover:underline block">
-                  › Audited Projects Registry (16 Featured)
+                  › Audited Projects Registry (17 Featured)
                 </Link>
               </li>
             </ul>

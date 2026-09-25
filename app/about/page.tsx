@@ -62,40 +62,40 @@ export default function AboutPage() {
               priority
             />
             {/* Soft Balanced Gradient Overlays preserving sunlight and vista */}
-            <div className="absolute inset-0 bg-gradient-to-r from-corp-navyDark/65 via-corp-navyDark/40 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-corp-navyDark/45 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-corp-navyDark/90 via-corp-navyDark/70 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-corp-navyDark/60 via-transparent to-transparent" />
           </div>
 
-          {/* Hero Content with Animated Typography */}
+          {/* Hero Content with Animated Typography in Unified Executive Panel */}
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">
-            <div className="max-w-3xl">
+            <div className="max-w-2xl bg-corp-navyDark/90 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-white/20 shadow-2xl space-y-4">
               {/* Animated Badge */}
               <div className="animate-solutions-badge">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/80 backdrop-blur-md border border-slate-500/70 text-sky-200 text-xs font-semibold uppercase tracking-wider mb-4 shadow-md">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/90 border border-slate-500/70 text-sky-200 text-xs font-semibold uppercase tracking-wider shadow-sm">
                   <ShieldCheck className="w-4 h-4 text-corp-blue" />
                   <span>Institutional Heritage • Global Partner Synergies</span>
                 </div>
               </div>
 
-              {/* Animated Headline - Slow Speed Animation */}
+              {/* Animated Headline */}
               <div className="animate-solutions-title">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15] drop-shadow-md">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15]">
                   About PUL Consulting &amp; Partners
                 </h1>
-                <p className="mt-2.5 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-sm">
+                <p className="mt-2 text-base sm:text-lg font-medium text-sky-200 font-serif italic">
                   14+ Years of Continuous Operational Governance &amp; Dual-Continent Reach
                 </p>
               </div>
 
-              {/* Animated Subtitle with responsive spacing & high contrast */}
-              <div className="animate-solutions-subtext mt-6 sm:mt-8 md:mt-[3cm]">
-                <p className="text-sm sm:text-base text-white leading-relaxed max-w-2xl bg-corp-navyDark/90 backdrop-blur-md p-4 sm:p-5 rounded-lg border border-white/20 shadow-md">
+              {/* Subtext with high contrast */}
+              <div className="animate-solutions-subtext">
+                <p className="text-sm sm:text-base text-slate-100 leading-relaxed">
                   Established in Kabul in 2010, PUL Consulting Services is the parent advisory and operational delivery enterprise combining rigorous PMP® project governance with an international partner ecosystem across the United States, Europe, and Central Asia.
                 </p>
               </div>
 
-              {/* Animated Interactive Actions */}
-              <div className="animate-solutions-actions mt-5 flex flex-wrap items-center gap-3.5">
+              {/* Interactive Actions */}
+              <div className="animate-solutions-actions pt-2 flex flex-wrap items-center gap-3.5">
                 <button
                   onClick={() => handleOpenConsultation("Corporate Partnership Inquiry")}
                   className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-md bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-executive transition-all active:scale-98"

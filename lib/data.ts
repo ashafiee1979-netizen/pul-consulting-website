@@ -84,7 +84,7 @@ export const KEY_STATS: StatItem[] = [
     id: "projects",
     value: "30+",
     label: "Cumulative Contracts",
-    description: "16 featured program dossiers from 30+ cumulative donor and prime contracts executed since 2010",
+    description: "17 featured program dossiers from 30+ cumulative donor and prime contracts executed since 2010",
   },
   {
     id: "personnel",
@@ -699,7 +699,7 @@ export const INSTITUTIONAL_STRENGTHS = [
   },
   {
     title: "Clean Fiduciary & Audit Compliance Record",
-    description: "Unblemished compliance record through rigorous third-party audits by USAID, The World Bank, GIZ, and the Ministry of Finance, supported by active licenses, TIN 9000010281, and AISA registration.",
+    description: "Audited financial and contractual performance through donor and partner engagements including USAID, The World Bank, GIZ, and the Ministry of Finance, supported by active corporate registration, TIN 9000010281, and AISA license.",
     icon: "ShieldCheck",
   },
   {

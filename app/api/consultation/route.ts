@@ -32,24 +32,21 @@ export async function POST(request: Request) {
     const referenceId = `PUL-RFP-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
     const receivedAt = new Date().toISOString();
 
-    // Log the validated inquiry in structured server telemetry
-    console.log(`[PUL CONSULTATION LOG] New Verified RFP Inquiry:`, {
+    // Redacted server telemetry: never log raw personal names, phone numbers, or confidential project scopes
+    const emailDomain = email.includes("@") ? email.split("@")[1] : "unknown";
+    console.log(`[PUL CONSULTATION LOG] RFP Reference Created:`, {
       referenceId,
       receivedAt,
-      name,
-      email,
-      phone,
-      organization,
       service,
       timeline,
-      projectScope: projectScope ? `${projectScope.slice(0, 100)}...` : "None provided",
+      emailDomain,
     });
 
     return NextResponse.json({
       success: true,
       referenceId,
       receivedAt,
-      message: `Inquiry successfully logged in PUL Consulting Services PMO Registry. A practice lead will review the terms of reference within 24 business hours.`,
+      message: `RFP inquiry dossier prepared under reference ${referenceId}.`,
       dispatchContacts: {
         kabulPmoPhone: "+93 (786) 19 96 96",
         kabulPmoAltPhone: "+93 (786) 600 597",

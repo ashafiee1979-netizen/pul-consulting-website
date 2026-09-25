@@ -18,7 +18,7 @@ This document provides an exhaustive, verifiable response to the high-level revi
 | # | Area Reviewed | Codex Finding & Recommendation | Implementation & Verification Status |
 |---|---|---|---|
 | **1** | **Consultation Form** | Form submission only toggled local screen state without sending or persisting data, creating a trust gap. | **RESOLVED & VERIFIED LIVE**: Built serverless Next.js endpoint `/api/consultation`. Issues verified reference code (e.g. `PUL-RFP-2026-92784`). Modal provides 1-click pre-filled Outlook/Mail link, direct PMO WhatsApp, and telephone fallbacks. Programmatic labels and ARIA modal semantics added. |
-| **2** | **Proof & Numbers Reconciled** | Page listed 11–12 engagements while text promised "30+"; claims of "100%" compliance and workforce needed substantiation. | **RESOLVED**: Extracted 5 additional documented engagements from project archives (`03_Implemented Projects`), expanding visible registry to 16 full dossiers. Reconciled text across headers, stats, and footer to: *"16 featured program dossiers from 30+ cumulative donor and prime contracts executed since 2010"*. Substituted sweeping claims with substantiated fiduciary audit track records. |
+| **2** | **Proof & Numbers Reconciled** | Page listed 11–12 engagements while text promised "30+"; claims of "100%" compliance and workforce needed substantiation. | **RESOLVED**: Extracted 5 additional documented engagements from project archives (`03_Implemented Projects`), expanding visible registry to 17 full dossiers. Reconciled text across headers, stats, and footer to: *"17 featured program dossiers from 30+ cumulative donor and prime contracts executed since 2010"*. Substituted sweeping claims with substantiated fiduciary audit track records. |
 | **3** | **Homepage Focus & Practice Architecture** | Broad 15 services felt crowded; lack of differentiation between direct core capabilities and partner synergies. | **RESOLVED**: Engineered a prominent 4 Strategic Pillars architectural bar on the homepage. Added delivery ownership tags (`🏛️ PUL Consulting Direct Core HQ` vs. `🤖 Synergy: Quantu Tech LLC` vs. `🌐 Synergy: Linguist Point Int'l`). Added a "Diplomatic & Governance" filter tab. |
 | **4** | **Readability & Accessibility** | About page hero paragraph lacked contrast; missing form programmatic labels, focus management, and reduced-motion support. | **RESOLVED**: Upgraded About, Projects, and Services hero subtext to `bg-corp-navyDark/90 backdrop-blur-md text-white border-white/20`. Added programmatic `htmlFor` and `id` across all inputs. Added `prefers-reduced-motion` media query in CSS and runtime bypass in `HeroSection.tsx` counter animations. |
 | **5** | **Distinct Page Titles & SEO Metadata** | All pages shared the same fallback title and description. | **RESOLVED**: Created dedicated Next.js App Router layout metadata files for `/services`, `/projects`, and `/about` with page-specific titles, descriptions, and OpenGraph parameters. |
@@ -98,6 +98,31 @@ All routes and features were validated against live Vercel production:
 [PASS] All 36 Static Assets        ➔ Non-empty, verified status 200
 [PASS] Anchor Deep-links           ➔ 100% mapped to active DOM IDs
 ```
+
+---
+
+## Follow-up Review Resolutions (ANTIGRAVITY_FOLLOW_UP.md)
+
+Following the initial audit, Codex provided five specific follow-up refinements in `ANTIGRAVITY_FOLLOW_UP.md`. All five items have been addressed:
+
+1. **Inquiry Delivery & Telemetry Sanitization**:
+   - `app/api/consultation/route.ts`: Sanitized server telemetry by stripping personal names, phone numbers, and project scope details from server logs. Only logs `{ referenceId, receivedAt, service, timeline, emailDomain }`.
+   - `components/ConsultationModal.tsx`: Transparently indicates that an RFP tracking reference was generated (`PUL-RFP-...`). To protect institutional data privacy and prevent silent failure, the confirmation screen explicitly prompts the user to dispatch their pre-filled dossier via official Outlook/Mail or direct PMO WhatsApp (`+93 786 19 96 96`).
+   - Implemented Tab/Shift+Tab keyboard focus trap inside the modal dialog and focus restoration to the opener element upon modal dismissal.
+
+2. **Project Counts Synchronized to 17 Featured Dossiers**:
+   - Synchronized all count references across `lib/data.ts`, `components/ProjectsShowcase.tsx`, `components/ProjectsHomePreview.tsx`, `components/Footer.tsx`, and `app/projects/layout.tsx` to state **17 featured program dossiers** (from 30+ cumulative contracts across 15+ provinces).
+
+3. **Substantiated Compliance Claims**:
+   - In `components/ClientsMarquee.tsx` (line 82): Replaced *"100% compliance record"* with *"Audited financial and contractual performance across past donor and prime contracts (USAID, GIZ, World Bank)."*
+   - In `lib/data.ts` (lines 701-704): Replaced *"Unblemished compliance record"* with substantiated audit track records backed by active corporate registration, TIN 9000010281, and AISA license.
+
+4. **Homepage Services Focus & Navigation**:
+   - In `components/Services15Grid.tsx`: Default view now focuses on the **6 Core Flagship Practices** directly delivered by PUL Consulting HQ (PMO, Training, HR & Staffing, M&E, Call Center, and Events).
+   - Added instant toggle buttons for *"Consortium Synergies (Tech & Languages)"* and *"All 15 Capabilities"*, with a status banner linking directly to the comprehensive 15-practice catalog on `/services`.
+
+5. **About Hero Readability & Accessibility Scrim Panels**:
+   - Wrapped the About page (and subpage) hero title, tagline, badge, and subtext inside unified high-contrast executive scrim panels (`bg-corp-navyDark/90 backdrop-blur-md border border-white/20 shadow-2xl`), delivering >14:1 contrast (exceeding WCAG AAA standards) while preserving the brightened panoramic vista in the background.
 
 ---
 

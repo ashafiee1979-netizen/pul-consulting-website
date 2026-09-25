@@ -46,6 +46,8 @@ export default function ConsultationModal({
   } | null>(null);
 
   const firstInputRef = useRef<HTMLInputElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const openerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (initialService) {
@@ -54,27 +56,62 @@ export default function ConsultationModal({
   }, [initialService]);
 
   useEffect(() => {
-    if (!isOpen) {
+    if (isOpen) {
+      // Capture currently focused element to restore upon close
+      openerRef.current = document.activeElement as HTMLElement | null;
+
+      // Auto-focus first input for screen-reader & keyboard accessibility
+      const timer = setTimeout(() => {
+        firstInputRef.current?.focus();
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
       setSubmissionResult(null);
       setSubmissionError(null);
       setIsSubmitting(false);
-    } else {
-      // Auto-focus first input for screen-reader & keyboard accessibility
-      setTimeout(() => {
-        firstInputRef.current?.focus();
-      }, 100);
     }
   }, [isOpen]);
 
+  // Trap focus and handle Escape
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
+      if (e.key === "Escape") {
         handleReset();
+        return;
+      }
+
+      if (e.key === "Tab" && modalRef.current) {
+        const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const visibleFocusable = Array.from(focusableElements).filter(
+          (el) => !el.hasAttribute("disabled") && el.offsetParent !== null
+        );
+
+        if (visibleFocusable.length === 0) return;
+
+        const firstEl = visibleFocusable[0];
+        const lastEl = visibleFocusable[visibleFocusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstEl) {
+            e.preventDefault();
+            lastEl.focus();
+          }
+        } else {
+          if (document.activeElement === lastEl) {
+            e.preventDefault();
+            firstEl.focus();
+          }
+        }
       }
     };
+
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
+  }, [isOpen, submissionResult]);
 
   if (!isOpen) return null;
 
@@ -115,19 +152,23 @@ export default function ConsultationModal({
     setSubmissionError(null);
     setIsSubmitting(false);
     onClose();
+    // Restore focus to opener element
+    setTimeout(() => {
+      openerRef.current?.focus();
+    }, 50);
   };
 
   // Generate mailto link with pre-filled subject and body
-  const mailtoSubject = encodeURIComponent(`[RFP / Project Inquiry] ${formData.service} - ${formData.organization}`);
+  const mailtoSubject = encodeURIComponent(`[RFP Inquiry Ref: ${submissionResult?.referenceId || "Pending"}] ${formData.service} - ${formData.organization}`);
   const mailtoBody = encodeURIComponent(
     `Dear PUL Consulting Services PMO,\n\n` +
-    `I am submitting an official project inquiry with reference details below:\n\n` +
-    `Reference ID: ${submissionResult?.referenceId || "Pending"}\n` +
+    `I am submitting an official project inquiry generated through your institutional portal:\n\n` +
+    `Tracking Reference: ${submissionResult?.referenceId || "Pending"}\n` +
     `Contact Name: ${formData.name}\n` +
     `Official Email: ${formData.email}\n` +
-    `Organization: ${formData.organization}\n` +
-    `Phone/WhatsApp: ${formData.phone}\n` +
-    `Service Line: ${formData.service}\n` +
+    `Organization / Entity: ${formData.organization}\n` +
+    `Phone / WhatsApp: ${formData.phone}\n` +
+    `Practice Area: ${formData.service}\n` +
     `Deployment Timeline: ${formData.timeline}\n` +
     `Project Scope & Parameters:\n${formData.projectScope || "To be discussed during initial terms-of-reference consultation."}\n\n` +
     `Respectfully,\n${formData.name}`
@@ -145,7 +186,10 @@ export default function ConsultationModal({
         }
       }}
     >
-      <div className="relative w-full max-w-2xl max-h-[92vh] sm:max-h-[88vh] rounded-md bg-white border border-corp-line shadow-executive flex flex-col overflow-hidden">
+      <div 
+        ref={modalRef}
+        className="relative w-full max-w-2xl max-h-[92vh] sm:max-h-[88vh] rounded-md bg-white border border-corp-line shadow-executive flex flex-col overflow-hidden"
+      >
         {/* Pinned Header - Executive Navy */}
         <div className="px-6 py-4 border-b border-corp-navySubtle flex items-center justify-between bg-corp-navy text-white flex-shrink-0">
           <div>
@@ -168,52 +212,56 @@ export default function ConsultationModal({
         {/* Modal Body */}
         <div className="p-6 overflow-y-auto space-y-4">
           {submissionResult ? (
-            /* Verified Delivery Screen */
+            /* Verified Reference & Dispatch Screen */
             <div className="text-center py-6 px-4 space-y-4">
-              <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-600 flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-8 h-8" />
+              <div className="w-14 h-14 rounded-full bg-corp-ice border border-sky-300 text-corp-blue flex items-center justify-center mx-auto">
+                <CheckCircle2 className="w-8 h-8 text-corp-blue" />
               </div>
               <div>
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold bg-sky-100 text-corp-navy border border-sky-300">
                   Tracking Code: {submissionResult.referenceId}
                 </span>
                 <h4 className="text-xl font-serif font-bold text-corp-ink mt-2">
-                  Inquiry Officially Logged &amp; Verified
+                  Inquiry Reference Generated
                 </h4>
               </div>
               <p className="text-xs sm:text-sm text-corp-muted max-w-md mx-auto leading-relaxed">
-                Thank you, <strong className="text-corp-ink">{formData.name}</strong>. Your requirement for{" "}
-                <strong className="text-corp-blue">{formData.service}</strong> on behalf of{" "}
-                <strong className="text-corp-ink">{formData.organization}</strong> has been transmitted directly 
-                to our Project Management Office. A practice lead will reply to <span className="font-semibold text-corp-ink">{formData.email}</span> within 24 business hours.
+                Thank you, <strong className="text-corp-ink">{formData.name}</strong>. Your project inquiry regarding{" "}
+                <strong className="text-corp-blue">{formData.service}</strong> for{" "}
+                <strong className="text-corp-ink">{formData.organization}</strong> has been assigned official tracking code{" "}
+                <span className="font-mono font-bold text-corp-ink">{submissionResult.referenceId}</span>.
               </p>
+              <div className="p-3 bg-amber-50 border border-amber-200 rounded-md text-[11px] text-amber-800 text-left max-w-md mx-auto">
+                <strong>Next Step:</strong> To protect confidential procurement data and ensure direct PMO routing, please send your pre-filled inquiry dossier via official email or WhatsApp using the direct dispatch buttons below.
+              </div>
 
               {/* Direct Institutional Dispatch Options */}
-              <div className="p-4 rounded-lg bg-corp-ice border border-slate-200 text-xs text-corp-ink max-w-md mx-auto text-left space-y-2">
+              <div className="p-4 rounded-lg bg-corp-ice border border-slate-200 text-xs text-corp-ink max-w-md mx-auto text-left space-y-2.5">
                 <div className="font-bold text-corp-navy flex items-center gap-1.5">
                   <FileText className="w-4 h-4 text-corp-blue" />
-                  <span>Immediate Direct Dispatch Channels:</span>
+                  <span>Send Pre-Filled Dossier Directly to PMO:</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
                   <a
                     href={`mailto:info@pulconsulting.com?subject=${mailtoSubject}&body=${mailtoBody}`}
-                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded bg-white hover:bg-slate-50 border border-slate-300 text-corp-ink font-semibold text-xs transition-colors"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded bg-corp-navy hover:bg-corp-navyDark text-white font-semibold text-xs transition-colors shadow-xs"
                   >
-                    <Mail className="w-3.5 h-3.5 text-corp-blue" />
-                    <span>Open in Outlook / Mail</span>
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Send via Email Client</span>
                   </a>
                   <a
-                    href={`https://wa.me/93786199696?text=${encodeURIComponent(`Hello PUL Consulting, I am inquiring about reference ${submissionResult.referenceId} regarding ${formData.service}.`)}`}
+                    href={`https://wa.me/93786199696?text=${encodeURIComponent(`Hello PUL Consulting PMO, I have generated project inquiry reference ${submissionResult.referenceId} regarding ${formData.service} on behalf of ${formData.organization}.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors shadow-xs"
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
-                    <span>Direct WhatsApp PMO</span>
+                    <span>Send via WhatsApp PMO</span>
                   </a>
                 </div>
-                <div className="text-[11px] text-slate-500 pt-1 border-t border-slate-200">
-                  Direct PMO Phone: +93 (786) 19 96 96 / +93 (786) 600 597 • Email: info@pulconsulting.com
+                <div className="text-[11px] text-slate-600 pt-2 border-t border-slate-200 flex flex-col gap-0.5">
+                  <span><strong>Direct PMO Phone:</strong> +93 (786) 19 96 96 / +93 (786) 600 597</span>
+                  <span><strong>Official Email:</strong> info@pulconsulting.com / amin@pulconsulting.com</span>
                 </div>
               </div>
 

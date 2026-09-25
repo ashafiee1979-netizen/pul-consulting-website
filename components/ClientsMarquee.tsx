@@ -79,7 +79,7 @@ export default function ClientsMarquee() {
         <div className="mt-8 flex items-center justify-between text-xs text-corp-muted pt-4 border-t border-slate-200">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-corp-blue" />
-            <span>100% compliance record across past donor audits (USAID, GIZ, World Bank).</span>
+            <span>Audited financial and contractual performance across past donor and prime contracts (USAID, GIZ, World Bank).</span>
           </div>
           <span className="hidden sm:inline font-mono text-[11px]">
             TIN: 9000010281 • MoCI Reg: 21679

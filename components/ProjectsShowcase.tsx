@@ -56,7 +56,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
               Audited Performance Registry
             </h2>
             <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-              Curated portfolio of 16 landmark programs representing over 14 years and 30+ cumulative contracts across 15+ provinces. Complete completion certificates and audit documentation available on file.
+              Curated portfolio of 17 landmark programs representing over 14 years and 30+ cumulative contracts across 15+ provinces. Complete completion certificates and audit documentation available on file.
             </p>
           </div>
 

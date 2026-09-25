@@ -10,20 +10,27 @@ interface Services15GridProps {
   onOpenConsultation: () => void;
 }
 
+const CORE_PUL_PRACTICES = [
+  "pmo-management",
+  "training-capacity",
+  "hr-workforce",
+  "monitoring-evaluation",
+  "call-center-operations",
+  "events-management",
+];
+
 export default function Services15Grid({ onOpenConsultation }: Services15GridProps) {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [viewScope, setViewScope] = useState<"core" | "synergies" | "all">("core");
 
-  const categories = [
-    "All",
-    "Strategic PMO",
-    "Technology & AI",
-    "Workforce & Operations",
-    "Governance & Support",
-  ];
-
-  const filteredCards = activeCategory === "All"
-    ? SERVICE_CARDS_15
-    : SERVICE_CARDS_15.filter((c) => c.category === activeCategory);
+  const filteredCards = SERVICE_CARDS_15.filter((card) => {
+    if (viewScope === "core") {
+      return CORE_PUL_PRACTICES.includes(card.id);
+    }
+    if (viewScope === "synergies") {
+      return !CORE_PUL_PRACTICES.includes(card.id);
+    }
+    return true;
+  });
 
   return (
     <section id="services" className="py-16 sm:py-20 bg-white border-b border-corp-line">
@@ -32,31 +39,48 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-corp-line">
           <div className="max-w-3xl">
             <p className="text-[11px] font-bold uppercase tracking-wider text-corp-blue">
-              Comprehensive Practice Architecture
+              Core Capabilities &amp; Ecosystem
             </p>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-corp-ink mt-1.5">
-              Solutions &amp; Practice Capabilities
+              Practice Capabilities &amp; Services
             </h2>
             <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-              Dedicated practice areas delivering governed project management, digital transformation, and field operations across complex operating theaters.
+              Prioritizing PUL Consulting&apos;s direct flagship competencies in project governance, workforce operations, and institutional capacity, complemented by global partner synergies.
             </p>
           </div>
 
-          {/* Filter tabs */}
+          {/* Scope selection tabs */}
           <div className="flex flex-wrap items-center gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-md text-sm font-semibold transition-all ${
-                  activeCategory === cat
-                    ? "bg-corp-navy text-white shadow-xs"
-                    : "bg-corp-ice text-corp-muted hover:text-corp-ink border border-slate-200 hover:border-slate-300"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+            <button
+              onClick={() => setViewScope("core")}
+              className={`px-3.5 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all ${
+                viewScope === "core"
+                  ? "bg-corp-navy text-white shadow-xs"
+                  : "bg-corp-ice text-corp-muted hover:text-corp-ink border border-slate-200 hover:border-slate-300"
+              }`}
+            >
+              Core Flagship Practices (6 Core)
+            </button>
+            <button
+              onClick={() => setViewScope("synergies")}
+              className={`px-3.5 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all ${
+                viewScope === "synergies"
+                  ? "bg-corp-navy text-white shadow-xs"
+                  : "bg-corp-ice text-corp-muted hover:text-corp-ink border border-slate-200 hover:border-slate-300"
+              }`}
+            >
+              Consortium Synergies (Tech &amp; Languages)
+            </button>
+            <button
+              onClick={() => setViewScope("all")}
+              className={`px-3.5 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all ${
+                viewScope === "all"
+                  ? "bg-corp-navy text-white shadow-xs"
+                  : "bg-corp-ice text-corp-muted hover:text-corp-ink border border-slate-200 hover:border-slate-300"
+              }`}
+            >
+              All 15 Capabilities
+            </button>
           </div>
         </div>
 
@@ -84,13 +108,24 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
           </div>
         </div>
 
+        {/* Filter status banner */}
+        <div className="mt-8 flex items-center justify-between text-xs text-corp-muted bg-slate-50 px-4 py-2.5 rounded-lg border border-slate-200">
+          <span>
+            Showing <strong className="text-corp-ink font-semibold">{filteredCards.length}</strong> {viewScope === "core" ? "Flagship Core Practices (Direct PUL HQ Delivery)" : viewScope === "synergies" ? "Consortium & Technology Partner Synergies" : "Total Capabilities"}
+          </span>
+          <Link href="/services" className="text-corp-blue font-semibold hover:underline inline-flex items-center gap-1">
+            <span>Explore Full 15-Practice Catalog</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
         {/* 
           Modern, Spacious Executive Card Grid
           - Split-card design: Top photo window + bottom pristine white content base
           - Clear delivery lead tag differentiating Core vs. Partner capabilities
           - Ample breathing room across a clean 3-column responsive layout
         */}
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {filteredCards.map((service) => {
             return (
               <Link
