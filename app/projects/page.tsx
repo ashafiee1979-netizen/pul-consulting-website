@@ -40,12 +40,12 @@ export default function ProjectsPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-corp-navyDark/60 via-transparent to-transparent" />
           </div>
 
-          {/* Hero Content with Animated Typography in Unified Executive Panel */}
+          {/* Hero Content with Animated Typography - Open layout, no text boxes */}
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">
-            <div className="max-w-2xl bg-corp-navyDark/90 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-white/20 shadow-2xl space-y-4">
+            <div className="max-w-3xl">
               {/* Animated Badge */}
               <div className="animate-solutions-badge">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/90 border border-slate-500/70 text-sky-200 text-xs font-semibold uppercase tracking-wider shadow-sm">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/80 backdrop-blur-xs border border-white/20 text-sky-200 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
                   <ShieldCheck className="w-4 h-4 text-corp-blue" />
                   <span>Verified Past Performance • Audit-Ready Registry</span>
                 </div>
@@ -53,23 +53,23 @@ export default function ProjectsPage() {
 
               {/* Animated Headline */}
               <div className="animate-solutions-title">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15]">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15] drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
                   Track Record &amp; Evidence
                 </h1>
-                <p className="mt-2 text-base sm:text-lg font-medium text-sky-200 font-serif italic">
+                <p className="mt-2.5 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
                   14+ Years of Audited Program Execution Across Afghanistan
                 </p>
               </div>
 
-              {/* Subtext with high contrast */}
-              <div className="animate-solutions-subtext">
-                <p className="text-sm sm:text-base text-slate-100 leading-relaxed">
+              {/* Subtext directly over image */}
+              <div className="animate-solutions-subtext mt-5 sm:mt-6">
+                <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed max-w-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
                   Comprehensive archive of multi-year operational contracts, capacity building initiatives, nationwide telecom management, and strategic PMO programs executed for multilateral donors and global contractors.
                 </p>
               </div>
 
               {/* Interactive Actions */}
-              <div className="animate-solutions-actions pt-2 flex flex-wrap items-center gap-3.5">
+              <div className="animate-solutions-actions mt-6 flex flex-wrap items-center gap-3.5">
                 <button
                   onClick={() => handleOpenConsultation("Audit & Compliance Inquiries")}
                   className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-md bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-executive transition-all active:scale-98"
