@@ -52,26 +52,26 @@ export default function AboutPage() {
       <main className="flex-1">
         {/* About & Partners Page Hero - Bright Panoramic Executive Banner */}
         <section className="relative bg-corp-navyDark text-white py-12 sm:py-16 lg:py-18 overflow-hidden border-b border-corp-navySubtle">
-          {/* Panoramic Background Image - 20% Brighter & Aligned */}
+          {/* Panoramic Background Image - Bright, Luminous & Clear */}
           <div className="absolute inset-0 z-0">
             <Image
               src="/assets/photos/about-hero.jpg"
               alt="PUL Consulting Institutional Governance & Global Partner Synergies"
               fill
-              className="object-cover object-center filter brightness-[1.22] contrast-[1.03]"
+              className="object-cover object-center filter brightness-[1.25] contrast-[1.02]"
               priority
             />
-            {/* Soft Balanced Gradient Overlays preserving sunlight and vista */}
-            <div className="absolute inset-0 bg-gradient-to-r from-corp-navyDark/90 via-corp-navyDark/70 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-corp-navyDark/60 via-transparent to-transparent" />
+            {/* Soft, Transparent Gradient Overlays preserving sunlight and vista */}
+            <div className="absolute inset-0 bg-gradient-to-r from-corp-navyDark/55 via-corp-navyDark/25 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-corp-navyDark/35 via-transparent to-transparent" />
           </div>
 
-          {/* Hero Content with Animated Typography - Open layout, no text boxes */}
+          {/* Hero Content with Animated Typography in Semi-Transparent Frosted Box */}
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">
-            <div className="max-w-3xl">
+            <div className="max-w-2xl bg-corp-navyDark/40 backdrop-blur-xs p-6 sm:p-7 rounded-xl border border-white/20 shadow-lg space-y-4">
               {/* Animated Badge */}
               <div className="animate-solutions-badge">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/80 backdrop-blur-xs border border-white/20 text-sky-200 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/60 border border-white/25 text-sky-200 text-xs font-semibold uppercase tracking-wider shadow-xs">
                   <ShieldCheck className="w-4 h-4 text-corp-blue" />
                   <span>Institutional Heritage • Global Partner Synergies</span>
                 </div>
@@ -79,23 +79,23 @@ export default function AboutPage() {
 
               {/* Animated Headline */}
               <div className="animate-solutions-title">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15] drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15] drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
                   About PUL Consulting &amp; Partners
                 </h1>
-                <p className="mt-2.5 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
+                <p className="mt-2 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
                   14+ Years of Continuous Operational Governance &amp; Dual-Continent Reach
                 </p>
               </div>
 
-              {/* Subtext directly over image */}
-              <div className="animate-solutions-subtext mt-5 sm:mt-6">
-                <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed max-w-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+              {/* Subtext */}
+              <div className="animate-solutions-subtext">
+                <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
                   Established in Kabul in 2010, PUL Consulting Services is the parent advisory and operational delivery enterprise combining rigorous PMP® project governance with an international partner ecosystem across the United States, Europe, and Central Asia.
                 </p>
               </div>
 
               {/* Interactive Actions */}
-              <div className="animate-solutions-actions mt-6 flex flex-wrap items-center gap-3.5">
+              <div className="animate-solutions-actions pt-2 flex flex-wrap items-center gap-3.5">
                 <button
                   onClick={() => handleOpenConsultation("Corporate Partnership Inquiry")}
                   className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-md bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-executive transition-all active:scale-98"
@@ -106,7 +106,7 @@ export default function AboutPage() {
 
                 <a
                   href="#partners"
-                  className="inline-flex items-center gap-2 px-4.5 py-2.5 rounded-md bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/25 text-xs font-bold uppercase tracking-wider transition-all"
+                  className="inline-flex items-center gap-2 px-4.5 py-2.5 rounded-md bg-white/15 hover:bg-white/25 backdrop-blur-xs text-white border border-white/25 text-xs font-bold uppercase tracking-wider transition-all"
                 >
                   <span>Explore Partner Companies</span>
                   <ChevronRight className="w-4 h-4 text-sky-300" />
