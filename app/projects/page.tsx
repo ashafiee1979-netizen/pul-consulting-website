@@ -25,8 +25,7 @@ export default function ProjectsPage() {
 
       <main className="flex-1">
         {/* Projects Page Hero - Bright, Elegant Panoramic Executive Banner */}
-        <section className="relative bg-corp-navyDark text-white py-12 sm:py-16 lg:py-18 overflow-hidden border-b border-corp-navySubtle">
-          {/* Panoramic Background Image - 20% Brighter & Aligned */}
+        <section className="relative min-h-[480px] sm:min-h-[500px] lg:min-h-[520px] flex items-center bg-corp-navyDark text-white py-12 sm:py-16 lg:py-18 overflow-hidden border-b border-corp-navySubtle">
           {/* Panoramic Background Image - Bright, Luminous & Clear */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -42,8 +41,8 @@ export default function ProjectsPage() {
           </div>
 
           {/* Hero Content with Animated Typography in Semi-Transparent Frosted Box */}
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">
-            <div className="max-w-2xl bg-corp-navyDark/40 backdrop-blur-xs p-6 sm:p-7 rounded-xl border border-white/20 shadow-lg space-y-4">
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 py-4 sm:py-6">
+            <div className="w-full max-w-2xl bg-corp-navyDark/40 backdrop-blur-xs p-6 sm:p-7 rounded-xl border border-white/20 shadow-lg space-y-4">
               {/* Animated Badge */}
               <div className="animate-solutions-badge">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/60 border border-white/25 text-sky-200 text-xs font-semibold uppercase tracking-wider shadow-xs">
