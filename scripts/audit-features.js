@@ -131,13 +131,14 @@ for (const { file, href } of anchorLinks) {
   }
 }
 
-// 3. Test HTTP Status of all routes on running server
-console.log('\n--- 3. Testing HTTP status on local server (port 3001) ---');
+// 3. Test HTTP Status of all routes on running server or live Vercel
+console.log('\n--- 3. Testing HTTP status on production deployment ---');
 const routes = ['/', '/services', '/projects', '/about'];
 
 function checkRoute(route) {
   return new Promise((resolve) => {
-    http.get(`http://localhost:3001${route}`, (res) => {
+    const https = require('https');
+    https.get(`https://pul-consulting-website.vercel.app${route}`, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
