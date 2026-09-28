@@ -42,10 +42,55 @@ export async function POST(request: Request) {
       emailDomain,
     });
 
+    // Optional automated email dispatch via Resend if RESEND_API_KEY environment variable is configured
+    let emailDispatched = false;
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const notificationEmail = process.env.NOTIFICATION_EMAIL || "info@pulconsulting.com";
+
+    if (resendApiKey) {
+      try {
+        const emailRes = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendApiKey}`,
+          },
+          body: JSON.stringify({
+            from: "PUL PMO Inquiries <onboarding@resend.dev>",
+            to: [notificationEmail],
+            reply_to: email,
+            subject: `[NEW RFP INQUIRY] ${referenceId} - ${organization} (${service})`,
+            html: `
+              <h2>New Project RFP / Consultation Request</h2>
+              <p><strong>Tracking Reference:</strong> ${referenceId}</p>
+              <p><strong>Organization:</strong> ${organization}</p>
+              <p><strong>Contact Name:</strong> ${name}</p>
+              <p><strong>Official Email:</strong> ${email}</p>
+              <p><strong>Phone:</strong> ${phone || "Not specified"}</p>
+              <p><strong>Practice / Service Line:</strong> ${service}</p>
+              <p><strong>Anticipated Timeline:</strong> ${timeline || "Not specified"}</p>
+              <hr />
+              <h3>Project Scope &amp; Objectives:</h3>
+              <p>${(projectScope || "No additional scope details provided").replace(/\n/g, "<br/>")}</p>
+              <hr />
+              <p style="font-size: 11px; color: #64748b;">Received at: ${receivedAt} via PUL Consulting Services Portal</p>
+            `,
+          }),
+        });
+
+        if (emailRes.ok) {
+          emailDispatched = true;
+        }
+      } catch (err) {
+        console.warn("[PUL CONSULTATION] Resend auto-email dispatch warning:", err);
+      }
+    }
+
     return NextResponse.json({
       success: true,
       referenceId,
       receivedAt,
+      emailDispatched,
       message: `RFP inquiry dossier prepared under reference ${referenceId}.`,
       dispatchContacts: {
         kabulPmoPhone: "+93 (786) 19 96 96",
