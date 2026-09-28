@@ -216,7 +216,7 @@ export default function ServicesPage() {
 
       <main className="flex-1">
         {/* Solutions Page Hero - Bright, Shorter Panoramic Executive Visual & Animated Typography */}
-        <section className="relative min-h-[480px] sm:min-h-[500px] lg:min-h-[520px] flex items-center bg-corp-navyDark text-white py-12 sm:py-16 lg:py-18 overflow-hidden border-b border-corp-navySubtle">
+        <section className="relative min-h-[560px] sm:min-h-[580px] lg:min-h-[600px] flex items-center bg-corp-navyDark text-white py-12 sm:py-16 lg:py-20 overflow-hidden border-b border-corp-navySubtle">
           {/* Panoramic Background Image - Bright, Luminous & Clear */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -233,30 +233,32 @@ export default function ServicesPage() {
 
           {/* Hero Content with Animated Typography in Semi-Transparent Frosted Box */}
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 py-4 sm:py-6">
-            <div className="w-full max-w-2xl bg-corp-navyDark/40 backdrop-blur-xs p-6 sm:p-7 rounded-xl border border-white/20 shadow-lg space-y-4">
-              {/* Animated Badge */}
-              <div className="animate-solutions-badge">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/60 border border-white/25 text-sky-200 text-xs font-semibold uppercase tracking-wider shadow-xs">
-                  <ShieldCheck className="w-4 h-4 text-corp-blue" />
-                  <span>The Big Picture • Enterprise Practice Catalog</span>
+            <div className="w-full max-w-2xl min-h-[360px] sm:min-h-[380px] bg-corp-navyDark/40 backdrop-blur-xs p-6 sm:p-7 rounded-xl border border-white/20 shadow-lg flex flex-col justify-between space-y-4">
+              <div>
+                {/* Animated Badge */}
+                <div className="animate-solutions-badge">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/60 border border-white/25 text-sky-200 text-xs font-semibold uppercase tracking-wider shadow-xs">
+                    <ShieldCheck className="w-4 h-4 text-corp-blue" />
+                    <span>The Big Picture • Enterprise Practice Catalog</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Animated Headline */}
-              <div className="animate-solutions-title">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15] drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
-                  Our Core Practice Capabilities
-                </h1>
-                <p className="mt-2 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                  Bridging Strategic Advisory &amp; Field Execution Nationwide
-                </p>
-              </div>
+                {/* Animated Headline */}
+                <div className="animate-solutions-title mt-4">
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15] drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+                    Our Core Practice Capabilities
+                  </h1>
+                  <p className="mt-2 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    Bridging Strategic Advisory &amp; Field Execution Nationwide
+                  </p>
+                </div>
 
-              {/* Subtext */}
-              <div className="animate-solutions-subtext">
-                <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
-                  Full-spectrum consulting, enterprise AI enablement, nationwide workforce mobilization, and mission-critical operations anchored by 14+ years of verified past performance for bilateral donors and global corporations.
-                </p>
+                {/* Subtext */}
+                <div className="animate-solutions-subtext mt-3">
+                  <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
+                    Full-spectrum consulting, enterprise AI enablement, nationwide workforce mobilization, and mission-critical operations anchored by 14+ years of verified past performance for bilateral donors and global corporations.
+                  </p>
+                </div>
               </div>
 
               {/* Interactive Actions */}

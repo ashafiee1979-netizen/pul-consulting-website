@@ -43,6 +43,20 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
 
   const current = filteredProjects[activeProject] || filteredProjects[0];
 
+  const handleSelectProject = (idx: number) => {
+    setActiveProject(idx);
+    if (typeof window !== "undefined" && window.innerWidth < 1024) {
+      setTimeout(() => {
+        const el = document.getElementById("project-dossier");
+        if (el) {
+          const navOffset = 96;
+          const targetY = el.getBoundingClientRect().top + window.pageYOffset - navOffset;
+          window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+        }
+      }, 50);
+    }
+  };
+
   return (
     <section id="projects" className="py-20 bg-corp-ice border-b border-corp-line">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
@@ -69,7 +83,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
                   setSelectedFilter(cat);
                   setActiveProject(0);
                 }}
-                className={`px-4 py-2 rounded-md text-sm font-semibold transition-all ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm font-semibold transition-all ${
                   selectedFilter === cat
                     ? "bg-corp-navy text-white shadow-xs"
                     : "bg-white text-corp-muted hover:text-corp-ink border border-slate-200 hover:border-slate-300"
@@ -129,7 +143,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
               {filteredProjects.map((project, idx) => (
                 <button
                   key={project.id}
-                  onClick={() => setActiveProject(idx)}
+                  onClick={() => handleSelectProject(idx)}
                   className={`w-full text-left p-4 rounded-md border transition-all duration-200 flex items-start justify-between gap-3 ${
                     activeProject === idx
                       ? "bg-white border-corp-blue shadow-xs ring-1 ring-corp-blue/20"
@@ -163,7 +177,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
             </div>
 
             {/* Right Column: In-Depth Selected Project Dossier */}
-            <div className="lg:col-span-7">
+            <div id="project-dossier" className="lg:col-span-7 scroll-mt-24">
               {current && (
                 <div className="bg-white rounded-md p-6 sm:p-8 border border-slate-200 shadow-sm relative">
                 {/* Header Badge & Status */}

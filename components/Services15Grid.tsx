@@ -85,7 +85,7 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
         </div>
 
         {/* 4 Strategic Pillars Overview Bar */}
-        <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <div className="p-3.5 rounded-lg bg-corp-ice/70 border border-slate-200">
             <span className="text-[10px] font-bold text-corp-blue uppercase tracking-wider block">Pillar I</span>
             <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Strategic PMO &amp; Governance</h4>
@@ -109,11 +109,11 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
         </div>
 
         {/* Filter status banner */}
-        <div className="mt-8 flex items-center justify-between text-xs text-corp-muted bg-slate-50 px-4 py-2.5 rounded-lg border border-slate-200">
+        <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs text-corp-muted bg-slate-50 px-4 py-2.5 rounded-lg border border-slate-200">
           <span>
             Showing <strong className="text-corp-ink font-semibold">{filteredCards.length}</strong> {viewScope === "core" ? "Flagship Core Practices (Direct PUL HQ Delivery)" : viewScope === "synergies" ? "Consortium & Technology Partner Synergies" : "Total Capabilities"}
           </span>
-          <Link href="/services" className="text-corp-blue font-semibold hover:underline inline-flex items-center gap-1">
+          <Link href="/services" className="text-corp-blue font-semibold hover:underline inline-flex items-center gap-1 shrink-0">
             <span>Explore Full 15-Practice Catalog</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </Link>

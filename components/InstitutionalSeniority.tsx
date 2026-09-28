@@ -127,7 +127,7 @@ export default function InstitutionalSeniority() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
             {deliveryGates.map((gate) => {
               const GateIcon = gate.icon;
               return (

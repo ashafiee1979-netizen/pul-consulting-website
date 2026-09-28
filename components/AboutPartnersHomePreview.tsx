@@ -176,7 +176,7 @@ export default function AboutPartnersHomePreview() {
               className="hidden lg:block absolute top-7 left-12 right-12 h-1 bg-gradient-to-r from-sky-400 via-indigo-400 via-amber-400 to-emerald-400 rounded-full z-0 opacity-40" 
             />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 relative z-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative z-10">
               {deliveryGates.map((gate) => {
                 const Icon = gate.icon;
                 return (

@@ -167,7 +167,7 @@ export default function HeroSection({ onOpenConsultation }: HeroSectionProps) {
       */}
       <section 
         id="hero" 
-        className="relative min-h-[480px] sm:min-h-[500px] lg:min-h-[520px] flex items-center bg-slate-900 overflow-hidden text-white py-12 sm:py-16 lg:py-18 border-b border-corp-navySubtle"
+        className="relative min-h-[560px] sm:min-h-[580px] lg:min-h-[600px] flex items-center bg-slate-900 overflow-hidden text-white py-12 sm:py-16 lg:py-20 border-b border-corp-navySubtle"
       >
         {/* Full-bleed Panoramic Background Image - 20% Brighter & Aligned */}
         <div className="absolute inset-0 z-0">

@@ -51,7 +51,7 @@ export default function AboutPage() {
 
       <main className="flex-1">
         {/* About & Partners Page Hero - Bright Panoramic Executive Banner */}
-        <section className="relative min-h-[480px] sm:min-h-[500px] lg:min-h-[520px] flex items-center bg-corp-navyDark text-white py-12 sm:py-16 lg:py-18 overflow-hidden border-b border-corp-navySubtle">
+        <section className="relative min-h-[560px] sm:min-h-[580px] lg:min-h-[600px] flex items-center bg-corp-navyDark text-white py-12 sm:py-16 lg:py-20 overflow-hidden border-b border-corp-navySubtle">
           {/* Panoramic Background Image - Bright, Luminous & Clear */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -68,30 +68,32 @@ export default function AboutPage() {
 
           {/* Hero Content with Animated Typography in Semi-Transparent Frosted Box */}
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 py-4 sm:py-6">
-            <div className="w-full max-w-2xl bg-corp-navyDark/40 backdrop-blur-xs p-6 sm:p-7 rounded-xl border border-white/20 shadow-lg space-y-4">
-              {/* Animated Badge */}
-              <div className="animate-solutions-badge">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/60 border border-white/25 text-sky-200 text-xs font-semibold uppercase tracking-wider shadow-xs">
-                  <ShieldCheck className="w-4 h-4 text-corp-blue" />
-                  <span>Institutional Heritage • Global Partner Synergies</span>
+            <div className="w-full max-w-2xl min-h-[360px] sm:min-h-[380px] bg-corp-navyDark/40 backdrop-blur-xs p-6 sm:p-7 rounded-xl border border-white/20 shadow-lg flex flex-col justify-between space-y-4">
+              <div>
+                {/* Animated Badge */}
+                <div className="animate-solutions-badge">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/60 border border-white/25 text-sky-200 text-xs font-semibold uppercase tracking-wider shadow-xs">
+                    <ShieldCheck className="w-4 h-4 text-corp-blue" />
+                    <span>Institutional Heritage • Global Partner Synergies</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Animated Headline */}
-              <div className="animate-solutions-title">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15] drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
-                  About PUL Consulting &amp; Partners
-                </h1>
-                <p className="mt-2 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                  14+ Years of Continuous Operational Governance &amp; Dual-Continent Reach
-                </p>
-              </div>
+                {/* Animated Headline */}
+                <div className="animate-solutions-title mt-4">
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15] drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
+                    About PUL Consulting &amp; Partners
+                  </h1>
+                  <p className="mt-2 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                    14+ Years of Continuous Operational Governance &amp; Dual-Continent Reach
+                  </p>
+                </div>
 
-              {/* Subtext */}
-              <div className="animate-solutions-subtext">
-                <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
-                  Established in Kabul in 2010, PUL Consulting Services is the parent advisory and operational delivery enterprise combining rigorous PMP® project governance with an international partner ecosystem across the United States, Europe, and Central Asia.
-                </p>
+                {/* Subtext */}
+                <div className="animate-solutions-subtext mt-3">
+                  <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
+                    Established in Kabul in 2010, PUL Consulting Services is the parent advisory and operational delivery enterprise combining rigorous PMP® project governance with an international partner ecosystem across the United States, Europe, and Central Asia.
+                  </p>
+                </div>
               </div>
 
               {/* Interactive Actions */}
