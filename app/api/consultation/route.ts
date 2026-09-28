@@ -53,6 +53,7 @@ export async function POST(request: Request) {
     const smtpUser = process.env.SMTP_USER || "info@pulconsulting.com";
     const smtpPass = process.env.SMTP_PASS || "0786199696";
 
+    let smtpErrorDetails: string | null = null;
     if (smtpPass) {
       try {
         const transporter = nodemailer.createTransport({
@@ -66,6 +67,7 @@ export async function POST(request: Request) {
           tls: {
             rejectUnauthorized: false,
           },
+          connectionTimeout: 10000,
         });
 
         await transporter.sendMail({
@@ -91,7 +93,8 @@ export async function POST(request: Request) {
         });
 
         emailDispatched = true;
-      } catch (smtpErr) {
+      } catch (smtpErr: any) {
+        smtpErrorDetails = smtpErr?.message || String(smtpErr);
         console.warn("[PUL CONSULTATION] One.com SMTP dispatch warning:", smtpErr);
       }
     }
@@ -142,6 +145,7 @@ export async function POST(request: Request) {
       referenceId,
       receivedAt,
       emailDispatched,
+      smtpError: smtpErrorDetails,
       message: `RFP inquiry dossier prepared under reference ${referenceId}.`,
       dispatchContacts: {
         kabulPmoPhone: "+93 (786) 19 96 96",
