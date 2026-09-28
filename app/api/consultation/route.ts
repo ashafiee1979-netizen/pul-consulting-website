@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     const smtpHost = process.env.SMTP_HOST || "send.one.com";
     const smtpPort = Number(process.env.SMTP_PORT) || 465;
     const smtpUser = process.env.SMTP_USER || "info@pulconsulting.com";
-    const smtpPass = process.env.SMTP_PASS;
+    const smtpPass = process.env.SMTP_PASS || "0786199696";
 
     if (smtpPass) {
       try {
@@ -62,6 +62,9 @@ export async function POST(request: Request) {
           auth: {
             user: smtpUser,
             pass: smtpPass,
+          },
+          tls: {
+            rejectUnauthorized: false,
           },
         });
 

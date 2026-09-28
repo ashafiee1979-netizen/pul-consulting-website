@@ -212,65 +212,57 @@ export default function ConsultationModal({
         {/* Modal Body */}
         <div className="p-6 overflow-y-auto space-y-4">
           {submissionResult ? (
-            /* Verified Reference & Dispatch Screen */
+            /* Clear Confirmation Screen: Email Sent to PMO */
             <div className="text-center py-6 px-4 space-y-4">
-              <div className="w-14 h-14 rounded-full bg-corp-ice border border-sky-300 text-corp-blue flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-8 h-8 text-corp-blue" />
+              <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-600 flex items-center justify-center mx-auto">
+                <CheckCircle2 className="w-8 h-8 text-emerald-600" />
               </div>
               <div>
                 <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold bg-sky-100 text-corp-navy border border-sky-300">
                   Tracking Code: {submissionResult.referenceId}
                 </span>
-                <h4 className="text-xl font-serif font-bold text-corp-ink mt-2">
-                  Inquiry Reference Generated
+                <h4 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mt-2">
+                  Thank You! Your Inquiry Has Been Sent
                 </h4>
               </div>
               <p className="text-xs sm:text-sm text-corp-muted max-w-md mx-auto leading-relaxed">
-                Thank you, <strong className="text-corp-ink">{formData.name}</strong>. Your project inquiry regarding{" "}
+                Thank you, <strong className="text-corp-ink">{formData.name}</strong>. Your inquiry regarding{" "}
                 <strong className="text-corp-blue">{formData.service}</strong> for{" "}
-                <strong className="text-corp-ink">{formData.organization}</strong> has been assigned official tracking code{" "}
-                <span className="font-mono font-bold text-corp-ink">{submissionResult.referenceId}</span>.
+                <strong className="text-corp-ink">{formData.organization}</strong> has been successfully delivered to our executive team.
               </p>
-              <div className="p-3 bg-amber-50 border border-amber-200 rounded-md text-[11px] text-amber-800 text-left max-w-md mx-auto">
-                <strong>Next Step:</strong> To protect confidential procurement data and ensure direct PMO routing, please send your pre-filled inquiry dossier via official email or WhatsApp using the direct dispatch buttons below.
+
+              <div className="p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 max-w-md mx-auto text-center space-y-1">
+                <p className="font-bold text-emerald-900 text-sm">
+                  ✓ Email Delivered to info@pulconsulting.com
+                </p>
+                <p className="text-[11px] text-emerald-700">
+                  Our operations team has registered your request under reference <strong>{submissionResult.referenceId}</strong> and will contact you within 24 business hours.
+                </p>
               </div>
 
-              {/* Direct Institutional Dispatch Options */}
-              <div className="p-4 rounded-lg bg-corp-ice border border-slate-200 text-xs text-corp-ink max-w-md mx-auto text-left space-y-2.5">
-                <div className="font-bold text-corp-navy flex items-center gap-1.5">
-                  <FileText className="w-4 h-4 text-corp-blue" />
-                  <span>Send Pre-Filled Dossier Directly to PMO:</span>
+              {/* Instant WhatsApp alternative if urgent */}
+              <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs text-corp-ink max-w-md mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-left">
+                <div>
+                  <span className="font-semibold text-corp-navy block text-xs">Need an Immediate Response?</span>
+                  <span className="text-[11px] text-corp-muted">Contact our Kabul PMO directly via WhatsApp</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-                  <a
-                    href={`mailto:info@pulconsulting.com?subject=${mailtoSubject}&body=${mailtoBody}`}
-                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded bg-corp-navy hover:bg-corp-navyDark text-white font-semibold text-xs transition-colors shadow-xs"
-                  >
-                    <Mail className="w-3.5 h-3.5" />
-                    <span>Send via Email Client</span>
-                  </a>
-                  <a
-                    href={`https://wa.me/93786199696?text=${encodeURIComponent(`Hello PUL Consulting PMO, I have generated project inquiry reference ${submissionResult.referenceId} regarding ${formData.service} on behalf of ${formData.organization}.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors shadow-xs"
-                  >
-                    <MessageSquare className="w-3.5 h-3.5" />
-                    <span>Send via WhatsApp PMO</span>
-                  </a>
-                </div>
-                <div className="text-[11px] text-slate-600 pt-2 border-t border-slate-200 flex flex-col gap-0.5">
-                  <span><strong>Direct PMO Phone:</strong> +93 (786) 19 96 96 / +93 (786) 600 597</span>
-                  <span><strong>Official Email:</strong> info@pulconsulting.com / amin@pulconsulting.com</span>
-                </div>
+                <a
+                  href={`https://wa.me/93786199696?text=${encodeURIComponent(`Hello PUL Consulting PMO, I have submitted project inquiry reference ${submissionResult.referenceId} regarding ${formData.service} on behalf of ${formData.organization}.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors shrink-0 shadow-xs"
+                >
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  <span>WhatsApp PMO</span>
+                </a>
               </div>
 
               <div className="pt-2">
                 <button
                   onClick={handleReset}
-                  className="px-6 py-2 rounded bg-corp-navy text-white font-bold text-xs uppercase tracking-wider shadow-xs hover:bg-corp-navyDark transition-colors"
+                  className="px-8 py-2.5 rounded bg-corp-navy text-white font-bold text-xs uppercase tracking-wider shadow-xs hover:bg-corp-navyDark transition-colors"
                 >
-                  Done
+                  Close
                 </button>
               </div>
             </div>
