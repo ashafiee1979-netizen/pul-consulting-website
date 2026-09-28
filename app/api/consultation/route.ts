@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
   try {
@@ -42,12 +43,59 @@ export async function POST(request: Request) {
       emailDomain,
     });
 
-    // Optional automated email dispatch via Resend if RESEND_API_KEY environment variable is configured
+    // Email dispatch: Check for one.com SMTP configuration or Resend API key
     let emailDispatched = false;
-    const resendApiKey = process.env.RESEND_API_KEY;
     const notificationEmail = process.env.NOTIFICATION_EMAIL || "info@pulconsulting.com";
 
-    if (resendApiKey) {
+    // 1. Prioritize direct One.com SMTP (send.one.com:465)
+    const smtpHost = process.env.SMTP_HOST || "send.one.com";
+    const smtpPort = Number(process.env.SMTP_PORT) || 465;
+    const smtpUser = process.env.SMTP_USER || "info@pulconsulting.com";
+    const smtpPass = process.env.SMTP_PASS;
+
+    if (smtpPass) {
+      try {
+        const transporter = nodemailer.createTransport({
+          host: smtpHost,
+          port: smtpPort,
+          secure: smtpPort === 465,
+          auth: {
+            user: smtpUser,
+            pass: smtpPass,
+          },
+        });
+
+        await transporter.sendMail({
+          from: `"PUL Consulting PMO" <${smtpUser}>`,
+          to: notificationEmail,
+          replyTo: email,
+          subject: `[NEW RFP INQUIRY] ${referenceId} - ${organization} (${service})`,
+          html: `
+            <h2>New Project RFP / Consultation Request</h2>
+            <p><strong>Tracking Reference:</strong> ${referenceId}</p>
+            <p><strong>Organization:</strong> ${organization}</p>
+            <p><strong>Contact Name:</strong> ${name}</p>
+            <p><strong>Official Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone || "Not specified"}</p>
+            <p><strong>Practice / Service Line:</strong> ${service}</p>
+            <p><strong>Anticipated Timeline:</strong> ${timeline || "Not specified"}</p>
+            <hr />
+            <h3>Project Scope &amp; Objectives:</h3>
+            <p>${(projectScope || "No additional scope details provided").replace(/\n/g, "<br/>")}</p>
+            <hr />
+            <p style="font-size: 11px; color: #64748b;">Received at: ${receivedAt} via PUL Consulting Services Portal</p>
+          `,
+        });
+
+        emailDispatched = true;
+      } catch (smtpErr) {
+        console.warn("[PUL CONSULTATION] One.com SMTP dispatch warning:", smtpErr);
+      }
+    }
+
+    // 2. Fallback to Resend API if configured and SMTP not sent
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (!emailDispatched && resendApiKey) {
       try {
         const emailRes = await fetch("https://api.resend.com/emails", {
           method: "POST",
