@@ -45,7 +45,7 @@ export default function InstitutionalSeniority() {
     },
     {
       gate: "Gate 03",
-      title: "Deliver",
+      title: "Govern",
       desc: "Controlled on-the-ground action, quality assurance, daily supervision, and issue resolution.",
       badge: "Controlled Action",
       icon: Activity,
@@ -59,7 +59,7 @@ export default function InstitutionalSeniority() {
     },
     {
       gate: "Gate 05",
-      title: "Improve",
+      title: "Validate",
       desc: "Systematic review, knowledge transfer, audit clearance, and responsible closeout.",
       badge: "Lasting Value",
       icon: BadgeCheck,
@@ -78,7 +78,7 @@ export default function InstitutionalSeniority() {
             Certainty in Complex Environments
           </h2>
           <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-            Combining certified governance (PMP®, Scrum Masters, MBAs) with 14+ years of audited field execution across Afghanistan.
+            Combining certified governance (PMP®, Scrum Masters, MBAs) with continuous field execution since 2010 across Afghanistan.
           </p>
         </div>
 

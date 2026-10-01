@@ -40,7 +40,7 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
               Audited Past Performance Highlights
             </h2>
             <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-              14+ years of verified program execution, nationwide workforce mobilization, and technical operations for multilateral donors and global contractors.
+              Verified program execution since 2010, nationwide workforce mobilization, and technical operations for multilateral donors and global contractors.
             </p>
           </div>
 

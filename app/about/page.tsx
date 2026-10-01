@@ -84,7 +84,7 @@ export default function AboutPage() {
                     About PUL Consulting &amp; Partners
                   </h1>
                   <p className="mt-2 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                    14+ Years of Continuous Operational Governance &amp; Dual-Continent Reach
+                    Continuous Operational Governance &amp; Dual-Continent Reach Since 2010
                   </p>
                 </div>
 

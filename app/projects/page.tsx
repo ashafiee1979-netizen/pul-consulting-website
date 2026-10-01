@@ -58,7 +58,7 @@ export default function ProjectsPage() {
                     Audited Track Record &amp; Evidence Registry
                   </h1>
                   <p className="mt-2 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                    14+ Years of Audited Program Execution &amp; Operational Governance Nationwide
+                    Audited Program Execution &amp; Operational Governance Nationwide Since 2010
                   </p>
                 </div>
 

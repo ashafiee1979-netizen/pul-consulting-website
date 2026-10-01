@@ -22,7 +22,7 @@ const STATS_DATA: CounterStat[] = [
   {
     id: "years",
     start: 1,
-    target: 14,
+    target: Math.max(16, new Date().getFullYear() - 2010),
     suffix: "+",
     label: "Years in Operation",
     description: "Delivering continuous management consulting and operational programs since 2010",
@@ -75,19 +75,20 @@ function AnimatedStat({
   formatComma?: boolean;
   isVisible: boolean;
 }) {
-  const [current, setCurrent] = useState<number>(start);
+  const [current, setCurrent] = useState<number>(target);
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!isVisible) {
-      setCurrent(start);
-      return;
-    }
-
     // Check if user prefers reduced motion
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setCurrent(target);
       return;
     }
+
+    if (!isVisible || hasAnimated) return;
+
+    setCurrent(start);
+    setHasAnimated(true);
 
     let startTime: number | null = null;
     const duration = 2400; // 2.4s unhurried speed aligned with headline and subtext animations
@@ -112,7 +113,7 @@ function AnimatedStat({
     return () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
-  }, [isVisible, start, target]);
+  }, [isVisible, hasAnimated, start, target]);
 
   const formattedNumber = formatComma
     ? current.toLocaleString("en-US")

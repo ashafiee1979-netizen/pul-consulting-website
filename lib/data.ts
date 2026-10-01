@@ -683,7 +683,7 @@ export const PARTNER_COMPANIES: PartnerCompany[] = [
 
 export const INSTITUTIONAL_STRENGTHS = [
   {
-    title: "14+ Years of Proven Operational Continuity",
+    title: "Proven Operational Continuity Since 2010",
     description: "Founded in 2010, PUL Consulting has maintained uninterrupted professional delivery through changing regimes, shifting regulations, and complex environments across Afghanistan.",
     icon: "Clock",
   },

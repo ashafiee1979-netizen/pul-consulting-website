@@ -16,7 +16,7 @@ import {
 import { COMPANY_INFO, SERVICE_CARDS_15, PARTNER_COMPANIES } from "@/lib/data";
 
 interface FooterProps {
-  onOpenConsultation: () => void;
+  onOpenConsultation?: () => void;
 }
 
 export default function Footer({ onOpenConsultation }: FooterProps) {
@@ -34,12 +34,12 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
               Ready to Execute in High-Complexity Operating Environments?
             </h3>
             <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Partner with Afghanistan&apos;s established consultancy firm. 14+ years of audited field delivery 
+              Partner with Afghanistan&apos;s established consultancy firm. Delivering audited field operations since 2010 
               for USAID, The World Bank, GIZ, and global telecommunications operators.
             </p>
           </div>
           <button
-            onClick={onOpenConsultation}
+            onClick={() => onOpenConsultation?.()}
             className="flex-shrink-0 px-6 py-3.5 rounded-md bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-all active:scale-98"
           >
             Request Consultation
@@ -208,10 +208,18 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
 
         {/* Bottom Strip */}
         <div className="mt-14 pt-8 border-t border-corp-navySubtle flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>
-            &copy; 2010 – {new Date().getFullYear()} PUL Consulting Services. All rights reserved. 
-            Registered under the laws of Afghanistan.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+            <p>
+              &copy; 2010 – {new Date().getFullYear()} PUL Consulting Services. All rights reserved. 
+              Registered under the laws of Afghanistan.
+            </p>
+            <div className="flex items-center gap-2.5 text-[11px] text-slate-400">
+              <span className="hidden sm:inline text-slate-600">|</span>
+              <Link href="/privacy" className="hover:text-slate-200 transition-colors">Privacy Policy</Link>
+              <span className="text-slate-600">•</span>
+              <Link href="/terms" className="hover:text-slate-200 transition-colors">Terms of Service</Link>
+            </div>
+          </div>
 
           <button
             onClick={scrollToTop}

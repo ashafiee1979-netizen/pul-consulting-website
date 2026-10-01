@@ -257,7 +257,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                   {/* Dropdown Footer */}
                   <div className="mt-4 pt-3 border-t border-slate-100 bg-slate-50 -mx-5 -mb-5 px-5 py-3 rounded-b-lg flex items-center justify-between">
                     <span className="text-[11px] text-corp-muted">
-                      14+ Years Audited Delivery • PMO, Technology, Workforce &amp; Regulatory Solutions
+                      Continuous Audited Delivery Since 2010 • PMO, Technology, Workforce &amp; Regulatory Solutions
                     </span>
                     <button
                       onClick={() => {

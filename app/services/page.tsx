@@ -256,7 +256,7 @@ export default function ServicesPage() {
                 {/* Subtext */}
                 <div className="animate-solutions-subtext mt-3">
                   <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
-                    Full-spectrum consulting, enterprise AI enablement, nationwide workforce mobilization, and mission-critical operations anchored by 14+ years of verified past performance for bilateral donors and global corporations.
+                    Full-spectrum consulting, enterprise AI enablement, nationwide workforce mobilization, and mission-critical operations anchored by verified past performance since 2010 for bilateral donors and global corporations.
                   </p>
                 </div>
               </div>
