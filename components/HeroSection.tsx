@@ -22,7 +22,7 @@ const STATS_DATA: CounterStat[] = [
   {
     id: "years",
     start: 1,
-    target: Math.max(16, new Date().getFullYear() - 2010),
+    target: 14,
     suffix: "+",
     label: "Years in Operation",
     description: "Delivering continuous management consulting and operational programs since 2010",
@@ -75,8 +75,7 @@ function AnimatedStat({
   formatComma?: boolean;
   isVisible: boolean;
 }) {
-  const [current, setCurrent] = useState<number>(target);
-  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
+  const [current, setCurrent] = useState<number>(start);
 
   useEffect(() => {
     // Check if user prefers reduced motion
@@ -85,13 +84,10 @@ function AnimatedStat({
       return;
     }
 
-    if (!isVisible || hasAnimated) return;
-
-    setCurrent(start);
-    setHasAnimated(true);
+    if (!isVisible) return;
 
     let startTime: number | null = null;
-    const duration = 2400; // 2.4s unhurried speed aligned with headline and subtext animations
+    const duration = 3800; // Graceful, slowed-down animation speed (3.8s) for smooth number roll
     let animationFrameId: number;
 
     const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
@@ -113,7 +109,7 @@ function AnimatedStat({
     return () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
-  }, [isVisible, hasAnimated, start, target]);
+  }, [isVisible, start, target]);
 
   const formattedNumber = formatComma
     ? current.toLocaleString("en-US")
