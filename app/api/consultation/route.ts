@@ -1,174 +1,114 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { randomInt } from "node:crypto";
+import { sql } from "@/lib/db";
+import {
+  clientConfirmationEmail,
+  internalNotificationEmail,
+  mailConfigured,
+  sendMail,
+  type InquiryEmailData,
+} from "@/lib/email";
+
+export const runtime = "nodejs";
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const clean = (v: unknown, max: number) =>
+  typeof v === "string" ? v.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "").trim().slice(0, max) : "";
+
+const fail = (error: string, status: number) =>
+  NextResponse.json({ success: false, error }, { status });
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { name, email, phone, organization, service, timeline, projectScope } = body;
+    const body = await request.json().catch(() => null);
+    if (!body || typeof body !== "object") return fail("Invalid request.", 400);
 
-    // Strict field validation
+    // Honeypot: real users never fill this hidden field
+    if (clean(body.website, 200)) {
+      return NextResponse.json({ success: true, referenceId: "PUL-RFP-0000-00000", receivedAt: new Date().toISOString() });
+    }
+
+    const name = clean(body.name, 120);
+    const email = clean(body.email, 200).toLowerCase();
+    const phone = clean(body.phone, 60);
+    const organization = clean(body.organization, 200);
+    const orgType = clean(body.orgType, 120);
+    const service = clean(body.service, 200) || "General inquiry";
+    const timeline = clean(body.timeline, 120) || "Not specified";
+    const projectScope = clean(body.projectScope, 5000);
+
     if (!name || !email || !organization) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          error: "Required fields missing. Please provide your Contact Name, Official Email, and Organization." 
-        },
-        { status: 400 }
-      );
+      return fail("Required fields missing. Please provide your Contact Name, Official Email, and Organization.", 400);
+    }
+    if (!EMAIL_RE.test(email)) {
+      return fail("Invalid email format. Please provide a valid organizational email address.", 400);
     }
 
-    // Basic email format check
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          error: "Invalid email format. Please provide an authentic organizational email address." 
-        },
-        { status: 400 }
-      );
+    const db = sql();
+
+    // Throttle: max 5 submissions per email per hour
+    const recent = (await db`
+      SELECT count(*)::int AS n FROM inquiries
+      WHERE lower(email) = ${email} AND created_at > now() - interval '1 hour'`) as Array<{ n: number }>;
+    if ((recent[0]?.n ?? 0) >= 5) {
+      return fail("Too many submissions from this address. Please email info@pulconsulting.com directly.", 429);
     }
 
-    // Generate unique verified reference number
-    const referenceId = `PUL-RFP-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
-    const receivedAt = new Date().toISOString();
-
-    // Redacted server telemetry: never log raw personal names, phone numbers, or confidential project scopes
-    const emailDomain = email.includes("@") ? email.split("@")[1] : "unknown";
-    console.log(`[PUL CONSULTATION LOG] RFP Reference Created:`, {
-      referenceId,
-      receivedAt,
-      service,
-      timeline,
-      emailDomain,
-    });
-
-    // Email dispatch: Check for one.com SMTP configuration or Resend API key
-    let emailDispatched = false;
-    const notificationEmail = process.env.NOTIFICATION_EMAIL || "ashafiee1979@gmail.com";
-
-    // 1. Prioritize direct One.com SMTP (send.one.com:465)
-    const smtpHost = process.env.SMTP_HOST || "send.one.com";
-    const smtpPort = Number(process.env.SMTP_PORT) || 465;
-    const smtpUser = process.env.SMTP_USER || "info@pulconsulting.com";
-    const smtpPass = process.env.SMTP_PASS || "0786199696";
-
-    let smtpErrorDetails: string | null = null;
-    if (smtpPass) {
-      try {
-        const transporter = nodemailer.createTransport({
-          host: smtpHost,
-          port: smtpPort,
-          secure: smtpPort === 465,
-          auth: {
-            user: smtpUser,
-            pass: smtpPass,
-          },
-          tls: {
-            rejectUnauthorized: false,
-          },
-          connectionTimeout: 10000,
-        });
-
-        await transporter.sendMail({
-          from: `"PUL Consulting PMO" <${smtpUser}>`,
-          to: notificationEmail,
-          replyTo: email,
-          subject: `[NEW RFP INQUIRY] ${referenceId} - ${organization} (${service})`,
-          html: `
-            <h2>New Project RFP / Consultation Request</h2>
-            <p><strong>Tracking Reference:</strong> ${referenceId}</p>
-            <p><strong>Organization:</strong> ${organization}</p>
-            <p><strong>Contact Name:</strong> ${name}</p>
-            <p><strong>Official Email:</strong> ${email}</p>
-            <p><strong>Phone:</strong> ${phone || "Not specified"}</p>
-            <p><strong>Practice / Service Line:</strong> ${service}</p>
-            <p><strong>Anticipated Timeline:</strong> ${timeline || "Not specified"}</p>
-            <hr />
-            <h3>Project Scope &amp; Objectives:</h3>
-            <p>${(projectScope || "No additional scope details provided").replace(/\n/g, "<br/>")}</p>
-            <hr />
-            <p style="font-size: 11px; color: #64748b;">Received at: ${receivedAt} via PUL Consulting Services Portal</p>
-          `,
-        });
-
-        emailDispatched = true;
-      } catch (smtpErr: any) {
-        smtpErrorDetails = smtpErr?.message || String(smtpErr);
-        console.warn("[PUL CONSULTATION] One.com SMTP dispatch warning:", smtpErr);
-      }
+    const receivedAt = new Date();
+    let referenceId = "";
+    for (let attempt = 0; attempt < 5 && !referenceId; attempt++) {
+      const candidate = `PUL-RFP-${receivedAt.getFullYear()}-${randomInt(10000, 100000)}`;
+      const inserted = (await db`
+        INSERT INTO inquiries
+          (reference_id, name, email, phone, organization, org_type, service, timeline, project_scope)
+        VALUES
+          (${candidate}, ${name}, ${email}, ${phone || null}, ${organization}, ${orgType || null},
+           ${service}, ${timeline}, ${projectScope || null})
+        ON CONFLICT (reference_id) DO NOTHING
+        RETURNING reference_id`) as Array<{ reference_id: string }>;
+      if (inserted.length) referenceId = candidate;
     }
+    if (!referenceId) throw new Error("Could not allocate a reference id");
 
-    // 2. Fallback to Resend API if configured and SMTP not sent
-    const resendApiKey =
-      process.env.RESEND_API_KEY ||
-      Buffer.from("cmVfYmN3c29Zd1hfNzFIRzdXWGVuS1AydFVwUzNhelhVYWJh", "base64").toString("utf-8");
+    // Telemetry without personal data
+    console.log("[PUL CONSULTATION] stored", { referenceId, service, timeline, emailDomain: email.split("@")[1] });
 
-    if (!emailDispatched && resendApiKey) {
-      try {
-        const emailRes = await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${resendApiKey}`,
-          },
-          body: JSON.stringify({
-            from: "PUL PMO Inquiries <onboarding@resend.dev>",
-            to: [notificationEmail],
-            reply_to: email,
-            subject: `[NEW RFP INQUIRY] ${referenceId} - ${organization} (${service})`,
-            html: `
-              <h2>New Project RFP / Consultation Request</h2>
-              <p><strong>Tracking Reference:</strong> ${referenceId}</p>
-              <p><strong>Organization:</strong> ${organization}</p>
-              <p><strong>Contact Name:</strong> ${name}</p>
-              <p><strong>Official Email:</strong> ${email}</p>
-              <p><strong>Phone:</strong> ${phone || "Not specified"}</p>
-              <p><strong>Practice / Service Line:</strong> ${service}</p>
-              <p><strong>Anticipated Timeline:</strong> ${timeline || "Not specified"}</p>
-              <hr />
-              <h3>Project Scope &amp; Objectives:</h3>
-              <p>${(projectScope || "No additional scope details provided").replace(/\n/g, "<br/>")}</p>
-              <hr />
-              <p style="font-size: 11px; color: #64748b;">Received at: ${receivedAt} via PUL Consulting Services Portal</p>
-            `,
-          }),
-        });
+    const data: InquiryEmailData = {
+      referenceId, receivedAt, name, email, phone, organization, orgType, service, timeline, projectScope,
+    };
 
-        if (emailRes.ok) {
-          emailDispatched = true;
-          smtpErrorDetails = null; // Clear SMTP warning since Resend delivered successfully
-        } else {
-          const resendErr = await emailRes.json();
-          console.warn("[PUL CONSULTATION] Resend dispatch warning:", resendErr);
-        }
-      } catch (err) {
-        console.warn("[PUL CONSULTATION] Resend auto-email dispatch warning:", err);
-      }
+    let notificationSent = false;
+    let confirmationSent = false;
+
+    if (mailConfigured()) {
+      const notifyTo = process.env.NOTIFICATION_EMAIL || "info@pulconsulting.com";
+      const [internal, client] = await Promise.allSettled([
+        sendMail({ to: notifyTo, replyTo: email, ...internalNotificationEmail(data) }),
+        sendMail({ to: email, ...clientConfirmationEmail(data) }),
+      ]);
+      notificationSent = internal.status === "fulfilled";
+      confirmationSent = client.status === "fulfilled";
+      if (internal.status === "rejected") console.warn("[PUL CONSULTATION] notification email failed:", internal.reason?.message);
+      if (client.status === "rejected") console.warn("[PUL CONSULTATION] confirmation email failed:", client.reason?.message);
+
+      await db`UPDATE inquiries SET notification_sent = ${notificationSent}, confirmation_sent = ${confirmationSent}
+               WHERE reference_id = ${referenceId}`;
+    } else {
+      console.warn("[PUL CONSULTATION] SMTP_PASS not set — inquiry stored but no emails sent");
     }
 
     return NextResponse.json({
       success: true,
       referenceId,
-      receivedAt,
-      emailDispatched,
-      smtpError: smtpErrorDetails,
-      message: `RFP inquiry dossier prepared under reference ${referenceId}.`,
-      dispatchContacts: {
-        kabulPmoPhone: "+93 (786) 19 96 96",
-        kabulPmoAltPhone: "+93 (786) 600 597",
-        executiveEmail: "info@pulconsulting.com",
-        whatsApp: "https://wa.me/93786199696"
-      }
+      receivedAt: receivedAt.toISOString(),
+      confirmationSent,
+      notificationSent,
     });
   } catch (error) {
-    console.error("[PUL CONSULTATION ERROR] Submission processing failure:", error);
-    return NextResponse.json(
-      { 
-        success: false, 
-        error: "Internal server processing error. Please contact direct institutional channels at info@pulconsulting.com or +93 (786) 19 96 96." 
-      },
-      { status: 500 }
+    console.error("[PUL CONSULTATION ERROR]", error instanceof Error ? error.message : error);
+    return fail(
+      "We could not process your inquiry right now. Please contact us at info@pulconsulting.com or +93 (786) 19 96 96.",
+      500
     );
   }
 }

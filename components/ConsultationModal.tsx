@@ -36,6 +36,7 @@ export default function ConsultationModal({
     service: initialService || SERVICE_CARDS_15[0].title,
     projectScope: "",
     timeline: "Immediate (Within 30 Days)",
+    website: "", // honeypot — must stay empty
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,6 +44,7 @@ export default function ConsultationModal({
   const [submissionResult, setSubmissionResult] = useState<{
     referenceId: string;
     receivedAt: string;
+    confirmationSent: boolean;
   } | null>(null);
 
   const firstInputRef = useRef<HTMLInputElement>(null);
@@ -138,6 +140,7 @@ export default function ConsultationModal({
       setSubmissionResult({
         referenceId: data.referenceId,
         receivedAt: data.receivedAt,
+        confirmationSent: Boolean(data.confirmationSent),
       });
     } catch (err: unknown) {
       const errorMsg = err instanceof Error ? err.message : "Unable to reach PMO server. Please reach us via direct email or telephone.";
@@ -233,10 +236,13 @@ export default function ConsultationModal({
 
               <div className="p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 max-w-md mx-auto text-center space-y-1">
                 <p className="font-bold text-emerald-900 text-sm">
-                  ✓ Email Delivered to info@pulconsulting.com
+                  ✓ Inquiry received by PUL Consulting
                 </p>
                 <p className="text-[11px] text-emerald-700">
-                  Our operations team has registered your request under reference <strong>{submissionResult.referenceId}</strong> and will contact you within 24 business hours.
+                  Our operations team has registered your request under reference <strong>{submissionResult.referenceId}</strong> and will contact you within 24 business hours.{" "}
+                  {submissionResult.confirmationSent
+                    ? <>A confirmation email is on its way to <strong>{formData.email}</strong>.</>
+                    : <>If you do not receive a confirmation email shortly, please write to info@pulconsulting.com quoting this reference.</>}
                 </p>
               </div>
 
@@ -284,6 +290,19 @@ export default function ConsultationModal({
                   </div>
                 </div>
               )}
+
+              {/* Honeypot (hidden from people, visible to bots) */}
+              <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                <label htmlFor="consult-website">Website</label>
+                <input
+                  id="consult-website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.website}
+                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                />
+              </div>
 
               {/* Row 1: Name & Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
