@@ -91,7 +91,7 @@ export default function AboutPage() {
                 {/* Subtext */}
                 <div className="animate-solutions-subtext mt-3">
                   <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
-                    Established in Kabul in 2010, PUL Consulting Services is the parent advisory and operational delivery enterprise combining rigorous PMP® project governance with an international partner ecosystem across the United States, Europe, and Central Asia.
+                    Established in Kabul in 2010, PUL Consulting Services is the parent advisory and operational delivery enterprise combining rigorous PMI and Agile project governance, AI enablement, and an international partner ecosystem across the United States, Europe, and Central Asia.
                   </p>
                 </div>
               </div>

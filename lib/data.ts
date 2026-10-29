@@ -688,13 +688,13 @@ export const INSTITUTIONAL_STRENGTHS = [
     icon: "Clock",
   },
   {
-    title: "PMP® & Scrum Master Certified Practice Leadership",
-    description: "Our core PMO methodology is built upon PMI standards, Result-Based Management (RBM), and agile sprint governance, ensuring rigorous control from initiation to contract closeout.",
+    title: "PMI, Agile and Scrum Methodology as well as AI Enablement",
+    description: "Our core PMO methodology is anchored in PMI standards, Agile sprint governance, Result-Based Management (RBM), and enterprise AI enablement—driving streamlined execution, predictive risk mitigation, and end-to-end milestone accountability.",
     icon: "Award",
   },
   {
-    title: "Multi-Disciplinary Executive Seniority",
-    description: "Our leadership cadre brings alumni of the American University of Afghanistan (AUAf), Fairleigh Dickinson University, Indian Institute of Management Studies, and former directors from Agence Française de Développement (€50M+ portfolio).",
+    title: "Multidisciplinary Executive Leadership & Global Pedigree",
+    description: "Our leadership cadre brings advanced academic and executive credentials from the American University of Afghanistan (AUAf), Fairleigh Dickinson University (USA), and Indian Institute of Management Studies, combined with former directorship over €50M+ donor-funded international portfolios.",
     icon: "GraduationCap",
   },
   {

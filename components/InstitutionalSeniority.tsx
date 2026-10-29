@@ -78,7 +78,7 @@ export default function InstitutionalSeniority() {
             Certainty in Complex Environments
           </h2>
           <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-            Combining certified governance (PMP®, Scrum Masters, MBAs) with continuous field execution since 2010 across Afghanistan.
+            Combining certified governance (PMI standards, Agile & Scrum, AI enablement) with continuous field execution since 2010 across Afghanistan.
           </p>
         </div>
 
