@@ -4,15 +4,11 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { 
-  Phone, 
-  Mail, 
   Menu, 
   X, 
   ChevronRight, 
-  ChevronDown,
+  ChevronDown, 
   FileText, 
-  ExternalLink,
-  ShieldCheck,
   ArrowRight,
   Layers
 } from "lucide-react";
@@ -116,51 +112,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
   };
 
   return (
-    <>
-      {/* Top Utility Bar - Deep Executive Navy */}
-      <div className="bg-corp-navyDark border-b border-corp-navySubtle text-slate-300 text-xs py-2 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-corp-navySubtle text-sky-200 font-medium text-[11px] border border-slate-700">
-              <ShieldCheck className="w-3.5 h-3.5 text-corp-blue" />
-              <span>Founded 2010 • Kabul, Afghanistan</span>
-            </span>
-            <span className="hidden md:inline text-slate-500">|</span>
-            <span className="hidden md:inline text-slate-300 text-[11px]">
-              Ministry of Commerce Reg # 21679 • AISA License # D-34532 • TIN 9000010281
-            </span>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-5 text-slate-300 text-xs">
-            <a 
-              href="tel:+93786199696" 
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5 text-corp-blue" />
-              <span>+93 (786) 19 96 96</span>
-            </a>
-            <a 
-              href="mailto:info@pulconsulting.com" 
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <Mail className="w-3.5 h-3.5 text-corp-blue" />
-              <span>info@pulconsulting.com</span>
-            </a>
-            <a 
-              href="https://pulglobal.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hidden lg:flex items-center gap-1 text-slate-400 hover:text-corp-blue transition-colors"
-            >
-              <span>U.S. Partner: PUL Global</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Sticky Navbar - Clean Fortune 500 White */}
-      <header
+    <header
         className={`sticky top-0 z-40 w-full transition-all duration-200 ${
           isScrolled
             ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-corp-line py-2"
@@ -459,6 +411,5 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
           </div>
         )}
       </header>
-    </>
   );
 }

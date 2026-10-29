@@ -206,6 +206,46 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
           </div>
         </div>
 
+        {/* Corporate Identity & Regulatory Information Bar */}
+        <div className="mt-12 pt-6 border-t border-corp-navySubtle flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-slate-300">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3 text-center lg:text-left text-[11px]">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-corp-navy text-sky-200 font-medium border border-slate-700">
+              <ShieldCheck className="w-3.5 h-3.5 text-corp-blue" />
+              <span>Founded 2010 • Kabul, Afghanistan</span>
+            </span>
+            <span className="hidden md:inline text-slate-600">|</span>
+            <span className="text-slate-300">
+              Ministry of Commerce Reg # 21679 • AISA License # D-34532 • TIN 9000010281
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center lg:justify-end gap-4 sm:gap-5 text-slate-300 text-xs">
+            <a 
+              href="tel:+93786199696" 
+              className="flex items-center gap-1.5 hover:text-white transition-colors"
+            >
+              <Phone className="w-3.5 h-3.5 text-corp-blue" />
+              <span>+93 (786) 19 96 96</span>
+            </a>
+            <a 
+              href="mailto:info@pulconsulting.com" 
+              className="flex items-center gap-1.5 hover:text-white transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5 text-corp-blue" />
+              <span>info@pulconsulting.com</span>
+            </a>
+            <a 
+              href="https://pulglobal.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-slate-400 hover:text-corp-blue transition-colors"
+            >
+              <span>U.S. Partner: PUL Global</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+        </div>
+
         {/* Bottom Strip */}
         <div className="mt-14 pt-8 border-t border-corp-navySubtle flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
