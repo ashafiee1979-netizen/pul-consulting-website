@@ -55,7 +55,7 @@ const DETAILED_CAPABILITIES: Record<string, { deliverables: string[]; methodolog
       "Work Permits, Visas, and Afghan Labor Law Compliance Oversight",
     ],
     methodology: "Informed by a long-term master service agreement with Huawei Technologies Ltd, covering recruitment, payroll, and staff administration across multiple departments.",
-    pastClient: "Huawei agreements from October 2014, including an agreement beginning October 2020; Etisalat 2012–2015 scopes",
+    pastClient: "Huawei agreements from October 2014 to February 2022; Etisalat 2012–2015 scopes",
   },
   "monitoring-evaluation": {
     deliverables: [

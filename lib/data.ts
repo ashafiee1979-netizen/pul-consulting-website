@@ -38,6 +38,7 @@ export interface DetailedProject {
   badge?: string;
   sourceEntry: number;
   sourcePage: number;
+  dateNote?: string;
 }
 
 export interface PartnerCompany {
@@ -352,7 +353,8 @@ export const CLIENTS_LIST: ClientPartner[] = [
 ];
 
 // Reconciled to all 34 entries in the 29 October 2026 Company Profile.
-// Missing dates and locations are deliberately not inferred. Status is historical.
+// Dates include the owner's subsequent clarifications; approximate completion
+// periods are labeled explicitly. Missing locations are not inferred.
 // Reconciled to all 34 entries in the 29 October 2026 Company Profile.
 // Missing dates and locations are deliberately not inferred. Status is historical.
 export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
@@ -360,7 +362,7 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "id": "huawei-master-agreement",
     "title": "Huawei HR and Payroll Administration",
     "client": "Huawei Technologies Afghanistan",
-    "period": "From October 2020; end date not stated",
+    "period": "October 2020–February 2022",
     "category": "Human Resources & Telecom Operations",
     "location": "Not specified in source",
     "description": "Human resources, payroll management and administrative support under an employment cooperation agreement.",
@@ -371,7 +373,8 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Human Resources & Telecom Operations",
     "sourceEntry": 1,
-    "sourcePage": 13
+    "sourcePage": 13,
+    "dateNote": "Closing date confirmed by PUL"
   },
   {
     "id": "giz-15-provinces-2019",
@@ -530,7 +533,7 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "id": "national-assembly-project-management",
     "title": "Project Management Training",
     "client": "DAI ALBA",
-    "period": "Not stated in source",
+    "period": "Completed 2014–2015",
     "category": "Governance & Legislative Capacity",
     "location": "Afghanistan National Assembly",
     "description": "Project management training for National Assembly staff.",
@@ -541,13 +544,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Governance & Legislative Capacity",
     "sourceEntry": 11,
-    "sourcePage": 14
+    "sourcePage": 14,
+    "dateNote": "Completion period confirmed by PUL"
   },
   {
     "id": "wolesi-jirga-public-policy",
     "title": "Public Policy and Administration Training",
     "client": "DAI ALBA",
-    "period": "Not stated in source",
+    "period": "Completed 2014–2015",
     "category": "Governance & Legislative Capacity",
     "location": "Wolesi Jirga",
     "description": "Public policy and public administration training for Wolesi Jirga staff.",
@@ -558,13 +562,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Governance & Legislative Capacity",
     "sourceEntry": 12,
-    "sourcePage": 14
+    "sourcePage": 14,
+    "dateNote": "Completion period confirmed by PUL"
   },
   {
     "id": "wolesi-jirga-office-management",
     "title": "Effective Office Management Training",
     "client": "DAI ALBA",
-    "period": "Not stated in source",
+    "period": "Completed 2014–2015",
     "category": "Governance & Legislative Capacity",
     "location": "Wolesi Jirga",
     "description": "Effective office management training for Wolesi Jirga staff.",
@@ -575,7 +580,8 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Governance & Legislative Capacity",
     "sourceEntry": 13,
-    "sourcePage": 15
+    "sourcePage": 15,
+    "dateNote": "Completion period confirmed by PUL"
   },
   {
     "id": "worldbank-aaip-business-english",
@@ -683,7 +689,7 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "id": "etisalat-translation",
     "title": "Etisalat Translation Services",
     "client": "Etisalat Afghanistan",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Translation & Linguistic Services",
     "location": "Not specified in source",
     "description": "Translation services from English into Dari and Pashto.",
@@ -694,13 +700,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Translation & Linguistic Services",
     "sourceEntry": 20,
-    "sourcePage": 16
+    "sourcePage": 16,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "british-council-tawanmandi",
     "title": "Tawanmandi Translation Agreement",
     "client": "British Council Tawanmandi",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Translation & Linguistic Services",
     "location": "Not specified in source",
     "description": "Translation from English into Dari and Pashto under a long-term agreement.",
@@ -711,13 +718,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Translation & Linguistic Services",
     "sourceEntry": 21,
-    "sourcePage": 16
+    "sourcePage": 16,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "taf-professional-translation",
     "title": "Professional Translation Agreement",
     "client": "The Asia Foundation",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Translation & Linguistic Services",
     "location": "Not specified in source",
     "description": "Professional translation from English into Dari and Pashto, and from Dari and Pashto into English, under a long-term agreement.",
@@ -728,13 +736,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Translation & Linguistic Services",
     "sourceEntry": 22,
-    "sourcePage": 16
+    "sourcePage": 16,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "asmed-kabul-construction",
     "title": "Construction Management Training in Kabul",
     "client": "ASMED / DAI / USAID",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Engineering Management & Training",
     "location": "Kabul Province",
     "description": "Business English, project management, construction safety, cost and quality management, contracts, planning and scheduling, and AutoCAD.",
@@ -745,13 +754,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Engineering Management & Training",
     "sourceEntry": 23,
-    "sourcePage": 16
+    "sourcePage": 16,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "asmed-nangarhar-construction",
     "title": "Construction Management Training in Nangarhar",
     "client": "ASMED / DAI / USAID",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Engineering Management & Training",
     "location": "Nangarhar Province",
     "description": "Construction project management training covering business English, safety, cost and quality management, contracts, scheduling and AutoCAD.",
@@ -762,13 +772,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Engineering Management & Training",
     "sourceEntry": 24,
-    "sourcePage": 16
+    "sourcePage": 16,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "asmed-kandahar-construction",
     "title": "Construction Management Training in Kandahar",
     "client": "ASMED / DAI / USAID",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Engineering Management & Training",
     "location": "Kandahar Province",
     "description": "Construction project management training covering business English, safety, cost and quality management, contracts, scheduling and AutoCAD.",
@@ -779,13 +790,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Engineering Management & Training",
     "sourceEntry": 25,
-    "sourcePage": 17
+    "sourcePage": 17,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "air-kandahar-assessment",
     "title": "Kandahar Municipality Field Assessment",
     "client": "AIR Consulting",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Research & Monitoring and Evaluation",
     "location": "Kandahar Municipality",
     "description": "Field survey, assessment and translation of focus group material from Pashto into English, with a recorded scope of 180,000 words.",
@@ -796,13 +808,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Research & Monitoring and Evaluation",
     "sourceEntry": 26,
-    "sourcePage": 17
+    "sourcePage": 17,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "avipa-plus-weekly-reporting",
     "title": "AVIPA Plus Weekly Reporting",
     "client": "Aouj (subcontract for IRD AVIPA Plus)",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Reporting & Program Support",
     "location": "Not specified in source",
     "description": "Weekly report work recorded in the portfolio as subcontracted through Aouj for the IRD AVIPA Plus program.",
@@ -813,13 +826,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Reporting & Program Support",
     "sourceEntry": 27,
-    "sourcePage": 17
+    "sourcePage": 17,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "auaf-simultaneous-translation",
     "title": "Simultaneous Interpretation Services",
     "client": "American University of Afghanistan",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Linguistic & Interpretation Services",
     "location": "American University of Afghanistan",
     "description": "Simultaneous translation and interpretation, including provision of interpretation equipment.",
@@ -830,13 +844,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Linguistic & Interpretation Services",
     "sourceEntry": 28,
-    "sourcePage": 17
+    "sourcePage": 17,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "midfield-policy-translation",
     "title": "Policy and Code of Conduct Translation",
     "client": "Midfield International",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Translation & Linguistic Services",
     "location": "Not specified in source",
     "description": "Translation of policies and codes of conduct.",
@@ -847,13 +862,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Translation & Linguistic Services",
     "sourceEntry": 29,
-    "sourcePage": 17
+    "sourcePage": 17,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "adb-strategy-translation",
     "title": "ADB Strategy Translation",
     "client": "Aouj (subcontract for Asian Development Bank strategy)",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Translation & Linguistic Services",
     "location": "Not specified in source",
     "description": "Translation of an Asian Development Bank strategy, recorded as subcontracted through Aouj.",
@@ -864,13 +880,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Translation & Linguistic Services",
     "sourceEntry": 30,
-    "sourcePage": 17
+    "sourcePage": 17,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "building-afghan-markets-assessment",
     "title": "Afghan Products Market Assessment",
     "client": "Building Afghan Markets",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Research & Monitoring and Evaluation",
     "location": "Kabul and five other regions",
     "description": "Market assessment and survey to support promotion of Afghan products in Kabul and five other regions.",
@@ -881,13 +898,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Research & Monitoring and Evaluation",
     "sourceEntry": 31,
-    "sourcePage": 18
+    "sourcePage": 18,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "etisalat-hr-manual-translation",
     "title": "Human Resources Manual Translation",
     "client": "Etisalat Afghanistan",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Translation & Linguistic Services",
     "location": "Not specified in source",
     "description": "Translation of the company’s human resources manual.",
@@ -897,13 +915,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Translation & Linguistic Services",
     "sourceEntry": 32,
-    "sourcePage": 18
+    "sourcePage": 18,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "kabul-conference-peace-jirga",
     "title": "Kabul Conference Events Consultancy",
     "client": "Office of the Coordinator of the Kabul Conference",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "Events & Governance",
     "location": "Office of the Coordinator of the Kabul Conference",
     "description": "Provision of an events management consultant to the Office of the Coordinator.",
@@ -914,13 +933,14 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "Events & Governance",
     "sourceEntry": 33,
-    "sourcePage": 18
+    "sourcePage": 18,
+    "dateNote": "Approximate completion period provided by PUL"
   },
   {
     "id": "taf-gmic-it-networking",
     "title": "Internet Networking and Cabling",
     "client": "Government Media and Information Center / The Asia Foundation",
-    "period": "Not stated in source",
+    "period": "Completed circa 2010–2011",
     "category": "IT Infrastructure & Networking",
     "location": "Government Media and Information Center",
     "description": "Internet networking and cabling services.",
@@ -931,7 +951,8 @@ export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
     "status": "Completed",
     "badge": "IT Infrastructure & Networking",
     "sourceEntry": 34,
-    "sourcePage": 18
+    "sourcePage": 18,
+    "dateNote": "Approximate completion period provided by PUL"
   }
 ];
 

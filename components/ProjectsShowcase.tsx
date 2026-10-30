@@ -71,7 +71,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
               Featured Project Portfolio
             </h2>
             <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-              Explore all {COMPREHENSIVE_PROJECT_DATABASE.length} historical assignments recorded in our latest company profile. Separate agreements and training scopes are listed individually. Dates are shown where the source provides them; completion status reflects the historical register.
+              Explore all {COMPREHENSIVE_PROJECT_DATABASE.length} historical assignments recorded in our latest company profile. Separate agreements and training scopes are listed individually. Dates include subsequent clarifications from PUL; approximate completion periods are marked “circa.”
             </p>
           </div>
 
@@ -241,11 +241,12 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
 
                 {/* Footer Action */}
                 <div className="mt-8 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
-                  <span className="text-[11px] text-corp-muted flex items-center gap-1">
+                  <span className="text-[11px] text-corp-muted flex flex-wrap items-center gap-1">
                     <FileText className="w-3.5 h-3.5 text-corp-blue" />
                     <a href={`/downloads/PUL_Consulting_Services_Company_Profile_2026.pdf#page=${current.sourcePage}`} target="_blank" rel="noopener noreferrer" className="hover:text-corp-blue hover:underline">
                       Company Profile · Entry {current.sourceEntry} · Page {current.sourcePage}
                     </a>
+                    {current.dateNote && <span> · {current.dateNote}</span>}
                   </span>
                   <button
                     onClick={onOpenConsultation}

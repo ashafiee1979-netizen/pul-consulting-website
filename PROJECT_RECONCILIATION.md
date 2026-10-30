@@ -2,11 +2,22 @@
 
 Reconciled against **PUL Consulting Services — Company Profile — 29 October 2026**, pages 13–18. This edition reproduces the 34-entry project register from the August 2022 profile. The source register text and the latest profile's review notes were also checked. This is source reconciliation, not independent verification of contracts or outcomes.
 
+## Subsequent date clarifications from PUL
+
+The owner supplied the following corrections after the initial reconciliation:
+
+- The 15 otherwise undated assignments outside DAI ALBA are shown as **Completed circa 2010–2011**, reflecting the owner's general completion-period estimate rather than asserting exact start and end dates.
+- All three DAI ALBA assignments are shown as **Completed 2014–2015**.
+- The final Huawei agreement is shown as **October 2020–February 2022**. Earlier Huawei agreement periods remain as recorded.
+- Each affected card identifies PUL's clarification as the date source. Other explicitly recorded dates, including the Asia Foundation's 2016 survey publication, are unchanged.
+
+The linked 29 October profile PDF remains the original source edition. The website incorporates these subsequent owner clarifications; the PDF has not been silently altered.
+
 ## Corrections
 
 - Replaced the 17-entry website summary with all 34 individual source entries, in source order. Repeated agreements remain separate records, not newly inferred unique projects or people.
 - Added The Asia Foundation's 2016 annual survey translation (entry 9) and long-term professional translation agreement (entry 22). Retained GMIC / The Asia Foundation networking and cabling (entry 34), using only its documented scope.
-- Split the Huawei agreements into their recorded periods. The agreement beginning October 2020 has no invented closing date; “2022+” was removed. Completion status is explicitly historical, as recorded in the 2022 register.
+- Split the Huawei agreements into their recorded periods. Initially removed the unsupported “2022+” closing date; the owner's subsequent clarification now supplies February 2022. Completion status is historical, as recorded in the 2022 register.
 - Split the GIZ assignments. The 1,800 police-officer training scope is distinct from the 15-province assignment whose catering scope exceeds 5,000 people. Removed “6,800+ trained.”
 - Split AWDP training/placement for 400 people from the separate master trainer assignment; used the recorded dates.
 - Split DAI ALBA training into project management, public policy/administration, and effective office management; removed unsupported dates and trainee totals.
