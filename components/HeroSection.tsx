@@ -156,15 +156,10 @@ export default function HeroSection({ onOpenConsultation }: HeroSectionProps) {
 
   return (
     <>
-      {/* 
-        Deloitte & CGI Inspired Cinematic Hero Banner
-        - Shorter, balanced hero height (min-h-[460px] sm:min-h-[490px] lg:min-h-[520px])
-          so it is larger than subpages but comfortably contained.
-        - Optimal headline-to-subtext spacing (mt-6 sm:mt-8).
-      */}
+      {/* Extra height and responsive framing keep the tabletop flags visible. */}
       <section 
         id="hero" 
-        className="relative min-h-[560px] sm:min-h-[580px] lg:min-h-[600px] flex items-center bg-slate-900 overflow-hidden text-white py-12 sm:py-16 lg:py-20 border-b border-corp-navySubtle"
+        className="relative min-h-[640px] sm:min-h-[660px] lg:min-h-[680px] flex items-start bg-slate-900 overflow-hidden text-white py-12 sm:py-16 lg:py-20 border-b border-corp-navySubtle"
       >
         {/* Full-bleed Panoramic Background Image - 20% Brighter & Aligned */}
         <div className="absolute inset-0 z-0">
@@ -172,7 +167,7 @@ export default function HeroSection({ onOpenConsultation }: HeroSectionProps) {
             src="/assets/photos/kabul-executive-hero.jpg"
             alt="Illustration of a consulting team overlooking Kabul and the Hindu Kush mountains"
             fill
-            className="object-cover object-[center_35%] transform scale-100 transition-transform duration-1000 ease-out filter brightness-[1.20] contrast-[1.04]"
+            className="object-cover object-[56%_center] sm:object-[center_60%] transform scale-100 transition-transform duration-1000 ease-out filter brightness-[1.20] contrast-[1.04]"
             priority
             quality={95}
           />
