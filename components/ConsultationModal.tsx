@@ -161,22 +161,6 @@ export default function ConsultationModal({
     }, 50);
   };
 
-  // Generate mailto link with pre-filled subject and body
-  const mailtoSubject = encodeURIComponent(`[RFP Inquiry Ref: ${submissionResult?.referenceId || "Pending"}] ${formData.service} - ${formData.organization}`);
-  const mailtoBody = encodeURIComponent(
-    `Dear PUL Consulting Services PMO,\n\n` +
-    `I am submitting an official project inquiry generated through your institutional portal:\n\n` +
-    `Tracking Reference: ${submissionResult?.referenceId || "Pending"}\n` +
-    `Contact Name: ${formData.name}\n` +
-    `Official Email: ${formData.email}\n` +
-    `Organization / Entity: ${formData.organization}\n` +
-    `Phone / WhatsApp: ${formData.phone}\n` +
-    `Practice Area: ${formData.service}\n` +
-    `Deployment Timeline: ${formData.timeline}\n` +
-    `Project Scope & Parameters:\n${formData.projectScope || "To be discussed during initial terms-of-reference consultation."}\n\n` +
-    `Respectfully,\n${formData.name}`
-  );
-
   return (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-corp-navyDark/75 backdrop-blur-sm animate-fade-in"
@@ -200,7 +184,7 @@ export default function ConsultationModal({
               Project Consultation &amp; RFP Inquiry
             </h3>
             <p className="text-xs text-sky-200">
-              PUL Consulting Services • Direct PMO Office (Kabul HQ &amp; U.S. Partner)
+              Tell us about your project and the support you need.
             </p>
           </div>
           <button
@@ -225,13 +209,13 @@ export default function ConsultationModal({
                   Tracking Code: {submissionResult.referenceId}
                 </span>
                 <h4 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mt-2">
-                  Thank You! Your Inquiry Has Been Sent
+                  Thank You. Your Inquiry Has Been Received.
                 </h4>
               </div>
               <p className="text-xs sm:text-sm text-corp-muted max-w-md mx-auto leading-relaxed">
                 Thank you, <strong className="text-corp-ink">{formData.name}</strong>. Your inquiry regarding{" "}
                 <strong className="text-corp-blue">{formData.service}</strong> for{" "}
-                <strong className="text-corp-ink">{formData.organization}</strong> has been successfully delivered to our executive team.
+                <strong className="text-corp-ink">{formData.organization}</strong> has been recorded for review by our team.
               </p>
 
               <div className="p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 max-w-md mx-auto text-center space-y-1">
@@ -239,7 +223,7 @@ export default function ConsultationModal({
                   ✓ Inquiry received by PUL Consulting
                 </p>
                 <p className="text-[11px] text-emerald-700">
-                  Our operations team has registered your request under reference <strong>{submissionResult.referenceId}</strong> and will contact you within 24 business hours.{" "}
+                  Please keep reference <strong>{submissionResult.referenceId}</strong> for any follow-up. Our team will review your requirements and contact you to discuss next steps.{" "}
                   {submissionResult.confirmationSent
                     ? <>A confirmation email is on its way to <strong>{formData.email}</strong>.</>
                     : <>If you do not receive a confirmation email shortly, please write to info@pulconsulting.com quoting this reference.</>}
@@ -424,26 +408,31 @@ export default function ConsultationModal({
               {/* Row 4: Scope */}
               <div>
                 <label htmlFor="consult-scope" className="block text-xs font-bold text-corp-ink mb-1">
-                  Project Scope &amp; Geographic Parameters
+                  Project Scope &amp; Location
                 </label>
                 <textarea
                   id="consult-scope"
                   rows={3}
-                  placeholder="Outline geographic scope (provinces), personnel numbers, or specific terms of reference..."
+                  placeholder="Describe your objectives, project location, estimated team size, and any specific requirements."
                   value={formData.projectScope}
                   onChange={(e) => setFormData({ ...formData, projectScope: e.target.value })}
                   className="w-full px-3 py-2 rounded border border-slate-300 text-corp-ink text-xs focus:outline-none focus:border-corp-blue resize-none"
                 />
               </div>
+              <p className="text-xs text-corp-muted leading-relaxed">
+                We use the information you provide to respond to your inquiry. Please review our{" "}
+                <a href="/privacy" className="text-corp-blue underline underline-offset-2">Privacy Policy</a>
+                {" "}and avoid including sensitive or confidential project documents at this stage.
+              </p>
             </form>
           )}
         </div>
 
         {/* Pinned Footer */}
         {!submissionResult && (
-          <div className="px-6 py-3.5 border-t border-slate-200 bg-corp-ice flex items-center justify-between flex-shrink-0">
+          <div className="px-6 py-3.5 border-t border-slate-200 bg-corp-ice flex flex-wrap gap-3 items-center justify-between flex-shrink-0">
             <span className="text-[11px] text-corp-muted">
-              Confidentiality assured under NDA.
+              An NDA can be discussed before sharing confidential materials.
             </span>
             <div className="flex items-center gap-2">
               <button
@@ -462,7 +451,7 @@ export default function ConsultationModal({
                 {isSubmitting ? (
                   <>
                     <span className="inline-block w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>Verifying...</span>
+                    <span>Submitting...</span>
                   </>
                 ) : (
                   <>

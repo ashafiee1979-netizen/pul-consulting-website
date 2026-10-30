@@ -48,24 +48,24 @@ export default function ProjectsPage() {
                 <div className="animate-solutions-badge">
                   <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/60 border border-white/25 text-sky-200 text-xs font-semibold uppercase tracking-wider shadow-xs">
                     <ShieldCheck className="w-4 h-4 text-corp-blue" />
-                    <span>Verified Past Performance • Audit-Ready Registry</span>
+                    <span>Project Experience • Since 2010</span>
                   </div>
                 </div>
 
                 {/* Animated Headline */}
                 <div className="animate-solutions-title mt-4">
                   <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15] drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
-                    Audited Track Record &amp; Evidence Registry
+                    Our Work in Practice
                   </h1>
                   <p className="mt-2 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                    Audited Program Execution &amp; Operational Governance Nationwide Since 2010
+                    Project Delivery Across Afghanistan
                   </p>
                 </div>
 
                 {/* Subtext */}
                 <div className="animate-solutions-subtext mt-3">
                   <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
-                    Comprehensive archive of multi-year operational contracts, capacity building initiatives, nationwide telecom management, and strategic PMO programs executed for multilateral donors, prime contractors, and international partners across 15+ provinces.
+                    Explore selected assignments in workforce management, training, telecom operations, and project support. Each profile outlines the client or program, delivery period, location, and scope of work.
                   </p>
                 </div>
               </div>
@@ -73,10 +73,10 @@ export default function ProjectsPage() {
               {/* Interactive Actions */}
               <div className="animate-solutions-actions pt-2 flex flex-wrap items-center gap-3.5">
                 <button
-                  onClick={() => handleOpenConsultation("Audit & Compliance Inquiries")}
+                  onClick={() => handleOpenConsultation()}
                   className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-md bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-executive transition-all active:scale-98"
                 >
-                  <span>Request RFP / Compliance Audit</span>
+                  <span>Discuss Your Requirements</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
@@ -84,7 +84,7 @@ export default function ProjectsPage() {
                   href="#projects"
                   className="inline-flex items-center gap-2 px-4.5 py-2.5 rounded-md bg-white/15 hover:bg-white/25 backdrop-blur-xs text-white border border-white/25 text-xs font-bold uppercase tracking-wider transition-all"
                 >
-                  <span>Explore Project Registry</span>
+                  <span>Explore Our Projects</span>
                   <ChevronRight className="w-4 h-4 text-sky-300" />
                 </a>
               </div>

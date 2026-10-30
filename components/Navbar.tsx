@@ -174,7 +174,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                     <div className="flex items-center gap-2">
                       <Layers className="w-4 h-4 text-corp-blue" />
                       <span className="text-xs font-bold uppercase tracking-wider text-corp-ink">
-                        All Practice Solutions
+                        Our Services
                       </span>
                     </div>
                     <Link
@@ -182,7 +182,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                       onClick={() => setSolutionsDropdownOpen(false)}
                       className="text-xs font-bold text-corp-blue hover:text-corp-blueHover inline-flex items-center gap-1"
                     >
-                      <span>View Full Catalog</span>
+                      <span>View All Services</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
@@ -209,7 +209,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                   {/* Dropdown Footer */}
                   <div className="mt-4 pt-3 border-t border-slate-100 bg-slate-50 -mx-5 -mb-5 px-5 py-3 rounded-b-lg flex items-center justify-between">
                     <span className="text-[11px] text-corp-muted">
-                      Continuous Audited Delivery Since 2010 • PMO, Technology, Workforce &amp; Regulatory Solutions
+                      Established in 2010 • Project Management, Technology &amp; Workforce Services
                     </span>
                     <button
                       onClick={() => {
@@ -262,7 +262,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
           </nav>
 
           {/* Right Action Button - Request Consultation */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={onOpenConsultation}
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-corp-blue hover:bg-corp-blueHover text-white font-semibold text-xs sm:text-[13px] uppercase tracking-wider shadow-xs transition-all active:scale-98"
@@ -284,6 +284,8 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-1.5 sm:p-2 rounded border border-slate-200 text-corp-ink hover:bg-slate-100"
               aria-label="Toggle navigation"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -292,7 +294,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-corp-line px-6 py-6 shadow-lg max-h-[85vh] overflow-y-auto">
+          <div id="mobile-navigation" className="lg:hidden bg-white border-b border-corp-line px-6 py-6 shadow-lg max-h-[85vh] overflow-y-auto">
             <nav className="flex flex-col gap-2">
               <Link
                 href="/"
@@ -318,6 +320,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
                     onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
                     className="p-2 text-slate-400 hover:text-corp-blue"
                     aria-label="Toggle practice capabilities list"
+                    aria-expanded={mobileSolutionsOpen}
                   >
                     <ChevronDown className={`w-4 h-4 transition-transform ${
                       mobileSolutionsOpen ? "rotate-180 text-corp-blue" : ""

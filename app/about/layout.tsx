@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us & Global Partner Network | PUL Consulting Services",
-  description:
-    "Established in Kabul in 2010. PMI, Agile, and Scrum methodology with AI enablement, audited operational delivery, and global consortium including PUL Global Partners (USA), Linguist Point, and Quantu Tech.",
+  title: "About Us & Our Partners",
+  description: "Established in Kabul in 2010, PUL Consulting combines local delivery experience with specialist partners in advisory, language services, and technology.",
   openGraph: {
-    title: "About Us & Global Partner Network | PUL Consulting Services",
-    description: "Continuous operational governance since 2010 and dual-continent reach connecting Kabul HQ with U.S. federal and global commercial partners.",
+    title: "About Us & Our Partners | PUL Consulting Services",
+    description: "Established in Kabul in 2010, PUL Consulting combines local delivery experience with specialist partners in advisory, language services, and technology.",
   },
 };
 

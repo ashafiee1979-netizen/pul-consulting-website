@@ -74,7 +74,7 @@ export default function AboutPage() {
                 <div className="animate-solutions-badge">
                   <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/60 border border-white/25 text-sky-200 text-xs font-semibold uppercase tracking-wider shadow-xs">
                     <ShieldCheck className="w-4 h-4 text-corp-blue" />
-                    <span>Institutional Heritage • Global Partner Synergies</span>
+                    <span>Established in Kabul • Connected Internationally</span>
                   </div>
                 </div>
 
@@ -84,14 +84,14 @@ export default function AboutPage() {
                     About PUL Consulting &amp; Partners
                   </h1>
                   <p className="mt-2 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                    Continuous Operational Governance &amp; Dual-Continent Reach Since 2010
+                    Local Experience. International Perspective.
                   </p>
                 </div>
 
                 {/* Subtext */}
                 <div className="animate-solutions-subtext mt-3">
                   <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
-                    Established in Kabul in 2010, PUL Consulting Services is the parent advisory and operational delivery enterprise combining rigorous PMI and Agile project governance, AI enablement, and an international partner ecosystem across the United States, Europe, and Central Asia.
+                    Since 2010, PUL Consulting Services has supported organizations working across Afghanistan. We combine project management, workforce expertise, and local operating knowledge with specialist partners in international advisory, language services, and technology.
                   </p>
                 </div>
               </div>
@@ -102,7 +102,7 @@ export default function AboutPage() {
                   onClick={() => handleOpenConsultation("Corporate Partnership Inquiry")}
                   className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-md bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-executive transition-all active:scale-98"
                 >
-                  <span>Inquire About Partnership</span>
+                  <span>Discuss a Partnership</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 

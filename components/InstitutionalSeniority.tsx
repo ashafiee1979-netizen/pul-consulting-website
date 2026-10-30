@@ -75,10 +75,10 @@ export default function InstitutionalSeniority() {
             Governance &amp; Operational Rigor
           </p>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-corp-ink mt-1.5">
-            Certainty in Complex Environments
+            A Disciplined Approach to Complex Assignments
           </h2>
           <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-            Combining certified governance (PMI standards, Agile & Scrum, AI enablement) with continuous field execution since 2010 across Afghanistan.
+            Our approach combines PMI-informed project management, Agile and Scrum practices, and local operational experience to support accountable delivery.
           </p>
         </div>
 
@@ -106,7 +106,7 @@ export default function InstitutionalSeniority() {
 
                 <div className="mt-5 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-semibold text-corp-blue">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Verified Institutional Capability</span>
+                  <span>Our Delivery Foundation</span>
                 </div>
               </div>
             );
@@ -120,10 +120,10 @@ export default function InstitutionalSeniority() {
               Operating Methodology
             </p>
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-corp-ink mt-1.5">
-              Governed 5-Gate Delivery Framework
+              Our Five-Stage Delivery Framework
             </h3>
             <p className="mt-3 sm:mt-3.5 text-xs sm:text-sm text-corp-muted leading-relaxed">
-              Every project follows an accountable lifecycle ensuring complete transparency from initial requirement to verified closeout.
+              Five stages establish clear responsibilities, regular progress reviews, and a documented handover from initial scope to closeout.
             </p>
           </div>
 

@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Practice Capabilities & Solutions | PUL Consulting Services",
-  description:
-    "Explore 15 specialized practice areas across 4 strategic pillars: Strategic PMO & Governance, Technology & Enterprise AI, Large-Scale Workforce Operations, and Multilingual Logistics.",
+  title: "Services & Solutions",
+  description: "Explore project management, workforce services, training, technology, language services, and operational support from PUL Consulting and its specialist partners.",
   openGraph: {
-    title: "Practice Capabilities & Solutions | PUL Consulting Services",
-    description: "15 practice areas delivering governed project management, digital transformation, and field operations across complex operating theaters.",
+    title: "Services & Solutions | PUL Consulting Services",
+    description: "Explore project management, workforce services, training, technology, language services, and operational support from PUL Consulting and its specialist partners.",
   },
 };
 

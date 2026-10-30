@@ -21,13 +21,13 @@ export default function ClientsMarquee() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-200">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-wider text-corp-blue">
-              Institutional Heritage &amp; Client Trust
+              Our Experience
             </p>
             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-corp-ink mt-1.5">
-              Selected Institutional Partners &amp; Clients
+              Organizations Connected to Our Work
             </h2>
             <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-corp-muted leading-relaxed">
-              Over a decade of audited project execution for bilateral donor programs, multilateral institutions, and global corporations.
+              Selected clients, funding organizations, and implementation partners associated with our project portfolio since 2010.
             </p>
           </div>
 
@@ -36,6 +36,7 @@ export default function ClientsMarquee() {
             {categories.map((cat) => (
               <button
                 key={cat}
+                aria-pressed={selectedCategory === cat}
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-3.5 py-1.5 rounded-md text-sm font-semibold transition-all ${
                   selectedCategory === cat
@@ -79,7 +80,7 @@ export default function ClientsMarquee() {
         <div className="mt-8 flex items-center justify-between text-xs text-corp-muted pt-4 border-t border-slate-200">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-corp-blue" />
-            <span>Audited financial and contractual performance across past donor and prime contracts (USAID, GIZ, World Bank).</span>
+            <span>Experience includes direct client engagements and assignments delivered through funded programs and prime contractors.</span>
           </div>
           <span className="hidden sm:inline font-mono text-[11px]">
             TIN: 9000010281 • MoCI Reg: 21679

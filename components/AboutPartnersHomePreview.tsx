@@ -40,7 +40,7 @@ export default function AboutPartnersHomePreview() {
       step: "01",
       phase: "Understand",
       action: "Scope & Risk Charter",
-      desc: "Stakeholder alignment, regulatory compliance checks, and PMO governance formulation.",
+      desc: "Agree objectives, stakeholder responsibilities, delivery requirements, and project risks.",
       deliverable: "PMO Charter & WBS",
       status: "Aligned Scope",
       icon: Compass,
@@ -55,8 +55,8 @@ export default function AboutPartnersHomePreview() {
       step: "02",
       phase: "Mobilize",
       action: "Workforce & Logistics",
-      desc: "Rapid field team assembly, secure logistics corridors, and IT equipment deployment.",
-      deliverable: "72-Hr Rapid Mobilization",
+      desc: "Assemble the team, coordinate logistics, and prepare the resources needed for delivery.",
+      deliverable: "Mobilization Plan",
       status: "Ready to Execute",
       icon: Users,
       gradient: "from-teal-500 to-emerald-600",
@@ -70,7 +70,7 @@ export default function AboutPartnersHomePreview() {
       step: "03",
       phase: "Govern",
       action: "Sprint & RBM Controls",
-      desc: "Daily operational governance, milestone sprints, quality assurance, and KPI tracking.",
+      desc: "Supervise delivery, review milestones, resolve issues, and monitor quality.",
       deliverable: "RBM Sprint Controls",
       status: "Controlled Action",
       icon: Activity,
@@ -85,8 +85,8 @@ export default function AboutPartnersHomePreview() {
       step: "04",
       phase: "Evidence",
       action: "Verification & Audit",
-      desc: "Third-party audit logging, GPS geotagged deliverables, and transparent donor reporting.",
-      deliverable: "Audited Milestones & GPS",
+      desc: "Document progress, verify field data, and provide reporting for informed decisions.",
+      deliverable: "Progress & Verification",
       status: "Audit Verified",
       icon: ClipboardCheck,
       gradient: "from-amber-500 to-orange-600",
@@ -100,7 +100,7 @@ export default function AboutPartnersHomePreview() {
       step: "05",
       phase: "Validate",
       action: "Closeout & Institutional Value",
-      desc: "Final compliance handover, knowledge institutionalization, and audited program closeout.",
+      desc: "Review results, transfer knowledge, and complete the agreed handover documentation.",
       deliverable: "Handover & Lasting Value",
       status: "Lasting Impact",
       icon: BadgeCheck,
@@ -120,13 +120,13 @@ export default function AboutPartnersHomePreview() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200">
           <div className="max-w-3xl">
             <p className="text-[11px] font-bold uppercase tracking-wider text-corp-blue">
-              Institutional Heritage &amp; Global Network
+              Our Approach &amp; Partners
             </p>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-corp-ink mt-1.5">
-              Governed Delivery &amp; Partner Synergies
+              Local Knowledge. Specialist Expertise.
             </h2>
             <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-              PUL Consulting Services combines certified management governance (PMP®, Scrum, MBAs) with an international partner ecosystem across the United States, Europe, and Central Asia.
+              Our project management approach connects clear responsibilities, local operational knowledge, and specialist partners in advisory, language services, and technology.
             </p>
           </div>
 
@@ -134,7 +134,7 @@ export default function AboutPartnersHomePreview() {
             href="/about"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-corp-navy hover:bg-corp-navyDark text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-xs flex-shrink-0"
           >
-            <span>Learn About Us &amp; Partners</span>
+            <span>About PUL Consulting</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -149,13 +149,13 @@ export default function AboutPartnersHomePreview() {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-corp-navy text-xs font-semibold uppercase tracking-wider mb-2 shadow-xs">
                 <Award className="w-3.5 h-3.5 text-corp-blue" />
-                <span>PMP® &amp; Scrum-Certified Methodology</span>
+                <span>Structured Project Delivery</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink">
-                Governed 5-Gate Execution Lifecycle
+                A Clear Path from Scope to Handover
               </h3>
               <p className="text-xs sm:text-sm text-corp-muted mt-1">
-                Rigorous operational gating from initial scope clearance to verified closeout audit.
+                Five stages keep responsibilities, progress, and deliverables visible throughout the assignment.
               </p>
             </div>
             
@@ -163,7 +163,7 @@ export default function AboutPartnersHomePreview() {
               href="/about#lifecycle"
               className="inline-flex items-center gap-1.5 text-xs font-bold text-corp-blue hover:text-corp-navy transition-colors shrink-0 bg-white px-3.5 py-2 rounded-md border border-slate-200 shadow-xs hover:shadow-sm"
             >
-              <span>Explore Detailed Methodology</span>
+              <span>Our Delivery Approach</span>
               <ChevronRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -232,10 +232,10 @@ export default function AboutPartnersHomePreview() {
           <div className="flex items-center justify-between mb-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-corp-blue">
-                International Corporate Network
+                Specialist Partner Network
               </span>
               <h3 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mt-1">
-                Collaborative Partner Companies
+                Partners That Extend Our Capabilities
               </h3>
             </div>
             <Link
@@ -291,7 +291,7 @@ export default function AboutPartnersHomePreview() {
                   </div>
 
                   <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-corp-blue group-hover:text-corp-navy transition-colors">
-                    <span>View Partner Profile &amp; Capabilities</span>
+                    <span>View Partner Profile</span>
                     <span className="transform group-hover:translate-x-1 transition-transform">→</span>
                   </div>
                 </Link>
@@ -308,10 +308,10 @@ export default function AboutPartnersHomePreview() {
             </div>
             <div>
               <h4 className="text-sm font-bold text-corp-ink">
-                Learn More About Our Institutional Governance &amp; Executive Leadership
+                Meet the Organization Behind the Work
               </h4>
               <p className="text-xs text-corp-muted mt-0.5">
-                Explore our full corporate history, certified compliance frameworks, and global partner ecosystem.
+                Learn about our history, leadership experience, delivery approach, and partner companies.
               </p>
             </div>
           </div>
@@ -319,7 +319,7 @@ export default function AboutPartnersHomePreview() {
             href="/about"
             className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-corp-navy hover:bg-corp-navyDark text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-xs"
           >
-            <span>Read Institutional Profile</span>
+            <span>Explore Our Company</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </Link>
         </div>

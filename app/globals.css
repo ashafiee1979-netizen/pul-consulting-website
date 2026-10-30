@@ -8,6 +8,15 @@
   color-scheme: light;
 }
 
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid #16769C;
+  outline-offset: 4px;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 16.5px;

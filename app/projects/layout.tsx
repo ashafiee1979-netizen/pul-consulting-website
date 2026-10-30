@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Audited Project Registry & Evidence | PUL Consulting Services",
-  description:
-    "Curated registry of 17 landmark programs representing over 30+ cumulative contracts across 15+ provinces since 2010 for USAID, GIZ, The World Bank, Huawei, and Etisalat.",
+  title: "Projects & Experience",
+  description: "Explore 17 featured assignments in workforce management, training, telecom operations, and project support across Afghanistan since 2010.",
   openGraph: {
-    title: "Audited Project Registry & Evidence | PUL Consulting Services",
-    description: "Verified program execution since 2010, nationwide workforce mobilization, and technical operations for multilateral donors and global contractors.",
+    title: "Projects & Experience | PUL Consulting Services",
+    description: "Explore 17 featured assignments in workforce management, training, telecom operations, and project support across Afghanistan since 2010.",
   },
 };
 

@@ -22,18 +22,18 @@ const STATS_DATA: CounterStat[] = [
   {
     id: "years",
     start: 1,
-    target: 14,
+    target: 16,
     suffix: "+",
     label: "Years in Operation",
-    description: "Delivering continuous management consulting and operational programs since 2010",
+    description: "Management consulting and field operations since 2010",
   },
   {
     id: "projects",
     start: 10,
     target: 30,
     suffix: "+",
-    label: "Flagship Programs",
-    description: "Multidisciplinary projects delivered for USAID, World Bank, GIZ, and telecom operators",
+    label: "Contracts Delivered",
+    description: "Across development programs, enterprise services, and telecom operations",
   },
   {
     id: "personnel",
@@ -42,7 +42,7 @@ const STATS_DATA: CounterStat[] = [
     suffix: "+",
     formatComma: true,
     label: "Workforce Deployed",
-    description: "Specialized consultants, field personnel, and engineering cadres managed nationwide",
+    description: "Consultants, engineers, and field teams managed across Afghanistan",
   },
   {
     id: "agents",
@@ -50,7 +50,7 @@ const STATS_DATA: CounterStat[] = [
     target: 500,
     suffix: "+",
     label: "Call Center Personnel",
-    description: "Trained, scheduled, and supervised for major telecom operators including Etisalat & Huawei",
+    description: "Customer care agents recruited, trained, and managed for Etisalat",
   },
   {
     id: "provinces",
@@ -58,7 +58,7 @@ const STATS_DATA: CounterStat[] = [
     target: 15,
     suffix: "+",
     label: "Provinces Reached",
-    description: "Field deployment capability spanning central, northern, southern, and eastern Afghanistan",
+    description: "Project experience across Afghanistan’s regions",
   },
 ];
 
@@ -170,7 +170,7 @@ export default function HeroSection({ onOpenConsultation }: HeroSectionProps) {
         <div className="absolute inset-0 z-0">
           <Image
             src="/assets/photos/kabul-executive-hero.jpg"
-            alt="PUL Consulting executive strategy center overlooking Kabul valley and the Hindu Kush mountains"
+            alt="Illustration of a consulting team overlooking Kabul and the Hindu Kush mountains"
             fill
             className="object-cover object-[center_35%] transform scale-100 transition-transform duration-1000 ease-out filter brightness-[1.20] contrast-[1.04]"
             priority
@@ -195,10 +195,8 @@ export default function HeroSection({ onOpenConsultation }: HeroSectionProps) {
 
             {/* Subtitle & Action Group with balanced spacing */}
             <div className="mt-5 sm:mt-8 animate-solutions-subtext">
-              <p className="text-xs sm:text-base text-slate-100 font-light leading-relaxed max-w-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
-                Operating continuously from Kabul since 2010. PUL Consulting Services delivers 
-                institutional governance, nationwide workforce mobilization, and audited project delivery 
-                for multilateral donors, global contractors, and industry leaders.
+              <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed max-w-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+                Established in Kabul in 2010, PUL Consulting Services brings local knowledge and disciplined project management to complex assignments. We help development partners and businesses build capable teams, manage operations, and deliver projects across Afghanistan.
               </p>
 
               {/* Request Consultation Button */}
@@ -245,7 +243,7 @@ export default function HeroSection({ onOpenConsultation }: HeroSectionProps) {
                 <div className="mt-2 text-xs font-bold uppercase tracking-wider text-corp-ink">
                   {stat.label}
                 </div>
-                <p className="mt-1 text-xs text-corp-muted leading-relaxed line-clamp-2">
+                <p className="mt-1 text-xs text-corp-muted leading-relaxed">
                   {stat.description}
                 </p>
               </div>

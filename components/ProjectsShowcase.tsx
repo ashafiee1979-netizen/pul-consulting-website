@@ -30,7 +30,8 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
     const matchesSearch = 
       p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       p.client.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.location.toLowerCase().includes(searchQuery.toLowerCase());
+      p.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.category.toLowerCase().includes(searchQuery.toLowerCase());
 
     if (selectedFilter === "All") return matchesSearch;
     if (selectedFilter === "Telecom Operations") return matchesSearch && p.category.includes("Telecom");
@@ -67,10 +68,10 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
               Track Record &amp; Evidence
             </p>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-corp-ink mt-1.5">
-              Audited Performance Registry
+              Featured Project Portfolio
             </h2>
             <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-              Curated portfolio of 17 landmark programs representing over 14 years and 30+ cumulative contracts across 15+ provinces. Complete completion certificates and audit documentation available on file.
+              Explore 17 featured assignments from a portfolio of 30+ contracts across 15+ provinces since 2010. Search by keyword or filter by sector to find relevant experience.
             </p>
           </div>
 
@@ -79,6 +80,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
             {categories.map((cat) => (
               <button
                 key={cat}
+                aria-pressed={selectedFilter === cat}
                 onClick={() => {
                   setSelectedFilter(cat);
                   setActiveProject(0);
@@ -101,6 +103,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
             <Search className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
             <input
               type="text"
+              aria-label="Search projects by client, sector, program, or province"
               placeholder="Search by client, sector, program name, or province..."
               value={searchQuery}
               onChange={(e) => {
@@ -111,7 +114,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
             />
           </div>
           <span className="text-xs text-corp-muted font-medium">
-            Showing <strong className="text-corp-ink">{filteredProjects.length}</strong> of {COMPREHENSIVE_PROJECT_DATABASE.length} audited engagements
+            Showing <strong className="text-corp-ink">{filteredProjects.length}</strong> of {COMPREHENSIVE_PROJECT_DATABASE.length} featured assignments
           </span>
         </div>
 
@@ -123,7 +126,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
             </div>
             <h4 className="text-base font-bold text-corp-ink">No matching project records found</h4>
             <p className="text-xs text-corp-muted mt-1.5 max-w-sm mx-auto">
-              No audited programs matched &quot;{searchQuery}&quot; under the &quot;{selectedFilter}&quot; category filter.
+              No projects matched &quot;{searchQuery}&quot; under the &quot;{selectedFilter}&quot; category filter.
             </p>
             <button
               onClick={() => {
@@ -224,7 +227,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
                 {/* Detailed Deliverables */}
                 <div className="mt-5">
                   <h4 className="text-[11px] font-bold text-corp-muted uppercase tracking-wider mb-2.5">
-                    Measurable Outputs &amp; Performance Audit Results
+                    Key Deliverables &amp; Project Outputs
                   </h4>
                   <div className="space-y-2">
                     {current.keyOutputs.map((output, i) => (

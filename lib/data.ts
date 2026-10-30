@@ -76,7 +76,7 @@ export const COMPANY_INFO = {
 export const KEY_STATS: StatItem[] = [
   {
     id: "years",
-    value: "14+",
+    value: "16+",
     label: "Years in Operation",
     description: "Delivering continuous management consulting and operational programs since 2010",
   },
@@ -112,10 +112,10 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     number: 1,
     title: "Project Management & PMO Support",
     kicker: "Strategic PMO & RBM",
-    shortDesc: "End-to-end PMO governance, Result-Based Management (RBM), strategic roadmaps, and administrative execution.",
+    shortDesc: "Project planning, PMO setup, results-based management, and hands-on delivery coordination.",
     image: "/assets/services/service-pmo.jpg",
     category: "Strategic PMO",
-    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    deliveryBy: "PUL Consulting",
     pillar: "Pillar I: Strategic PMO & Governance",
   },
   {
@@ -126,7 +126,7 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Enterprise AI adoption, automated document intelligence, workflow automation, and responsible LLM knowledge systems.",
     image: "/assets/services/service-ai.jpg",
     category: "Technology & AI",
-    deliveryBy: "Synergy: Quantu Tech LLC (Virginia, USA)",
+    deliveryBy: "With Quantu Tech LLC · Virginia, USA",
     pillar: "Pillar II: Technology & Enterprise AI",
   },
   {
@@ -134,10 +134,10 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     number: 3,
     title: "Training & Institutional Capacity Building",
     kicker: "Workforce Upskilling",
-    shortDesc: "Master Training of Trainers (MToT), certified engineering management, and large-scale public sector workforce training.",
+    shortDesc: "Training of trainers, engineering management courses, and workforce development for public and private organizations.",
     image: "/assets/services/service-training.jpg",
     category: "Strategic PMO",
-    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    deliveryBy: "PUL Consulting",
     pillar: "Pillar I: Strategic PMO & Governance",
   },
   {
@@ -148,7 +148,7 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Nationwide staffing, compliant payroll administration, regulatory permits, and multi-year employment agreements.",
     image: "/assets/services/service-hr.jpg",
     category: "Workforce & Operations",
-    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    deliveryBy: "PUL Consulting",
     pillar: "Pillar III: Workforce & Operations",
   },
   {
@@ -159,7 +159,7 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Third-party independent monitoring, baseline/endline studies, data integrity verification, and donor reporting.",
     image: "/assets/services/service-me.jpg",
     category: "Strategic PMO",
-    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    deliveryBy: "PUL Consulting",
     pillar: "Pillar I: Strategic PMO & Governance",
   },
   {
@@ -177,11 +177,11 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     id: "translation-interpretation",
     number: 7,
     title: "Translation & Simultaneous Interpretation",
-    kicker: "ISO Certified Localization",
+    kicker: "Translation & Localization",
     shortDesc: "Official certified multi-pair translation, conference interpretation booths, and localization across 100+ languages.",
     image: "/assets/services/service-translation.jpg",
     category: "Governance & Support",
-    deliveryBy: "Synergy: Linguist Point International",
+    deliveryBy: "With Linguist Point International",
     pillar: "Pillar IV: Language & Logistics",
   },
   {
@@ -192,7 +192,7 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Protocol coordination, AV logistics, and delegate management for ministerial summits, conferences, and national Jirgas.",
     image: "/assets/services/service-events.jpg",
     category: "Workforce & Operations",
-    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    deliveryBy: "PUL Consulting",
     pillar: "Pillar III: Workforce & Operations",
   },
   {
@@ -203,7 +203,7 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Turnkey contact center staffing, multi-shift workforce supervision, trilingual routing, and KPI management.",
     image: "/assets/services/service-callcenter.jpg",
     category: "Workforce & Operations",
-    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    deliveryBy: "PUL Consulting",
     pillar: "Pillar III: Workforce & Operations",
   },
   {
@@ -225,7 +225,7 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Standardized accounting systems, cloud ERP, financial audits, and Ministry of Finance taxation clearance.",
     image: "/assets/services/service-finance.jpg",
     category: "Governance & Support",
-    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    deliveryBy: "PUL Consulting",
     pillar: "Pillar I: Strategic PMO & Governance",
   },
   {
@@ -247,7 +247,7 @@ export const SERVICE_CARDS_15: ServiceCard[] = [
     shortDesc: "Targeted vocational upskilling, mentorship, entrepreneurship facilitation, and inclusive private sector employment.",
     image: "/assets/services/service-empowerment.jpg",
     category: "Strategic PMO",
-    deliveryBy: "PUL Consulting (Direct Core HQ)",
+    deliveryBy: "PUL Consulting",
     pillar: "Pillar I: Strategic PMO & Governance",
   },
   {
@@ -656,7 +656,7 @@ export const PARTNER_COMPANIES: PartnerCompany[] = [
     logo: "/assets/brand/linguist-point-logo.png",
     logoClassName: "h-10 sm:h-11 w-auto",
     capabilities: [
-      "Over 100+ Languages with certified and accredited native linguists",
+      "100+ languages supported by specialist native linguists",
       "Simultaneous Interpretation Booths & Digital Audio Equipment",
       "Legal, Technical, Engineering, and International Development Localization",
       "Trusted linguistic provider to AUAF, ADB, TAF, and British Council",
@@ -688,28 +688,28 @@ export const INSTITUTIONAL_STRENGTHS = [
     icon: "Clock",
   },
   {
-    title: "PMI, Agile and Scrum Methodology as well as AI Enablement",
-    description: "Our core PMO methodology is anchored in PMI standards, Agile sprint governance, Result-Based Management (RBM), and enterprise AI enablement—driving streamlined execution, predictive risk mitigation, and end-to-end milestone accountability.",
+    title: "Project Management & Digital Enablement",
+    description: "We apply PMI-informed planning, Agile and Scrum practices, and results-based management to clarify milestones, manage risks, and track progress. Specialist partners support appropriate uses of AI and workflow automation.",
     icon: "Award",
   },
   {
-    title: "Multidisciplinary Executive Leadership & Global Pedigree",
-    description: "Our leadership cadre brings advanced academic and executive credentials from the American University of Afghanistan (AUAf), Fairleigh Dickinson University (USA), and Indian Institute of Management Studies, combined with former directorship over €50M+ donor-funded international portfolios.",
+    title: "Multidisciplinary Leadership Experience",
+    description: "Our leadership team brings academic and executive credentials from the American University of Afghanistan (AUAf), Fairleigh Dickinson University (USA), and Indian Institute of Management Studies, combined with former directorship over €50M+ donor-funded international portfolios.",
     icon: "GraduationCap",
   },
   {
-    title: "Clean Fiduciary & Audit Compliance Record",
+    title: "Financial & Contractual Accountability",
     description: "Audited financial and contractual performance through donor and partner engagements including USAID, The World Bank, GIZ, and the Ministry of Finance, supported by active corporate registration, TIN 9000010281, and AISA license.",
     icon: "ShieldCheck",
   },
   {
     title: "Field Deployment Reach Across 15+ Provinces",
-    description: "Deep in-country relationships and robust logistical networks enabling rapid mobilization of local teams, facilities, and technical resources within 72 hours of project award.",
+    description: "Local relationships and logistics networks support the mobilization of teams, facilities, and technical resources. Mobilization plans are tailored to the scope, location, and operating conditions of each assignment.",
     icon: "MapPin",
   },
   {
-    title: "Cross-Border Synergy with U.S. Partner Entities",
-    description: "Seamless coordination with PUL Global Partners LLC (Virginia, USA) and Quantu Tech LLC, providing dual-continent reach, federal compliance standards, and cutting-edge technical capabilities.",
+    title: "International Partner Coordination",
+    description: "Collaboration with PUL Global Partners LLC and Quantu Tech LLC in Virginia connects local delivery with international advisory, contracting support, and technology expertise.",
     icon: "Globe2",
   },
 ];

@@ -31,11 +31,10 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="max-w-2xl text-center md:text-left">
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight">
-              Ready to Execute in High-Complexity Operating Environments?
+              Let’s Discuss Your Next Assignment
             </h3>
             <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Partner with Afghanistan&apos;s established consultancy firm. Delivering audited field operations since 2010 
-              for USAID, The World Bank, GIZ, and global telecommunications operators.
+              Tell us about your objectives, location, and delivery requirements. We will help identify the expertise and operational support your project needs.
             </p>
           </div>
           <button
@@ -65,8 +64,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             </div>
 
             <p className="text-xs text-slate-300 leading-relaxed max-w-sm">
-              Parent enterprise founded in Kabul in 2010. Delivering specialized management consulting, 
-              workforce outsourcing, and project supervision across Afghanistan with rigorous institutional integrity.
+              Established in Kabul in 2010, PUL Consulting Services provides management consulting, workforce services, and project delivery support across Afghanistan.
             </p>
 
             <div className="pt-2 text-[11px] text-slate-400 space-y-1">
@@ -95,7 +93,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
               ))}
               <li>
                 <Link href="/services" className="text-sky-300 font-semibold hover:underline">
-                  + View all service practice lines
+                  + View all services
                 </Link>
               </li>
             </ul>
@@ -147,7 +145,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
               </li>
               <li>
                 <Link href="/projects" className="text-sky-300 font-semibold hover:underline block">
-                  › Audited Projects Registry (17 Featured)
+                  › Featured Projects
                 </Link>
               </li>
             </ul>

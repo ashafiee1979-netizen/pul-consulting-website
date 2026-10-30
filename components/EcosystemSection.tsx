@@ -12,7 +12,7 @@ export default function EcosystemSection() {
         {/* Section Header */}
         <div className="max-w-3xl">
           <p className="text-[11px] font-bold uppercase tracking-wider text-corp-blue">
-            Global Corporate Synergies
+            Our Partner Network
           </p>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-corp-ink mt-1.5">
             Partner Companies &amp; International Affiliates

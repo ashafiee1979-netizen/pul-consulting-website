@@ -39,19 +39,20 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-corp-line">
           <div className="max-w-3xl">
             <p className="text-[11px] font-bold uppercase tracking-wider text-corp-blue">
-              Core Capabilities &amp; Ecosystem
+              Our Expertise
             </p>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-corp-ink mt-1.5">
-              Practice Capabilities &amp; Services
+              Expertise That Supports Delivery
             </h2>
             <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-              Prioritizing PUL Consulting&apos;s direct flagship competencies in project governance, workforce operations, and institutional capacity, complemented by global partner synergies.
+              From project management and workforce operations to training and technology, our services combine PUL Consulting’s local delivery experience with specialist partner expertise.
             </p>
           </div>
 
           {/* Scope selection tabs */}
           <div className="flex flex-wrap items-center gap-2">
             <button
+              aria-pressed={viewScope === "core"}
               onClick={() => setViewScope("core")}
               className={`px-3.5 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all ${
                 viewScope === "core"
@@ -59,9 +60,10 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
                   : "bg-corp-ice text-corp-muted hover:text-corp-ink border border-slate-200 hover:border-slate-300"
               }`}
             >
-              Core Flagship Practices (6 Core)
+              Core Services
             </button>
             <button
+              aria-pressed={viewScope === "synergies"}
               onClick={() => setViewScope("synergies")}
               className={`px-3.5 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all ${
                 viewScope === "synergies"
@@ -69,9 +71,10 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
                   : "bg-corp-ice text-corp-muted hover:text-corp-ink border border-slate-200 hover:border-slate-300"
               }`}
             >
-              Consortium Synergies (Tech &amp; Languages)
+              Additional Services
             </button>
             <button
+              aria-pressed={viewScope === "all"}
               onClick={() => setViewScope("all")}
               className={`px-3.5 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all ${
                 viewScope === "all"
@@ -94,7 +97,7 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
           <div className="p-3.5 rounded-lg bg-corp-ice/70 border border-slate-200">
             <span className="text-[10px] font-bold text-sky-600 uppercase tracking-wider block">Pillar II</span>
             <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Technology &amp; Enterprise AI</h4>
-            <span className="text-[11px] text-corp-muted mt-1 block">In Synergy with Quantu Tech LLC</span>
+            <span className="text-[11px] text-corp-muted mt-1 block">With Quantu Tech LLC</span>
           </div>
           <div className="p-3.5 rounded-lg bg-corp-ice/70 border border-slate-200">
             <span className="text-[10px] font-bold text-corp-blue uppercase tracking-wider block">Pillar III</span>
@@ -103,18 +106,18 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
           </div>
           <div className="p-3.5 rounded-lg bg-corp-ice/70 border border-slate-200">
             <span className="text-[10px] font-bold text-sky-600 uppercase tracking-wider block">Pillar IV</span>
-            <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Language &amp; Austere Logistics</h4>
-            <span className="text-[11px] text-corp-muted mt-1 block">Synergy: Linguist Point Int&apos;l</span>
+            <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Language &amp; Logistics</h4>
+            <span className="text-[11px] text-corp-muted mt-1 block">With Linguist Point International</span>
           </div>
         </div>
 
         {/* Filter status banner */}
         <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs text-corp-muted bg-slate-50 px-4 py-2.5 rounded-lg border border-slate-200">
           <span>
-            Showing <strong className="text-corp-ink font-semibold">{filteredCards.length}</strong> {viewScope === "core" ? "Flagship Core Practices (Direct PUL HQ Delivery)" : viewScope === "synergies" ? "Consortium & Technology Partner Synergies" : "Total Capabilities"}
+            Showing <strong className="text-corp-ink font-semibold">{filteredCards.length}</strong> {viewScope === "core" ? "core services" : viewScope === "synergies" ? "additional services" : "service areas"}
           </span>
           <Link href="/services" className="text-corp-blue font-semibold hover:underline inline-flex items-center gap-1 shrink-0">
-            <span>Explore Full 15-Practice Catalog</span>
+            <span>Explore All Services</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -163,7 +166,7 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
                     <h3 className="text-base sm:text-lg font-serif font-bold text-corp-ink group-hover:text-corp-blue transition-colors leading-snug">
                       {service.title}
                     </h3>
-                    <p className="mt-2 text-xs text-corp-muted leading-relaxed line-clamp-2">
+                    <p className="mt-2 text-sm text-corp-muted leading-relaxed">
                       {service.shortDesc}
                     </p>
 
@@ -176,7 +179,7 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
 
                   {/* Bottom Action Footer */}
                   <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-corp-blue group-hover:text-corp-navy transition-colors">
-                    <span>Explore Detailed Deliverables</span>
+                    <span>View Scope & Deliverables</span>
                     <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -189,17 +192,17 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
         <div className="mt-12 p-6 rounded-md bg-corp-ice border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <h4 className="text-sm font-bold text-corp-ink">
-              Looking for Detailed Scope, Deliverables &amp; Methodology on Our Capabilities?
+              Find the Right Support for Your Project
             </h4>
             <p className="text-xs text-corp-muted mt-0.5">
-              Explore in-depth technical specifications, past execution models, and compliance standards on our dedicated Services page.
+              Review service scopes, delivery approaches, and relevant experience to plan your next assignment.
             </p>
           </div>
           <Link
             href="/services"
             className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-corp-navy hover:bg-corp-navyDark text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-xs"
           >
-            <span>Explore Full Services Catalog</span>
+            <span>Explore Our Services</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>

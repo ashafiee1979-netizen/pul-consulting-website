@@ -54,7 +54,7 @@ const DETAILED_CAPABILITIES: Record<string, { deliverables: string[]; methodolog
       "Ministry of Finance Tax Withholding & Official Clearances",
       "Work Permits, Visas, and Afghan Labor Law Compliance Oversight",
     ],
-    methodology: "Proven over a 9+ year master service agreement with Huawei Technologies Ltd, handling multi-department staffing with zero labor disputes.",
+    methodology: "Informed by a long-term master service agreement with Huawei Technologies Ltd, covering recruitment, payroll, and staff administration across multiple departments.",
     pastClient: "Huawei Technologies Ltd (2014–2022+), Etisalat Afghanistan",
   },
   "monitoring-evaluation": {
@@ -84,7 +84,7 @@ const DETAILED_CAPABILITIES: Record<string, { deliverables: string[]; methodolog
       "Legal, Technical, Engineering, and Medical Terminology Localization",
       "High-Volume Turnaround (100,000+ words/week) with Multi-Tier Proofreading",
     ],
-    methodology: "Powered by Linguist Point International, utilizing accredited subject-matter linguists and stringent ISO 17100 translation workflows.",
+    methodology: "Delivered with Linguist Point International through subject-matter translation, independent review, and terminology quality checks.",
     pastClient: "AUAF, ADB, The Asia Foundation, Tetra Tech, British Council",
   },
   "events-management": {
@@ -104,7 +104,7 @@ const DETAILED_CAPABILITIES: Record<string, { deliverables: string[]; methodolog
       "24/7 Multi-Shift Scheduling, Supervision & KPI Tracking",
       "Quality Assurance Call Audits & Escalation Governance",
     ],
-    methodology: "Established the benchmark for outsourced customer care in Afghanistan through multi-year contracts with Etisalat Afghanistan.",
+    methodology: "Built on multi-year contact center assignments for Etisalat Afghanistan, combining recruitment, training, shift supervision, and quality monitoring.",
     pastClient: "Etisalat Afghanistan (500+ Customer Care Agents)",
   },
   "business-registration": {
@@ -114,7 +114,7 @@ const DETAILED_CAPABILITIES: Record<string, { deliverables: string[]; methodolog
       "Tax Identification Number (TIN) Issuance & Corporate Structuring",
       "Commercial Banking Setup & Turnkey Office Mobilization",
     ],
-    methodology: "Direct administrative guidance navigating complex government processes to achieve operating readiness in the shortest legal timeframe.",
+    methodology: "Direct administrative guidance navigating complex government processes to plan registration requirements and establish operating readiness.",
     pastClient: "International Investors, Contractors, and Startups",
   },
   "financial-tax-compliance": {
@@ -239,24 +239,24 @@ export default function ServicesPage() {
                 <div className="animate-solutions-badge">
                   <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-corp-navy/60 border border-white/25 text-sky-200 text-xs font-semibold uppercase tracking-wider shadow-xs">
                     <ShieldCheck className="w-4 h-4 text-corp-blue" />
-                    <span>The Big Picture • Enterprise Practice Catalog</span>
+                    <span>Advisory • Technology • Operations</span>
                   </div>
                 </div>
 
                 {/* Animated Headline */}
                 <div className="animate-solutions-title mt-4">
                   <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.15] drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)]">
-                    Our Core Practice Capabilities
+                    Expertise for Every Stage of Delivery
                   </h1>
                   <p className="mt-2 text-base sm:text-lg font-medium text-sky-200 font-serif italic drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                    Bridging Strategic Advisory &amp; Field Execution Nationwide
+                    From Strategic Planning to Field Operations
                   </p>
                 </div>
 
                 {/* Subtext */}
                 <div className="animate-solutions-subtext mt-3">
                   <p className="text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
-                    Full-spectrum consulting, enterprise AI enablement, nationwide workforce mobilization, and mission-critical operations anchored by verified past performance since 2010 for bilateral donors and global corporations.
+                    Practical support for planning, staffing, managing, and delivering your assignment. Explore our 15 service areas, with clear scopes and delivery approaches informed by experience in Afghanistan and specialist partner capabilities.
                   </p>
                 </div>
               </div>
@@ -267,7 +267,7 @@ export default function ServicesPage() {
                   onClick={() => setIsConsultationOpen(true)}
                   className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-md bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-executive transition-all active:scale-98"
                 >
-                  <span>Request Practice Consultation</span>
+                  <span>Request Consultation</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
@@ -275,7 +275,7 @@ export default function ServicesPage() {
                   href="#practice-catalog"
                   className="inline-flex items-center gap-2 px-4.5 py-2.5 rounded-md bg-white/15 hover:bg-white/25 backdrop-blur-xs text-white border border-white/25 text-xs font-bold uppercase tracking-wider transition-all"
                 >
-                  <span>Explore Practice Lines</span>
+                  <span>Explore Our Services</span>
                   <ChevronRight className="w-4 h-4 text-sky-300" />
                 </a>
               </div>
@@ -335,13 +335,13 @@ export default function ServicesPage() {
                         {service.shortDesc}
                       </p>
 
-                      {/* Infographic Operating Methodology Callout */}
+                      {/* Infographic Delivery Approach Callout */}
                       <div className="p-3.5 rounded-lg bg-gradient-to-r from-sky-50/80 via-corp-ice to-white border-l-4 border-l-corp-blue border-y border-r border-slate-200 text-xs sm:text-[13px] text-corp-ink shadow-xs">
                         <div className="flex items-center gap-2 mb-1.5">
                           <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-corp-blue text-white">
-                            Operating Methodology
+                            Delivery Approach
                           </span>
-                          <span className="text-[10px] font-semibold text-corp-muted">5-Gate Delivery Aligned</span>
+                          <span className="text-[10px] font-semibold text-corp-muted">Structured Project Delivery</span>
                         </div>
                         <p className="leading-relaxed text-corp-ink font-medium">
                           {details.methodology}
@@ -350,7 +350,7 @@ export default function ServicesPage() {
 
                       {/* Documented Reference */}
                       <div className="text-xs sm:text-[13px] text-slate-500 pt-1">
-                        <strong>Proven Track Record: </strong>
+                        <strong>Relevant Experience: </strong>
                         <span className="text-corp-ink font-semibold">{details.pastClient}</span>
                       </div>
                     </div>

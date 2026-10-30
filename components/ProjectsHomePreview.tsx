@@ -34,13 +34,13 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200">
           <div className="max-w-3xl">
             <p className="text-[11px] font-bold uppercase tracking-wider text-corp-blue">
-              Track Record &amp; Evidence Preview
+              Selected Experience
             </p>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-corp-ink mt-1.5">
-              Audited Past Performance Highlights
+              Experience Across Sectors
             </h2>
             <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-              Verified program execution since 2010, nationwide workforce mobilization, and technical operations for multilateral donors and global contractors.
+              Selected assignments in workforce management, telecom operations, and professional training demonstrate the breadth of our delivery experience.
             </p>
           </div>
 
@@ -48,7 +48,7 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
             href="/projects"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-corp-navy hover:bg-corp-navyDark text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-xs flex-shrink-0"
           >
-            <span>View Full Project Registry (17 Featured)</span>
+            <span>View All Featured Projects</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -91,7 +91,7 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
                 {/* Verified Deliverable Highlight */}
                 <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5">
                   <span className="text-[11px] font-bold text-corp-ink uppercase tracking-wider block">
-                    Key Performance Outcome:
+                    Selected Deliverable
                   </span>
                   <div className="flex items-start gap-1.5 text-xs text-slate-600">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
@@ -101,7 +101,7 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
               </div>
 
               <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-corp-blue">
-                <span>Audited Program Scope</span>
+                <span>View Project Portfolio</span>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </Link>
@@ -116,10 +116,10 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
             </div>
             <div>
               <h4 className="text-sm font-bold text-corp-ink">
-                Need Complete Project Deliverables, Client Verifications &amp; RFP Evidence?
+                Explore the Experience Behind Our Services
               </h4>
               <p className="text-xs text-corp-muted mt-0.5">
-                Explore our searchable registry featuring 17 detailed programs from 30+ cumulative contracts across 15+ provinces.
+                Browse 17 featured assignments from a portfolio of 30+ contracts across 15+ provinces.
               </p>
             </div>
           </div>
@@ -127,7 +127,7 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
             href="/projects"
             className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-corp-blue hover:bg-corp-blueHover text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-xs"
           >
-            <span>Explore Complete Registry</span>
+            <span>Explore Our Projects</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
