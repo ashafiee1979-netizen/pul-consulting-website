@@ -36,6 +36,8 @@ export interface DetailedProject {
   keyOutputs: string[];
   status: 'Completed' | 'Ongoing';
   badge?: string;
+  sourceEntry: number;
+  sourcePage: number;
 }
 
 export interface PartnerCompany {
@@ -82,25 +84,25 @@ export const KEY_STATS: StatItem[] = [
   },
   {
     id: "projects",
-    value: "30+",
-    label: "Cumulative Contracts",
-    description: "17 featured program dossiers from 30+ cumulative donor and prime contracts executed since 2010",
+    value: "34",
+    label: "Project Register Entries",
+    description: "Individual historical assignments in the 29 October 2026 company profile",
   },
   {
     id: "personnel",
-    value: "1,000+",
-    label: "Workforce Deployed",
-    description: "Specialized consultants, field personnel, and engineering cadres managed nationwide",
+    value: "300",
+    label: "Engineering Graduates",
+    description: "200 trained in Kabul, 50 in Nangarhar, and 50 in Kandahar",
   },
   {
     id: "agents",
-    value: "500+",
-    label: "Call Center Personnel",
-    description: "Trained, scheduled, and supervised for major telecom operators including Etisalat & Huawei",
+    value: "200",
+    label: "Call Center Team (Approx.)",
+    description: "About 200 Etisalat personnel under the September 2013–September 2015 agreement",
   },
   {
     id: "provinces",
-    value: "15+",
+    value: "15",
     label: "Provinces Reached",
     description: "Field deployment capability spanning central, northern, southern, and eastern Afghanistan",
   },
@@ -291,7 +293,7 @@ export const CLIENTS_LIST: ClientPartner[] = [
     name: "GIZ Afghanistan",
     category: "International Donor",
     logo: "/assets/clients/GIZ.jpg",
-    scope: "Soft Skills Training & Catering for 6,800+ participants across 15 northern provinces",
+    scope: "Separate GIZ soft skills training assignments: 1,800 police officers in six provinces and a 15-province assignment with catering for more than 5,000 people",
   },
   {
     name: "Huawei Technologies Ltd",
@@ -303,7 +305,7 @@ export const CLIENTS_LIST: ClientPartner[] = [
     name: "Etisalat Afghanistan",
     category: "Global Enterprise",
     logo: "/assets/clients/client-etisalat.png",
-    scope: "Call Center Operations Management, 500+ Agents Staffing & Multilingual Training",
+    scope: "Workforce administration and call center services: more than 180 personnel in 2012–2013 and about 200 in 2013–2015; separate contract scopes",
   },
   {
     name: "The Asia Foundation (TAF)",
@@ -315,7 +317,7 @@ export const CLIENTS_LIST: ClientPartner[] = [
     name: "British Council",
     category: "International Donor",
     logo: "/assets/clients/British Council Logo.png",
-    scope: "Professional Translation, Localization & Educational Materials Development",
+    scope: "English-to-Dari and Pashto translation under the British Council Tawanmandi long-term agreement",
   },
   {
     name: "DAI (Development Alternatives Inc.)",
@@ -333,7 +335,7 @@ export const CLIENTS_LIST: ClientPartner[] = [
     name: "Creative Associates International",
     category: "International Donor",
     logo: "/assets/clients/Creative Associate Logo.png",
-    scope: "AWDP Master Training of Trainers (MToT) & Private Sector Job Placement",
+    scope: "Separate AWDP assignments for master trainer development and training and placement services for 400 people",
   },
   {
     name: "Afghanistan National Assembly",
@@ -349,282 +351,588 @@ export const CLIENTS_LIST: ClientPartner[] = [
   },
 ];
 
+// Reconciled to all 34 entries in the 29 October 2026 Company Profile.
+// Missing dates and locations are deliberately not inferred. Status is historical.
+// Reconciled to all 34 entries in the 29 October 2026 Company Profile.
+// Missing dates and locations are deliberately not inferred. Status is historical.
 export const COMPREHENSIVE_PROJECT_DATABASE: DetailedProject[] = [
   {
-    id: "huawei-master-agreement",
-    title: "Master Human Resources, Payroll & Manpower Administration Agreement",
-    client: "Huawei Technologies Ltd – Afghanistan",
-    period: "2014 – 2022+",
-    category: "Human Resources & Telecom Operations",
-    location: "Kabul, Mazar, Herat, Kandahar & Jalalabad",
-    description: "Long-term master service agreement providing turnkey recruitment, monthly payroll processing, Ministry of Finance tax clearance, and day-to-day HR administrative supervision for Huawei's telecommunications infrastructure contracts across Afghanistan.",
-    keyOutputs: [
-      "Nationwide staff recruitment across field engineers, technicians, and administrative teams",
-      "End-to-end monthly payroll disbursement and MoF tax withholding compliance with zero audit findings",
-      "Full compliance with Afghan Labor Law, work authorizations, and expatriate residency clearances",
-      "Continuous contract renewals spanning nearly a decade of institutional cooperation",
+    "id": "huawei-master-agreement",
+    "title": "Huawei HR and Payroll Administration",
+    "client": "Huawei Technologies Afghanistan",
+    "period": "From October 2020; end date not stated",
+    "category": "Human Resources & Telecom Operations",
+    "location": "Not specified in source",
+    "description": "Human resources, payroll management and administrative support under an employment cooperation agreement.",
+    "keyOutputs": [
+      "Human resources and payroll management",
+      "Administrative support under an employment cooperation agreement"
     ],
-    status: "Completed",
-    badge: "Flagship Telecom Partnership",
+    "status": "Completed",
+    "badge": "Human Resources & Telecom Operations",
+    "sourceEntry": 1,
+    "sourcePage": 13
   },
   {
-    id: "giz-multiprovince-training",
-    title: "Multi-Province Soft Skills Training & Turnkey Catering for 6,800+ Personnel",
-    client: "Gesellschaft für Internationale Zusammenarbeit (GIZ)",
-    period: "2018 – 2019",
-    category: "Capacity Building & Logistics",
-    location: "15 Provinces (Samangan, Mazar, Jawzjan, Kunduz, Takhar, Badakhshan, etc.)",
-    description: "Nationwide capacity initiative providing soft skill training (communication, conflict management, team building, time management) to 1,800 police officers and 5,000 public sector personnel across 15 provinces, accompanied by complete daily catering services.",
-    keyOutputs: [
-      "Trained 1,800 Afghan police officers across 6 northern provinces in conflict resolution",
-      "Expanded training to over 5,000 community leaders, civil servants, and women advocates across 15 provinces",
-      "Delivered turnkey daily catering and venue logistics in austere provincial environments",
-      "Standardized training manuals and post-training impact assessments verified by GIZ monitors",
+    "id": "giz-15-provinces-2019",
+    "title": "GIZ Soft Skills Training Across 15 Provinces",
+    "client": "GIZ",
+    "period": "July–December 2019",
+    "category": "Capacity Building & Logistics",
+    "location": "15 provinces in Afghanistan",
+    "description": "Communication, conflict management and resolution, team building and time management training. Catering for more than 5,000 people across the provinces was also provided.",
+    "keyOutputs": [
+      "Communication, conflict management, team building and time management training",
+      "Catering for more than 5,000 people"
     ],
-    status: "Completed",
-    badge: "Nationwide Capacity Initiative",
+    "status": "Completed",
+    "badge": "Capacity Building & Logistics",
+    "sourceEntry": 2,
+    "sourcePage": 13
   },
   {
-    id: "etisalat-callcenter-deployment",
-    title: "Outsourced Call Center Operations, Staffing & Multilingual Training (500+ Agents)",
-    client: "Etisalat Afghanistan",
-    period: "2012 – 2016",
-    category: "Contact Center Operations & HR",
-    location: "Kabul, Afghanistan",
-    description: "Pioneered turnkey call center operations for Etisalat Afghanistan. Recruited, trained, and managed over 500 trilingual customer care agents, shift supervisors, and HR coordinators across multi-shift 24/7 schedules.",
-    keyOutputs: [
-      "Hired, onboarded, and managed 500+ customer service agents over multi-year contract cycles",
-      "Conducted specialized training modules in customer care, conflict de-escalation, Dari, Pashto, and English",
-      "Supervised shift management, attendance tracking, and quality assurance call scoring",
-      "Established core operational foundation that powered Etisalat's customer growth across Afghanistan",
+    "id": "giz-police-training-2018",
+    "title": "GIZ Training for 1800 Police Officers",
+    "client": "GIZ",
+    "period": "September 2018–February 2019",
+    "category": "Capacity Building & Logistics",
+    "location": "Samangan, Mazar-e-Sharif, Jawzjan, Kunduz, Takhar & Badakhshan",
+    "description": "Soft skills training in Samangan, Mazar-e-Sharif, Jawzjan, Kunduz, Takhar and Badakhshan, with catering for more than 1,800 people.",
+    "keyOutputs": [
+      "Soft skills training for 1,800 police officers",
+      "Catering for more than 1,800 people"
     ],
-    status: "Completed",
-    badge: "Pioneer Telecom Operations",
+    "status": "Completed",
+    "badge": "Capacity Building & Logistics",
+    "sourceEntry": 3,
+    "sourcePage": 13
   },
   {
-    id: "national-export-strategy",
-    title: "Project Management Support for National Export Strategy of Afghanistan",
-    client: "Export Promotion Agency of Afghanistan (EPAA) / Advancing Afghan Trade",
-    period: "2018",
-    category: "Trade Strategy & PMO",
-    location: "Kabul & Regional Commercial Hubs",
-    description: "Provided senior project management, research, and stakeholder consultation support to develop Afghanistan's National Export Strategy, focusing on saffron, carpets, dried fruit, and gemstones for global markets.",
-    keyOutputs: [
-      "Consultative roadmaps formulated with Afghan trade associations and export chambers",
-      "Comprehensive market barrier assessments and regulatory reform recommendations",
-      "Direct foundation for the subsequent launch of international trade initiatives",
+    "id": "huawei-2018-2020",
+    "title": "Huawei HR and Payroll Administration",
+    "client": "Huawei Technologies Afghanistan",
+    "period": "October 2018–September 2020",
+    "category": "Human Resources & Telecom Operations",
+    "location": "Not specified in source",
+    "description": "Human resources, payroll management and administrative support under an employment cooperation agreement.",
+    "keyOutputs": [
+      "Human resources and payroll management",
+      "Administrative support under an employment cooperation agreement"
     ],
-    status: "Completed",
-    badge: "National Economic Impact",
+    "status": "Completed",
+    "badge": "Human Resources & Telecom Operations",
+    "sourceEntry": 4,
+    "sourcePage": 13
   },
   {
-    id: "awdp-creative-usaid",
-    title: "Workforce Development & Master Training of Trainers (MToT)",
-    client: "Afghanistan Work Force Development Program (AWDP) – Creative Associates / USAID",
-    period: "2016 – 2018",
-    category: "Workforce Development & M&E",
-    location: "Kabul & Key Economic Corridors",
-    description: "Demand-driven project management training and verified job placement services for 400 mid-career professionals and job seekers, along with MToT for private sector training institutes.",
-    keyOutputs: [
-      "Private and semi-private sector needs assessments across 6 commercial industries",
-      "400 mid-career employees trained with audited post-training salary increases or job placements",
-      "Certified MToT curriculum handed over to Afghan vocational institutions",
+    "id": "national-export-strategy",
+    "title": "National Export Strategy Implementation",
+    "client": "Export Promotion Agency of Afghanistan",
+    "period": "15 September–15 December 2018",
+    "category": "Trade Strategy & Governance",
+    "location": "Afghanistan",
+    "description": "Project management and implementation support for the National Export Strategy through the Advancing Afghan Trade project.",
+    "keyOutputs": [
+      "Project management for Advancing Afghan Trade",
+      "National Export Strategy implementation support"
     ],
-    status: "Completed",
-    badge: "USAID Workforce Placement",
+    "status": "Completed",
+    "badge": "Trade Strategy & Governance",
+    "sourceEntry": 5,
+    "sourcePage": 13
   },
   {
-    id: "asmed-dai-usaid-engineering",
-    title: "Construction Management Training for 300 University Graduates",
-    client: "ASMED / DAI – USAID",
-    period: "2011 – 2013",
-    category: "Engineering Management & Training",
-    location: "Kabul, Nangarhar & Kandahar Provinces",
-    description: "Delivered intensive vocational engineering training in partnership with EPRSO covering construction safety, cost estimation, QA/QC, FIDIC contract management, planning, and AutoCAD for university engineering graduates.",
-    keyOutputs: [
-      "300 university civil engineering graduates trained and certified",
-      "High rate of immediate employment placement with major infrastructure contractors",
-      "Formal curricula endorsed by university engineering faculties",
+    "id": "awdp-master-trainers",
+    "title": "Master Training of Trainers",
+    "client": "AWDP / Creative Associates / USAID",
+    "period": "10 December 2017–10 April 2018",
+    "category": "Capacity Building & Training",
+    "location": "Afghanistan",
+    "description": "Master training of trainers for instructors in private and semi-public training institutions. The assignment also included catering support.",
+    "keyOutputs": [
+      "Master training of trainers for private and semi-public training institutions",
+      "Catering support"
     ],
-    status: "Completed",
-    badge: "USAID Engineering Certified",
+    "status": "Completed",
+    "badge": "Capacity Building & Training",
+    "sourceEntry": 6,
+    "sourcePage": 13
   },
   {
-    id: "worldbank-aaip-capacity",
-    title: "Academic & Business English Language Program for Senior Government Officials",
-    client: "Ministry of Agriculture (MAIL) – AAIP / The World Bank Group",
-    period: "2013 – 2015",
-    category: "Institutional Capacity Building",
-    location: "Kabul, Afghanistan",
-    description: "Tailored academic and business English training program for senior provincial and central directors of the Ministry of Agriculture, preparing them for overseas postgraduate studies and international negotiations.",
-    keyOutputs: [
-      "Comprehensive language diagnostics and cohort-based progression testing",
-      "Senior government directors qualified for international academic fellowships",
-      "Curriculum focused on agricultural economics, policy drafting, and international negotiation",
+    "id": "awdp-creative-usaid",
+    "title": "Demand Driven Training and Job Placement",
+    "client": "AWDP / Creative Associates / USAID",
+    "period": "21 December 2016–21 September 2017",
+    "category": "Workforce Development & Training",
+    "location": "Not specified in source",
+    "description": "Project management training and placement services for 400 mid-career employees and job seekers; employer needs assessments for competency-based learning; catering support.",
+    "keyOutputs": [
+      "Project management training and placement services for 400 people",
+      "Employer needs assessments and catering support"
     ],
-    status: "Completed",
-    badge: "World Bank Institutional Grant",
+    "status": "Completed",
+    "badge": "Workforce Development & Training",
+    "sourceEntry": 7,
+    "sourcePage": 14
   },
   {
-    id: "national-assembly-dai-alba",
-    title: "Public Policy, Administration & PMO Training for National Assembly Staff",
-    client: "DAI – ALBA Project (USAID funded)",
-    period: "2015 – 2017",
-    category: "Governance & Legislative Capacity",
-    location: "Kabul, Afghanistan",
-    description: "Structured institutional development programs for parliamentary staff of the Wolesi Jirga (House of Representatives) and Meshrano Jirga (Senate), covering public policy formulation, effective office management, and project controls.",
-    keyOutputs: [
-      "Over 120 legislative research and administrative officers certified",
-      "Formulation of standard operating procedures for committee management",
-      "Enhanced committee reporting and inter-ministerial hearing protocols",
+    "id": "tetra-tech-isla-translation",
+    "title": "ISLA Project Translation Services",
+    "client": "Tetra Tech / USAID ISLA",
+    "period": "June 2017–2018",
+    "category": "Translation & Linguistic Services",
+    "location": "Not specified in source",
+    "description": "Translation of project materials from English into Dari and Pashto.",
+    "keyOutputs": [
+      "Translation of ISLA project materials from English into Dari",
+      "Translation of ISLA project materials from English into Pashto"
     ],
-    status: "Completed",
-    badge: "Parliamentary Strengthening",
+    "status": "Completed",
+    "badge": "Translation & Linguistic Services",
+    "sourceEntry": 8,
+    "sourcePage": 14
   },
   {
-    id: "taf-gmic-it-networking",
-    title: "IT Networking, Structured Cabling & Systems Infrastructure",
-    client: "Government Media & Information Center (GMIC) / The Asia Foundation (TAF)",
-    period: "2011 – 2012",
-    category: "IT Infrastructure & Networking",
-    location: "Kabul, Afghanistan",
-    description: "Turnkey enterprise network installation, high-density structured cabling, and server connectivity for the Government Media and Information Center in Kabul.",
-    keyOutputs: [
-      "Complete deployment of enterprise structured cabling, patch panels, and switching fabric",
-      "High-speed fiber and wireless integration across government media briefing halls",
-      "Provision of ongoing tier-2 network administration support",
+    "id": "taf-annual-survey-2016",
+    "title": "Annual Survey Publication Translation",
+    "client": "The Asia Foundation",
+    "period": "2016 survey publication",
+    "category": "Translation & Linguistic Services",
+    "location": "Not specified in source",
+    "description": "Translation of The Asia Foundation’s annual survey book from English into Dari and Pashto.",
+    "keyOutputs": [
+      "Translation of The Asia Foundation’s 2016 annual survey publication",
+      "English into Dari and Pashto"
     ],
-    status: "Completed",
-    badge: "Enterprise IT Deployment",
+    "status": "Completed",
+    "badge": "Translation & Linguistic Services",
+    "sourceEntry": 9,
+    "sourcePage": 14
   },
   {
-    id: "tetra-tech-isla-translation",
-    title: "Governance Document Translation & Technical Localization",
-    client: "Tetra Tech – USAID ISLA Project",
-    period: "2017 – 2018",
-    category: "Linguistic & Translation Services",
-    location: "Kabul, Afghanistan",
-    description: "Comprehensive translation of provincial governance guidelines, policy documentation, and municipal management frameworks from English into Dari and Pashto.",
-    keyOutputs: [
-      "Accredited bilingual translation of over 500,000 words of technical governance content",
-      "Standardized terminology glossaries approved by provincial development directorates",
-      "100% on-time delivery meeting USAID rigorous editorial standards",
+    "id": "huawei-2016-2018",
+    "title": "Huawei HR and Payroll Administration",
+    "client": "Huawei Technologies Afghanistan",
+    "period": "October 2016–September 2018",
+    "category": "Human Resources & Telecom Operations",
+    "location": "Not specified in source",
+    "description": "Human resources, payroll management and administrative support under an employment cooperation agreement.",
+    "keyOutputs": [
+      "Human resources and payroll management",
+      "Administrative support under an employment cooperation agreement"
     ],
-    status: "Completed",
-    badge: "USAID Governance Localization",
+    "status": "Completed",
+    "badge": "Human Resources & Telecom Operations",
+    "sourceEntry": 10,
+    "sourcePage": 14
   },
   {
-    id: "auaf-simultaneous-translation",
-    title: "Simultaneous Interpretation Equipment & Certified Linguists",
-    client: "American University of Afghanistan (AUAf)",
-    period: "2012 – 2016",
-    category: "Linguistic & Audio Engineering",
-    location: "Kabul, Afghanistan",
-    description: "Provision of digital simultaneous translation booths, multi-channel wireless audio receivers, and accredited conference interpreters for high-level diplomatic symposiums and academic conferences.",
-    keyOutputs: [
-      "Turnkey AV and booth deployment for international academic summits",
-      "Certified trilingual interpretation (English, Dari, Pashto) with zero technical interruptions",
-      "Long-term master equipment rental and technician support agreement",
+    "id": "national-assembly-project-management",
+    "title": "Project Management Training",
+    "client": "DAI ALBA",
+    "period": "Not stated in source",
+    "category": "Governance & Legislative Capacity",
+    "location": "Afghanistan National Assembly",
+    "description": "Project management training for National Assembly staff.",
+    "keyOutputs": [
+      "Project management training",
+      "Training for National Assembly staff"
     ],
-    status: "Completed",
-    badge: "Academic Summit Delivery",
+    "status": "Completed",
+    "badge": "Governance & Legislative Capacity",
+    "sourceEntry": 11,
+    "sourcePage": 14
   },
   {
-    id: "kabul-conference-peace-jirga",
-    title: "Event Management Consultancy for Kabul International Conference & Peace Jirga",
-    client: "Office of the Administrative Affairs (OAA) & Coordinator Dr. Ashraf Ghani's Office",
-    period: "2010 – 2011",
-    category: "High-Level Events & Diplomacy",
-    location: "Kabul (Loya Jirga Tent & Ministry of Foreign Affairs)",
-    description: "Senior management consultancy, finance administration, and protocol logistics for the historic Kabul International Conference and the National Consultative Peace Jirga.",
-    keyOutputs: [
-      "Financial management and procurement coordination for international conference hosting",
-      "Protocol reception, VIP logistics, and accreditation support for foreign delegations",
-      "Direct recognition from the Conference Coordination Office for logistical excellence",
+    "id": "wolesi-jirga-public-policy",
+    "title": "Public Policy and Administration Training",
+    "client": "DAI ALBA",
+    "period": "Not stated in source",
+    "category": "Governance & Legislative Capacity",
+    "location": "Wolesi Jirga",
+    "description": "Public policy and public administration training for Wolesi Jirga staff.",
+    "keyOutputs": [
+      "Public policy training",
+      "Public administration training for Wolesi Jirga staff"
     ],
-    status: "Completed",
-    badge: "Historic Diplomatic Gathering",
+    "status": "Completed",
+    "badge": "Governance & Legislative Capacity",
+    "sourceEntry": 12,
+    "sourcePage": 14
   },
   {
-    id: "finland-embassy-support",
-    title: "Diplomatic Mission Facility Support, Logistics & Technical Translation",
-    client: "Embassy of Finland in Kabul",
-    period: "2013 – 2017",
-    category: "Diplomatic & Governance",
-    location: "Kabul, Afghanistan",
-    description: "Multi-year turnkey administrative support, secure compound facility maintenance coordination, expatriate protocol logistics, and official diplomatic document translation for the Embassy of Finland in Kabul.",
-    keyOutputs: [
-      "Diplomatic compound maintenance and protocol life-support coordination",
-      "Certified English-to-Dari/Pashto translation of bilateral diplomatic correspondence",
-      "Full adherence to European Union mission security and confidentiality standards",
+    "id": "wolesi-jirga-office-management",
+    "title": "Effective Office Management Training",
+    "client": "DAI ALBA",
+    "period": "Not stated in source",
+    "category": "Governance & Legislative Capacity",
+    "location": "Wolesi Jirga",
+    "description": "Effective office management training for Wolesi Jirga staff.",
+    "keyOutputs": [
+      "Effective office management training",
+      "Training for Wolesi Jirga staff"
     ],
-    status: "Completed",
-    badge: "Diplomatic Mission Delivery",
+    "status": "Completed",
+    "badge": "Governance & Legislative Capacity",
+    "sourceEntry": 13,
+    "sourcePage": 15
   },
   {
-    id: "harakat-investment-climate",
-    title: "Private Sector Regulatory Reform & Commercial Feasibility Studies",
-    client: "Harakat – Afghanistan Investment Climate Facility",
-    period: "2015 – 2018",
-    category: "Diplomatic & Governance",
-    location: "Kabul, Herat & Mazar-e-Sharif",
-    description: "Delivered comprehensive research, regulatory barrier analysis, and public-private dialogue workshops to streamline commercial licensing and remove operational bottlenecks for Afghan enterprises.",
-    keyOutputs: [
-      "Conducted nationwide commercial surveys analyzing municipal licensing hurdles",
-      "Facilitated multi-stakeholder workshops with Ministry of Commerce and ACCI",
-      "Produced actionable policy recommendations for private sector investment reform",
+    "id": "worldbank-aaip-business-english",
+    "title": "Academic and Business English Training",
+    "client": "MAIL / AAIP / World Bank funding",
+    "period": "20 December 2014–20 April 2015",
+    "category": "Institutional Capacity Building",
+    "location": "MAIL senior provincial staff",
+    "description": "Academic and business English language training for senior provincial staff of the Ministry of Agriculture, Irrigation and Livestock.",
+    "keyOutputs": [
+      "Academic English language training",
+      "Business English language training"
     ],
-    status: "Completed",
-    badge: "Economic Growth Initiative",
+    "status": "Completed",
+    "badge": "Institutional Capacity Building",
+    "sourceEntry": 14,
+    "sourcePage": 15
   },
   {
-    id: "mofa-diplomatic-training",
-    title: "Diplomatic Academy Pre-Service Training & Administrative Capacity Building",
-    client: "Ministry of Foreign Affairs (MoFA) – Institute of Diplomacy",
-    period: "2011 – 2013",
-    category: "Capacity Building",
-    location: "Kabul, Afghanistan",
-    description: "Designed and facilitated intensive pre-service diplomatic administration, international protocol, and professional English courses for newly inducted civil servants entering the Afghan foreign service.",
-    keyOutputs: [
-      "Trained 120+ foreign service officers in international protocol and diplomatic correspondence",
-      "Curriculum design covering public policy, treaty administration, and bilateral negotiation",
-      "Pre- and post-competency examinations showing a 42% average gain in core competencies",
+    "id": "huawei-2014-2016",
+    "title": "Huawei HR and Payroll Administration",
+    "client": "Huawei Technologies Afghanistan",
+    "period": "October 2014–September 2016",
+    "category": "Human Resources & Telecom Operations",
+    "location": "Not specified in source",
+    "description": "Human resources, payroll management and administrative support under an employment cooperation agreement.",
+    "keyOutputs": [
+      "Human resources and payroll management",
+      "Administrative support under an employment cooperation agreement"
     ],
-    status: "Completed",
-    badge: "Sovereign Ministry Support",
+    "status": "Completed",
+    "badge": "Human Resources & Telecom Operations",
+    "sourceEntry": 15,
+    "sourcePage": 15
   },
   {
-    id: "british-council-curriculum",
-    title: "Nationwide Educational Materials Localization & Quality Assurance",
-    client: "British Council Afghanistan",
-    period: "2014 – 2017",
-    category: "Linguistics & IT",
-    location: "Kabul, Jalalabad & Herat",
-    description: "Turnkey translation, cultural localization, and proofreading of primary and secondary educational curricula, teacher training guides, and assessment rubrics.",
-    keyOutputs: [
-      "Localized over 850,000 words across educational modules into standard Dari and Pashto",
-      "Strict multi-tier editorial QA workflow ensuring zero terminology inconsistency",
-      "Supported nationwide rollout across regional educational development centers",
+    "id": "etisalat-callcenter-deployment",
+    "title": "Etisalat Workforce and Call Center Services",
+    "client": "Etisalat Afghanistan",
+    "period": "September 2013–September 2015",
+    "category": "Human Resources & Telecom Operations",
+    "location": "Not specified in source",
+    "description": "Recruitment, payroll administration, daily supervision and management of about 200 call center agents, project managers, HR coordinators and team leaders.",
+    "keyOutputs": [
+      "Recruitment and payroll administration",
+      "Daily supervision and management of about 200 call center and related personnel"
     ],
-    status: "Completed",
-    badge: "Multilateral Education Delivery",
+    "status": "Completed",
+    "badge": "Human Resources & Telecom Operations",
+    "sourceEntry": 16,
+    "sourcePage": 15
   },
   {
-    id: "isaf-media-monitoring",
-    title: "Provincial Civic Outreach & Media Monitoring Impact Assessment",
-    client: "ISAF / Regional Media Coordination Office",
-    period: "2011 – 2012",
-    category: "Diplomatic & Governance",
-    location: "Kabul, Kandahar & Eastern Provinces",
-    description: "Daily broadcast media tracking, sentiment analysis, and community perception reporting across radio, print, and regional television networks.",
-    keyOutputs: [
-      "Daily 24-hour media briefs tracking broadcast sentiment across Dari and Pashto channels",
-      "Quarterly qualitative public perception reports from provincial community leaders",
-      "Strict data integrity protocols and rapid reporting turnaround times",
+    "id": "kabul-skyscraper-financial-systems",
+    "title": "Accounting and Financial Management Systems",
+    "client": "Kabul Skyscraper Services",
+    "period": "December 2014",
+    "category": "Financial Management & Governance",
+    "location": "Head office and project staff",
+    "description": "Development of accounting and financial management systems, with training for head office and project staff.",
+    "keyOutputs": [
+      "Accounting and financial management system development",
+      "Training for head office and project staff"
     ],
-    status: "Completed",
-    badge: "Civic Media Monitoring",
+    "status": "Completed",
+    "badge": "Financial Management & Governance",
+    "sourceEntry": 17,
+    "sourcePage": 15
   },
+  {
+    "id": "worldbank-aaip-postgraduate-english",
+    "title": "English Training for Senior Government Officials",
+    "client": "MAIL / AAIP / World Bank funding",
+    "period": "May 2013–July 2014",
+    "category": "Institutional Capacity Building",
+    "location": "Not specified in source",
+    "description": "English language training to prepare senior government officials for postgraduate study overseas.",
+    "keyOutputs": [
+      "English language training for senior government officials",
+      "Preparation for postgraduate study overseas"
+    ],
+    "status": "Completed",
+    "badge": "Institutional Capacity Building",
+    "sourceEntry": 18,
+    "sourcePage": 15
+  },
+  {
+    "id": "etisalat-workforce-language-training",
+    "title": "Etisalat Workforce and Language Training",
+    "client": "Etisalat Afghanistan",
+    "period": "September 2012–August 2013",
+    "category": "Human Resources & Telecom Operations",
+    "location": "Not specified in source",
+    "description": "Recruitment, payroll administration, supervision and management for more than 180 call center personnel and related staff. English, Dari, Pashto and customer care training.",
+    "keyOutputs": [
+      "Recruitment, payroll, supervision and management for more than 180 personnel",
+      "English, Dari, Pashto and customer care training"
+    ],
+    "status": "Completed",
+    "badge": "Human Resources & Telecom Operations",
+    "sourceEntry": 19,
+    "sourcePage": 16
+  },
+  {
+    "id": "etisalat-translation",
+    "title": "Etisalat Translation Services",
+    "client": "Etisalat Afghanistan",
+    "period": "Not stated in source",
+    "category": "Translation & Linguistic Services",
+    "location": "Not specified in source",
+    "description": "Translation services from English into Dari and Pashto.",
+    "keyOutputs": [
+      "Translation from English into Dari",
+      "Translation from English into Pashto"
+    ],
+    "status": "Completed",
+    "badge": "Translation & Linguistic Services",
+    "sourceEntry": 20,
+    "sourcePage": 16
+  },
+  {
+    "id": "british-council-tawanmandi",
+    "title": "Tawanmandi Translation Agreement",
+    "client": "British Council Tawanmandi",
+    "period": "Not stated in source",
+    "category": "Translation & Linguistic Services",
+    "location": "Not specified in source",
+    "description": "Translation from English into Dari and Pashto under a long-term agreement.",
+    "keyOutputs": [
+      "Long-term translation agreement for Tawanmandi",
+      "English into Dari and Pashto"
+    ],
+    "status": "Completed",
+    "badge": "Translation & Linguistic Services",
+    "sourceEntry": 21,
+    "sourcePage": 16
+  },
+  {
+    "id": "taf-professional-translation",
+    "title": "Professional Translation Agreement",
+    "client": "The Asia Foundation",
+    "period": "Not stated in source",
+    "category": "Translation & Linguistic Services",
+    "location": "Not specified in source",
+    "description": "Professional translation from English into Dari and Pashto, and from Dari and Pashto into English, under a long-term agreement.",
+    "keyOutputs": [
+      "Professional translation under a long-term agreement",
+      "English into Dari and Pashto, and Dari and Pashto into English"
+    ],
+    "status": "Completed",
+    "badge": "Translation & Linguistic Services",
+    "sourceEntry": 22,
+    "sourcePage": 16
+  },
+  {
+    "id": "asmed-kabul-construction",
+    "title": "Construction Management Training in Kabul",
+    "client": "ASMED / DAI / USAID",
+    "period": "Not stated in source",
+    "category": "Engineering Management & Training",
+    "location": "Kabul Province",
+    "description": "Business English, project management, construction safety, cost and quality management, contracts, planning and scheduling, and AutoCAD.",
+    "keyOutputs": [
+      "Construction management training for 200 university graduates",
+      "Business English, safety, cost, quality, contracts, planning, scheduling and AutoCAD"
+    ],
+    "status": "Completed",
+    "badge": "Engineering Management & Training",
+    "sourceEntry": 23,
+    "sourcePage": 16
+  },
+  {
+    "id": "asmed-nangarhar-construction",
+    "title": "Construction Management Training in Nangarhar",
+    "client": "ASMED / DAI / USAID",
+    "period": "Not stated in source",
+    "category": "Engineering Management & Training",
+    "location": "Nangarhar Province",
+    "description": "Construction project management training covering business English, safety, cost and quality management, contracts, scheduling and AutoCAD.",
+    "keyOutputs": [
+      "Construction management training for 50 university graduates",
+      "Business English, safety, cost, quality, contracts, scheduling and AutoCAD"
+    ],
+    "status": "Completed",
+    "badge": "Engineering Management & Training",
+    "sourceEntry": 24,
+    "sourcePage": 16
+  },
+  {
+    "id": "asmed-kandahar-construction",
+    "title": "Construction Management Training in Kandahar",
+    "client": "ASMED / DAI / USAID",
+    "period": "Not stated in source",
+    "category": "Engineering Management & Training",
+    "location": "Kandahar Province",
+    "description": "Construction project management training covering business English, safety, cost and quality management, contracts, scheduling and AutoCAD.",
+    "keyOutputs": [
+      "Construction management training for 50 university graduates",
+      "Business English, safety, cost, quality, contracts, scheduling and AutoCAD"
+    ],
+    "status": "Completed",
+    "badge": "Engineering Management & Training",
+    "sourceEntry": 25,
+    "sourcePage": 17
+  },
+  {
+    "id": "air-kandahar-assessment",
+    "title": "Kandahar Municipality Field Assessment",
+    "client": "AIR Consulting",
+    "period": "Not stated in source",
+    "category": "Research & Monitoring and Evaluation",
+    "location": "Kandahar Municipality",
+    "description": "Field survey, assessment and translation of focus group material from Pashto into English, with a recorded scope of 180,000 words.",
+    "keyOutputs": [
+      "Field survey and assessment",
+      "Pashto-to-English translation of focus group material, with a recorded scope of 180,000 words"
+    ],
+    "status": "Completed",
+    "badge": "Research & Monitoring and Evaluation",
+    "sourceEntry": 26,
+    "sourcePage": 17
+  },
+  {
+    "id": "avipa-plus-weekly-reporting",
+    "title": "AVIPA Plus Weekly Reporting",
+    "client": "Aouj (subcontract for IRD AVIPA Plus)",
+    "period": "Not stated in source",
+    "category": "Reporting & Program Support",
+    "location": "Not specified in source",
+    "description": "Weekly report work recorded in the portfolio as subcontracted through Aouj for the IRD AVIPA Plus program.",
+    "keyOutputs": [
+      "Weekly reporting work for IRD AVIPA Plus",
+      "Subcontracted through Aouj"
+    ],
+    "status": "Completed",
+    "badge": "Reporting & Program Support",
+    "sourceEntry": 27,
+    "sourcePage": 17
+  },
+  {
+    "id": "auaf-simultaneous-translation",
+    "title": "Simultaneous Interpretation Services",
+    "client": "American University of Afghanistan",
+    "period": "Not stated in source",
+    "category": "Linguistic & Interpretation Services",
+    "location": "American University of Afghanistan",
+    "description": "Simultaneous translation and interpretation, including provision of interpretation equipment.",
+    "keyOutputs": [
+      "Simultaneous translation and interpretation",
+      "Provision of interpretation equipment"
+    ],
+    "status": "Completed",
+    "badge": "Linguistic & Interpretation Services",
+    "sourceEntry": 28,
+    "sourcePage": 17
+  },
+  {
+    "id": "midfield-policy-translation",
+    "title": "Policy and Code of Conduct Translation",
+    "client": "Midfield International",
+    "period": "Not stated in source",
+    "category": "Translation & Linguistic Services",
+    "location": "Not specified in source",
+    "description": "Translation of policies and codes of conduct.",
+    "keyOutputs": [
+      "Policy translation",
+      "Code of conduct translation"
+    ],
+    "status": "Completed",
+    "badge": "Translation & Linguistic Services",
+    "sourceEntry": 29,
+    "sourcePage": 17
+  },
+  {
+    "id": "adb-strategy-translation",
+    "title": "ADB Strategy Translation",
+    "client": "Aouj (subcontract for Asian Development Bank strategy)",
+    "period": "Not stated in source",
+    "category": "Translation & Linguistic Services",
+    "location": "Not specified in source",
+    "description": "Translation of an Asian Development Bank strategy, recorded as subcontracted through Aouj.",
+    "keyOutputs": [
+      "Translation of an Asian Development Bank strategy",
+      "Subcontracted through Aouj"
+    ],
+    "status": "Completed",
+    "badge": "Translation & Linguistic Services",
+    "sourceEntry": 30,
+    "sourcePage": 17
+  },
+  {
+    "id": "building-afghan-markets-assessment",
+    "title": "Afghan Products Market Assessment",
+    "client": "Building Afghan Markets",
+    "period": "Not stated in source",
+    "category": "Research & Monitoring and Evaluation",
+    "location": "Kabul and five other regions",
+    "description": "Market assessment and survey to support promotion of Afghan products in Kabul and five other regions.",
+    "keyOutputs": [
+      "Market assessment and survey",
+      "Support for the promotion of Afghan products"
+    ],
+    "status": "Completed",
+    "badge": "Research & Monitoring and Evaluation",
+    "sourceEntry": 31,
+    "sourcePage": 18
+  },
+  {
+    "id": "etisalat-hr-manual-translation",
+    "title": "Human Resources Manual Translation",
+    "client": "Etisalat Afghanistan",
+    "period": "Not stated in source",
+    "category": "Translation & Linguistic Services",
+    "location": "Not specified in source",
+    "description": "Translation of the company’s human resources manual.",
+    "keyOutputs": [
+      "Translation of the company’s human resources manual"
+    ],
+    "status": "Completed",
+    "badge": "Translation & Linguistic Services",
+    "sourceEntry": 32,
+    "sourcePage": 18
+  },
+  {
+    "id": "kabul-conference-peace-jirga",
+    "title": "Kabul Conference Events Consultancy",
+    "client": "Office of the Coordinator of the Kabul Conference",
+    "period": "Not stated in source",
+    "category": "Events & Governance",
+    "location": "Office of the Coordinator of the Kabul Conference",
+    "description": "Provision of an events management consultant to the Office of the Coordinator.",
+    "keyOutputs": [
+      "Provision of an events management consultant",
+      "Consultancy support to the Office of the Coordinator"
+    ],
+    "status": "Completed",
+    "badge": "Events & Governance",
+    "sourceEntry": 33,
+    "sourcePage": 18
+  },
+  {
+    "id": "taf-gmic-it-networking",
+    "title": "Internet Networking and Cabling",
+    "client": "Government Media and Information Center / The Asia Foundation",
+    "period": "Not stated in source",
+    "category": "IT Infrastructure & Networking",
+    "location": "Government Media and Information Center",
+    "description": "Internet networking and cabling services.",
+    "keyOutputs": [
+      "Internet networking services",
+      "Cabling services"
+    ],
+    "status": "Completed",
+    "badge": "IT Infrastructure & Networking",
+    "sourceEntry": 34,
+    "sourcePage": 18
+  }
 ];
 
 export const PARTNER_COMPANIES: PartnerCompany[] = [
@@ -703,7 +1011,7 @@ export const INSTITUTIONAL_STRENGTHS = [
     icon: "ShieldCheck",
   },
   {
-    title: "Field Deployment Reach Across 15+ Provinces",
+    title: "Project Experience Across 15 Provinces",
     description: "Local relationships and logistics networks support the mobilization of teams, facilities, and technical resources. Mobilization plans are tailored to the scope, location, and operating conditions of each assignment.",
     icon: "MapPin",
   },

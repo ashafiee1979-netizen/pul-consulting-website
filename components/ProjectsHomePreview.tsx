@@ -20,12 +20,11 @@ interface ProjectsHomePreviewProps {
 }
 
 export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHomePreviewProps) {
-  // Select 3 premier flagship programs representing diverse capabilities
-  const featuredProjects = [
-    COMPREHENSIVE_PROJECT_DATABASE[0], // Huawei MSA
-    COMPREHENSIVE_PROJECT_DATABASE[2], // USAID/ASMED
-    COMPREHENSIVE_PROJECT_DATABASE[4]  // EPAA / NES
-  ];
+  const featuredProjectIds = ["huawei-master-agreement", "etisalat-callcenter-deployment", "awdp-creative-usaid"];
+  const featuredProjects = featuredProjectIds.flatMap((id) => {
+    const project = COMPREHENSIVE_PROJECT_DATABASE.find((entry) => entry.id === id);
+    return project ? [project] : [];
+  });
 
   return (
     <section id="projects" className="py-20 bg-corp-ice border-b border-corp-line">
@@ -119,7 +118,7 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
                 Explore the Experience Behind Our Services
               </h4>
               <p className="text-xs text-corp-muted mt-0.5">
-                Browse 17 featured assignments from a portfolio of 30+ contracts across 15+ provinces.
+                Browse all {COMPREHENSIVE_PROJECT_DATABASE.length} historical assignments from our latest company profile, with individual scopes and source references.
               </p>
             </div>
           </div>

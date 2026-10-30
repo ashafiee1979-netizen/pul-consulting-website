@@ -39,13 +39,13 @@ const DETAILED_CAPABILITIES: Record<string, { deliverables: string[]; methodolog
   },
   "training-capacity": {
     deliverables: [
-      "Master Training of Trainers (MToT) Programs across Private Sector",
+      "Master Training of Trainers for Private and Semi-Public Training Institutions",
       "Intensive Construction Management & Safety Certification (USAID/ASMED)",
       "Public Policy & Parliamentary Administration Seminars for Staff",
       "Soft Skills, Conflict Mediation & Time Management Training (GIZ)",
     ],
     methodology: "Adult-learning methodology combining interactive workshops, field simulations, pre/post competency testing, and accredited certification.",
-    pastClient: "GIZ (6,800+ trained), USAID/ASMED (300 engineers), USAID/AWDP",
+    pastClient: "GIZ (1,800 police officers; separate 15-province assignment with catering for 5,000+ people), ASMED/DAI/USAID (300 graduates), AWDP",
   },
   "hr-workforce": {
     deliverables: [
@@ -55,17 +55,17 @@ const DETAILED_CAPABILITIES: Record<string, { deliverables: string[]; methodolog
       "Work Permits, Visas, and Afghan Labor Law Compliance Oversight",
     ],
     methodology: "Informed by a long-term master service agreement with Huawei Technologies Ltd, covering recruitment, payroll, and staff administration across multiple departments.",
-    pastClient: "Huawei Technologies Ltd (2014–2022+), Etisalat Afghanistan",
+    pastClient: "Huawei agreements from October 2014, including an agreement beginning October 2020; Etisalat 2012–2015 scopes",
   },
   "monitoring-evaluation": {
     deliverables: [
       "Third-Party Independent Project Monitoring & Verification",
-      "Quantitative Household & Business Surveys across 15+ Provinces",
+      "Field Surveys, Market Research & Needs Assessments",
       "Anti-Corruption & Fiduciary Risk Audits for Donor Programs",
       "USAID & World Bank Standard Indicator Performance Reporting",
     ],
-    methodology: "Strict segregation of duties, field GPS geotagging, randomized callback verification, and robust data hygiene protocols.",
-    pastClient: "Building Afghan Markets, AIR Consulting, Donor Missions",
+    methodology: "Field surveys, needs assessments, data review, and reporting tailored to the assignment’s agreed scope.",
+    pastClient: "Building Afghan Markets; AIR Consulting Kandahar Municipality assessment",
   },
   "it-infrastructure": {
     deliverables: [
@@ -85,7 +85,7 @@ const DETAILED_CAPABILITIES: Record<string, { deliverables: string[]; methodolog
       "High-Volume Turnaround (100,000+ words/week) with Multi-Tier Proofreading",
     ],
     methodology: "Delivered with Linguist Point International through subject-matter translation, independent review, and terminology quality checks.",
-    pastClient: "AUAF, ADB, The Asia Foundation, Tetra Tech, British Council",
+    pastClient: "AUAF, The Asia Foundation (annual survey and long-term translation), Tetra Tech ISLA, British Council Tawanmandi; ADB strategy via Aouj subcontract",
   },
   "events-management": {
     deliverables: [
@@ -94,18 +94,18 @@ const DETAILED_CAPABILITIES: Record<string, { deliverables: string[]; methodolog
       "Simultaneous Interpretation Booths, AV Systems & Sound Engineering",
       "VIP Protocol, Media Center Logistics & Security Zoning",
     ],
-    methodology: "Turnkey event architecture demonstrated during the Kabul International Conference and national consultative assemblies.",
-    pastClient: "Kabul International Conference (Dr. Ashraf Ghani Office), OAA",
+    methodology: "Event management consultancy recorded for the Office of the Coordinator of the Kabul Conference.",
+    pastClient: "Office of the Coordinator of the Kabul Conference",
   },
   "call-center-operations": {
     deliverables: [
       "Turnkey Contact Center Setup, IVR Logic & Workforce Deployment",
-      "Hiring, Training & Managing 500+ Trilingual Customer Agents",
+      "Recruitment, Payroll & Supervision for Call Center Personnel",
       "24/7 Multi-Shift Scheduling, Supervision & KPI Tracking",
       "Quality Assurance Call Audits & Escalation Governance",
     ],
     methodology: "Built on multi-year contact center assignments for Etisalat Afghanistan, combining recruitment, training, shift supervision, and quality monitoring.",
-    pastClient: "Etisalat Afghanistan (500+ Customer Care Agents)",
+    pastClient: "Etisalat Afghanistan: 180+ personnel (2012–2013); about 200 (2013–2015), recorded as separate scopes",
   },
   "business-registration": {
     deliverables: [
@@ -144,7 +144,7 @@ const DETAILED_CAPABILITIES: Record<string, { deliverables: string[]; methodolog
       "Corporate Diversity, Equity & Safe Workplace Policies",
       "Job Placement Assistance in Private & Development Sectors",
     ],
-    methodology: "Targeted capacity building focused on marketable technical and managerial competencies that deliver immediate economic self-sufficiency.",
+    methodology: "Training, employer engagement, and placement support informed by AWDP workforce development assignments.",
     pastClient: "AWDP Job Seekers, Community Programs, GIZ",
   },
   "media-communications": {

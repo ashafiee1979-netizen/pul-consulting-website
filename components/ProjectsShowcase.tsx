@@ -35,7 +35,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
 
     if (selectedFilter === "All") return matchesSearch;
     if (selectedFilter === "Telecom Operations") return matchesSearch && p.category.includes("Telecom");
-    if (selectedFilter === "International Donors") return matchesSearch && (p.client.includes("USAID") || p.client.includes("GIZ") || p.client.includes("World Bank") || p.client.includes("DAI") || p.client.includes("British Council") || p.client.includes("Harakat"));
+    if (selectedFilter === "International Donors") return matchesSearch && /USAID|GIZ|World Bank|DAI|British Council|Asia Foundation|Asian Development Bank|IRD/.test(p.client);
     if (selectedFilter === "Capacity Building") return matchesSearch && (p.category.includes("Capacity") || p.category.includes("Training") || p.category.includes("Workforce"));
     if (selectedFilter === "Linguistics & IT") return matchesSearch && (p.category.includes("Linguistic") || p.category.includes("IT") || p.category.includes("Translation") || p.category.includes("Networking"));
     if (selectedFilter === "Diplomatic & Governance") return matchesSearch && (p.category.includes("Diplomatic") || p.category.includes("Governance") || p.category.includes("Events") || p.category.includes("Trade") || p.client.includes("Embassy") || p.client.includes("Ministry") || p.client.includes("OAA") || p.client.includes("ISAF"));
@@ -71,7 +71,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
               Featured Project Portfolio
             </h2>
             <p className="mt-3.5 sm:mt-4 text-sm sm:text-[15px] text-corp-muted leading-relaxed">
-              Explore 17 featured assignments from a portfolio of 30+ contracts across 15+ provinces since 2010. Search by keyword or filter by sector to find relevant experience.
+              Explore all {COMPREHENSIVE_PROJECT_DATABASE.length} historical assignments recorded in our latest company profile. Separate agreements and training scopes are listed individually. Dates are shown where the source provides them; completion status reflects the historical register.
             </p>
           </div>
 
@@ -189,7 +189,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
                     {current.badge || "Verified Delivery"}
                   </span>
                   <span className="px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200">
-                    Contract Status: {current.status}
+                    Recorded Status: {current.status}
                   </span>
                 </div>
 
@@ -243,7 +243,9 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
                 <div className="mt-8 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
                   <span className="text-[11px] text-corp-muted flex items-center gap-1">
                     <FileText className="w-3.5 h-3.5 text-corp-blue" />
-                    Formal completion certificates and reference contacts on file.
+                    <a href={`/downloads/PUL_Consulting_Services_Company_Profile_2026.pdf#page=${current.sourcePage}`} target="_blank" rel="noopener noreferrer" className="hover:text-corp-blue hover:underline">
+                      Company Profile · Entry {current.sourceEntry} · Page {current.sourcePage}
+                    </a>
                   </span>
                   <button
                     onClick={onOpenConsultation}
