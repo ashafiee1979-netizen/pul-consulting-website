@@ -33,3 +33,5 @@
 - PMO notification arrived in One.com Spam. Moved only this test message to Inbox and verified its location. Spam protections remain enabled; future notifications may still require receiver-side tuning.
 - Final `npm run build` passed. Evidence screenshots are in `output/setup-verification/`.
 - T2 is still open: the existing exposed mailbox credential was used, not rotated; the old Resend key was not revoked. T5 production hosting, hosting environment variables, and domain cutover are still open. Email links currently use the local preview URL and must use the production `SITE_URL` when deployed.
+
+> Historical setup: superseded on 31 October 2026 by direct One.com email delivery. See ONECOM_EMAIL_SETUP.md. The active website no longer uses Neon storage/authentication; existing cloud records have not been deleted.

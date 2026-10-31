@@ -117,7 +117,7 @@ export function clientConfirmationEmail(d: InquiryEmailData) {
   const first = d.name.trim().split(/\s+/)[0] || d.name;
   const body = `
 <p style="margin:14px 0 18px;">Dear ${esc(first)},</p>
-<p style="margin:0 0 18px;">Thank you for contacting PUL Consulting Services. We have received your inquiry on behalf of <strong>${esc(d.organization)}</strong> and it has been registered with our program management office.</p>
+<p style="margin:0 0 18px;">Thank you for contacting PUL Consulting Services. We have received your inquiry on behalf of <strong>${esc(d.organization)}</strong> and it has been delivered to our inquiry mailbox.</p>
 <p style="margin:0 0 22px;">${refBadge(d.referenceId)}<br/><span style="font-size:12px;color:${BRAND.muted};">Please quote this reference in any correspondence.</span></p>
 
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.ice};border:1px solid ${BRAND.line};border-radius:4px;margin:0 0 26px;">
@@ -177,7 +177,6 @@ PUL Consulting Services — Program Management Office`;
 
 /** Email sent to the PMO inbox for every new submission. */
 export function internalNotificationEmail(d: InquiryEmailData) {
-  const adminUrl = `${siteUrl()}/admin`;
   const body = `
 <p style="margin:14px 0 18px;">A new inquiry was submitted through the website.</p>
 <p style="margin:0 0 22px;">${refBadge(d.referenceId)}</p>
@@ -201,7 +200,6 @@ export function internalNotificationEmail(d: InquiryEmailData) {
 
 <table role="presentation" cellpadding="0" cellspacing="0"><tr>
   <td style="padding:0 10px 10px 0;">${button("mailto:" + esc(d.email) + "?subject=" + encodeURIComponent("Re: your inquiry " + d.referenceId), "Reply to client")}</td>
-  <td style="padding:0 0 10px;">${button(adminUrl, "Open dashboard", BRAND.navy)}</td>
 </tr></table>
 <p style="margin:8px 0 0;font-size:12px;color:${BRAND.muted};">Replying to this email also reaches the client directly. Target response: 24 business hours.</p>`;
 
@@ -235,16 +233,17 @@ ${d.projectScope || "No scope details provided."}`;
 let transporter: Transporter | null = null;
 
 export function mailConfigured() {
-  return Boolean(process.env.SMTP_PASS);
+  return Boolean(process.env.SMTP_PASS && (process.env.SMTP_USER || "info@pulconsulting.com").toLowerCase() === "info@pulconsulting.com" && [465, 587].includes(Number(process.env.SMTP_PORT || 465)));
 }
 
 function getTransporter() {
   if (!transporter) {
     const port = Number(process.env.SMTP_PORT) || 465;
     transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || "send.one.com",
+      host: "send.one.com",
       port,
       secure: port === 465,
+      requireTLS: port !== 465,
       auth: {
         user: process.env.SMTP_USER || "info@pulconsulting.com",
         pass: process.env.SMTP_PASS,

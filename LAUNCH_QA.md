@@ -1,3 +1,5 @@
+> Superseded delivery architecture, 31 October 2026: the active form now uses direct One.com SMTP with no Neon database or authentication dependency. See ONECOM_EMAIL_SETUP.md. The historical test and findings below describe the earlier release. The migration passes 11 mocked delivery/validation tests, the production build and a six-public-page local link/asset crawl; production dependencies report zero npm audit vulnerabilities. Live email verification remains pending the owner's SMTP_PASS update.
+
 # Final pre-launch QA
 
 31 October 2026 — PUL Consulting Services

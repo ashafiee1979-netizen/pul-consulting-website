@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import ts from 'typescript';
-import { randomInt } from 'node:crypto';
+import { createHash, randomBytes } from 'node:crypto';
 
 function load(file, dependencies, env = {}) {
   const module = { exports: {} };
@@ -11,80 +11,55 @@ function load(file, dependencies, env = {}) {
   vm.runInNewContext(code, { module, exports: module.exports, require(name) { if (!(name in dependencies)) throw Error(`Unexpected dependency ${name}`); return dependencies[name]; }, process: { env }, console: { log() {}, warn() {}, error() {} }, Response, Request, URL, Date, setTimeout, clearTimeout }, { filename: file });
   return module.exports;
 }
-
-function fixture({ recent = 0, collision = false, failConfirmation = false, databaseFailure = false } = {}) {
-  const calls = []; const messages = []; let inserts = 0;
-  const db = async (strings, ...values) => {
-    const query = strings.join('?'); calls.push({ query, values });
-    if (databaseFailure) throw Error('simulated database failure');
-    if (query.includes('count(*)')) return [{ n: recent }];
-    if (query.includes('INSERT INTO')) { inserts++; return collision && inserts === 1 ? [] : [{ reference_id: values[0] }]; }
-    return [];
-  };
+function fixture({ configured = true, failNotification = false, failConfirmation = false } = {}) {
+  const messages = [];
   const route = load('app/api/consultation/route.ts', {
     'next/server': { NextResponse: { json: (body, options) => Response.json(body, options) } },
-    'node:crypto': { randomInt },
-    '@/lib/db': { sql: () => db },
+    'node:crypto': { createHash, randomBytes },
     '@/lib/email': {
-      mailConfigured: () => true,
+      mailConfigured: () => configured,
       clientConfirmationEmail: () => ({ subject: 'confirmation', html: '<p>test</p>' }),
       internalNotificationEmail: () => ({ subject: 'notification', html: '<p>test</p>' }),
-      sendMail: async message => { messages.push(message); if (failConfirmation && message.subject === 'confirmation') throw Error('simulated SMTP failure'); },
+      sendMail: async message => { messages.push(message); if ((failNotification && message.subject === 'notification') || (failConfirmation && message.subject === 'confirmation')) throw Error('simulated SMTP failure'); },
     },
-  }, { NOTIFICATION_EMAIL: 'notifications@example.invalid' });
-  return { ...route, calls, messages };
+  });
+  return { ...route, messages };
 }
 const valid = { name: 'QA contact', email: 'qa@example.invalid', organization: 'PUL QA', service: 'General inquiry', projectScope: 'Internal mocked QA test' };
-const request = payload => new Request('https://qa.example.invalid/api/consultation', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+const request = (payload, headers = {}) => new Request('https://qa.example.invalid/api/consultation', { method: 'POST', headers: { 'Content-Type': 'application/json', ...headers }, body: JSON.stringify(payload) });
 
-test('missing fields and invalid email are rejected before data or mail calls', async () => {
-  const f = fixture();
-  assert.equal((await f.POST(request({}))).status, 400);
-  assert.equal((await f.POST(request({ ...valid, email: 'bad' }))).status, 400);
-  assert.equal(f.calls.length, 0); assert.equal(f.messages.length, 0);
+test('missing required fields and invalid email do not send mail', async () => {
+  const f=fixture(); assert.equal((await f.POST(request({}))).status,400); assert.equal((await f.POST(request({...valid,email:'bad'}))).status,400); assert.equal(f.messages.length,0);
 });
-test('malformed JSON is rejected without side effects', async () => {
-  const f = fixture(); const r = await f.POST(new Request('https://qa.example.invalid', { method: 'POST', body: '{' }));
-  assert.equal(r.status, 400); assert.equal(f.calls.length, 0);
+test('malformed JSON and array bodies are rejected', async () => {
+  const f=fixture(); assert.equal((await f.POST(new Request('https://qa.example.invalid',{method:'POST',body:'{'}))).status,400); assert.equal((await f.POST(request([]))).status,400); assert.equal(f.messages.length,0);
 });
-test('honeypot returns a synthetic receipt without storing or sending', async () => {
-  const f = fixture(); const r = await f.POST(request({ ...valid, website: 'bot.example' }));
-  assert.equal((await r.json()).referenceId, 'PUL-RFP-0000-00000'); assert.equal(f.calls.length, 0); assert.equal(f.messages.length, 0);
+test('oversized payload is rejected', async () => {
+  const f=fixture(); assert.equal((await f.POST(request({...valid,projectScope:'x'.repeat(21000)}))).status,413); assert.equal(f.messages.length,0);
 });
-test('five-per-hour throttle prevents insert and email', async () => {
-  const f = fixture({ recent: 5 }); assert.equal((await f.POST(request(valid))).status, 429);
-  assert.equal(f.calls.length, 1); assert.equal(f.messages.length, 0);
+test('honeypot is accepted without email', async () => {
+  const f=fixture();const r=await f.POST(request({...valid,website:'bot.example'}));assert.equal((await r.json()).referenceId,'PUL-RFP-0000-00000');assert.equal(f.messages.length,0);
 });
-test('valid submission stores once, creates reference, and updates mocked delivery flags', async () => {
-  const f = fixture(); const r = await f.POST(request(valid)); const body = await r.json();
-  assert.equal(r.status, 200); assert.match(body.referenceId, /^PUL-RFP-\d{4}-\d{5}$/);
-  assert.equal(body.notificationSent, true); assert.equal(body.confirmationSent, true);
-  assert.equal(f.calls.filter(c => c.query.includes('INSERT INTO')).length, 1);
-  assert.equal(f.messages.length, 2); assert.ok(f.calls.some(c => c.query.includes('UPDATE inquiries')));
+test('missing SMTP configuration fails before attempting delivery', async () => {
+  const f=fixture({configured:false});assert.equal((await f.POST(request(valid))).status,503);assert.equal(f.messages.length,0);
 });
-test('reference collision retries without duplicate email', async () => {
-  const f = fixture({ collision: true }); assert.equal((await f.POST(request(valid))).status, 200);
-  assert.equal(f.calls.filter(c => c.query.includes('INSERT INTO')).length, 2); assert.equal(f.messages.length, 2);
+test('successful inquiry uses fixed mailbox, reply-to and unique reference without database', async () => {
+  const f=fixture();const r=await f.POST(request({...valid,to:'attacker@example.invalid'}));const body=await r.json();assert.equal(r.status,200);assert.match(body.referenceId,/^PUL-RFP-\d{4}-[A-F0-9]{12}$/);assert.equal(body.notificationSent,true);assert.equal(body.confirmationSent,true);assert.equal(f.messages[0].to,'info@pulconsulting.com');assert.equal(f.messages[0].replyTo,valid.email);assert.equal(f.messages[1].to,valid.email);
 });
-test('SMTP failure preserves saved inquiry and reports the failed confirmation', async () => {
-  const f = fixture({ failConfirmation: true }); const r = await f.POST(request(valid)); const body = await r.json();
-  assert.equal(r.status, 200); assert.equal(body.notificationSent, true); assert.equal(body.confirmationSent, false);
-  const update = f.calls.find(c => c.query.includes('UPDATE inquiries')); assert.equal(update.values[1], false);
+test('notification failure returns failure and never sends a false acknowledgement', async () => {
+  const f=fixture({failNotification:true});const r=await f.POST(request(valid));assert.equal(r.status,502);assert.equal((await r.json()).success,false);assert.equal(f.messages.length,1);
 });
-test('database failure returns a generic error and does not send email', async () => {
-  const f = fixture({ databaseFailure: true }); const r = await f.POST(request(valid));
-  assert.equal(r.status, 500); assert.equal(f.messages.length, 0); assert.ok(!(await r.text()).includes('simulated database failure'));
+test('acknowledgement failure preserves successful notification result', async () => {
+  const f=fixture({failConfirmation:true});const r=await f.POST(request(valid));const body=await r.json();assert.equal(r.status,200);assert.equal(body.notificationSent,true);assert.equal(body.confirmationSent,false);
 });
-test('real email templates escape user-controlled HTML', () => {
-  const email = load('lib/email.ts', { nodemailer: { createTransport() { throw Error('Email transport must not be used in tests'); } }, './site-url': { SITE_URL: 'https://qa.example.invalid' } });
-  const dangerous = '<script>alert("qa")</script>';
-  const data = { referenceId: 'PUL-RFP-2026-12345', receivedAt: new Date('2026-10-31T12:00:00Z'), name: dangerous, email: 'qa@example.invalid', phone: dangerous, organization: dangerous, orgType: dangerous, service: dangerous, timeline: dangerous, projectScope: dangerous };
-  for (const render of [email.clientConfirmationEmail, email.internalNotificationEmail]) {
-    const { html } = render(data); assert.ok(!html.includes(dangerous)); assert.ok(html.includes('&lt;script&gt;')); assert.ok(html.includes('https://qa.example.invalid'));
-  }
+test('email rate limit blocks a sixth request', async () => {
+  const f=fixture();for(let i=0;i<5;i++)assert.equal((await f.POST(request(valid))).status,200);assert.equal((await f.POST(request(valid))).status,429);assert.equal(f.messages.length,10);
 });
-test('admin configuration fails closed without a real secret', () => {
-  const auth = load('lib/auth/server.ts', { '@neondatabase/auth/next/server': { createNeonAuth() { throw Error('Must not initialize with missing credentials'); } } }, { ADMIN_EMAILS: 'admin@example.invalid' });
-  assert.equal(auth.authConfigured(), false); assert.throws(() => auth.getAuth(), /not configured/);
-  assert.equal(auth.isAdminEmail('ADMIN@example.invalid'), true); assert.equal(auth.isAdminEmail('outsider@example.invalid'), false);
+test('IP rate limit blocks a seventh request across email addresses', async () => {
+  const f=fixture();for(let i=0;i<6;i++)assert.equal((await f.POST(request({...valid,email:`qa${i}@example.invalid`},{'x-real-ip':'192.0.2.1'}))).status,200);assert.equal((await f.POST(request({...valid,email:'seventh@example.invalid'},{'x-real-ip':'192.0.2.1'}))).status,429);
+});
+test('real email templates escape user HTML and do not link to retired dashboard', () => {
+  const email=load('lib/email.ts',{nodemailer:{createTransport(){throw Error('Must not send live email');}},'./site-url':{SITE_URL:'https://qa.example.invalid'}});
+  const dangerous='<script>alert("qa")</script>';const data={referenceId:'PUL-RFP-2026-ABC123ABC123',receivedAt:new Date('2026-10-31T12:00:00Z'),name:dangerous,email:'qa@example.invalid',phone:dangerous,organization:dangerous,orgType:dangerous,service:dangerous,timeline:dangerous,projectScope:dangerous};
+  for(const render of [email.clientConfirmationEmail,email.internalNotificationEmail]){const {html}=render(data);assert.ok(!html.includes(dangerous));assert.ok(html.includes('&lt;script&gt;'));assert.ok(!html.includes('/admin'));}
 });

@@ -122,7 +122,7 @@ export default function PrivacyPolicyPage() {
                   Information Security &amp; Data Safeguards
                 </h2>
                 <p>
-                  PUL Consulting implements technical and administrative security controls, including TLS/SSL encryption for data in transit, strict role-based access restrictions, and secure server environments. While no digital communication protocol can guarantee absolute security, we continuously review our security posture to prevent unauthorized access, alteration, or disclosure.
+                  PUL Consulting implements technical and administrative security controls, including TLS/SSL encryption for data in transit, restricted mailbox access, and secure server environments. While no digital communication protocol can guarantee absolute security, we continuously review our security posture to prevent unauthorized access, alteration, or disclosure.
                 </p>
               </div>
 
@@ -133,7 +133,7 @@ export default function PrivacyPolicyPage() {
                   Cross-Border Data Transfers
                 </h2>
                 <p>
-                  Inquiry records are stored in a Neon Postgres database in Northern Virginia, United States. Access to the inquiry dashboard is restricted to authorized PUL administrators. Hosting, authentication, and email providers process information needed to operate the website and deliver inquiry notifications and confirmations.
+                  Contact and consultation submissions are emailed directly to info@pulconsulting.com using One.com. The website does not store new inquiries in a separate inquiry database or use a third-party form delivery service. Authorized PUL personnel manage inquiries in the mailbox. Our website host and One.com process information needed to operate the website and deliver messages; processing may take place outside your country.
                 </p>
               </div>
 
@@ -144,7 +144,7 @@ export default function PrivacyPolicyPage() {
                   Institutional Inquiries &amp; Contact
                 </h2>
                 <p className="mb-4">
-                  We retain inquiry records as needed to respond to requests, manage resulting engagements, and meet applicable recordkeeping obligations. To request a copy, correction, or deletion of your information, contact us below and quote your inquiry reference if available. We will review your request and explain any records that must be retained.
+                  We retain inquiry emails as needed to respond to requests, manage resulting engagements, and meet applicable recordkeeping obligations. To request a copy, correction, or deletion of your information, contact us below and quote your inquiry reference if available. We will review your request and explain any records that must be retained.
                 </p>
                 <div className="bg-teal-50/60 border border-teal-200 rounded-lg p-5 text-sm space-y-2">
                   <p className="font-bold text-corp-ink">PUL Consulting Services — Inquiry Contact</p>

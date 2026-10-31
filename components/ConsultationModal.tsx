@@ -148,7 +148,7 @@ export default function ConsultationModal({
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        throw new Error(data.error || "Failed to log inquiry. Please use direct institutional contact channels.");
+        throw new Error(data.error || "We could not email your inquiry. Please contact info@pulconsulting.com directly.");
       }
 
       setSubmissionResult({
@@ -225,13 +225,13 @@ export default function ConsultationModal({
 
               <div className="p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 max-w-md mx-auto text-center space-y-1">
                 <p className="font-bold text-emerald-900 text-sm">
-                  ✓ Inquiry received by PUL Consulting
+                  ✓ Inquiry emailed to PUL Consulting
                 </p>
                 <p className="text-[11px] text-emerald-700">
                   Please keep reference <strong>{submissionResult.referenceId}</strong> for any follow-up. Our team will review your requirements and contact you to discuss next steps.{" "}
                   {submissionResult.confirmationSent
                     ? <>A confirmation email is on its way to <strong>{formData.email}</strong>.</>
-                    : <>If you do not receive a confirmation email shortly, please write to info@pulconsulting.com quoting this reference.</>}
+                    : <>Your inquiry was emailed to info@pulconsulting.com, but we could not send your confirmation copy. Please keep this reference for follow-up.</>}
                 </p>
               </div>
 

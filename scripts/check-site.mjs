@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 const base = new URL(process.argv[2] || 'http://localhost:3010');
 const output = process.argv[3] || 'output/site-qa.json';
-const routes = ['/', '/services', '/projects', '/about', '/privacy', '/terms', '/auth/sign-in', '/auth/sign-up'];
+const routes = ['/', '/services', '/projects', '/about', '/privacy', '/terms'];
 const report = { base: base.origin, checkedAt: new Date().toISOString(), pages: [], internalLinks: [], externalLinks: [], assets: [], apiChecks: [], failures: [] };
 const pages = new Map();
 const anchors = new Map();
@@ -77,7 +77,7 @@ report.securityHeaders = Object.fromEntries(['x-content-type-options','x-frame-o
 if(report.securityHeaders['x-content-type-options']!=='nosniff' || report.securityHeaders['x-frame-options']!=='DENY') report.failures.push('Missing security headers');
 const admin = await request(new URL('/admin', base), { redirect: 'manual' });
 report.admin = { status: admin.status, location: admin.headers.get('location') };
-if (![302, 303, 307, 308].includes(admin.status) || !report.admin.location?.includes('/auth/sign-in')) report.failures.push('Unauthenticated admin did not redirect to sign-in');
+if (![302, 303, 307, 308].includes(admin.status) || !report.admin.location?.includes('/#contact-section')) report.failures.push('Retired admin did not redirect to public contact section');
 for (const path of ['/robots.txt', '/sitemap.xml']) { const r = await request(new URL(path, base)); report.internalLinks.push({ path, status: r.status }); if (r.status !== 200) report.failures.push(`Metadata route ${path}: ${r.status}`); }
 await fs.mkdir('output', { recursive: true });
 await fs.writeFile(output, JSON.stringify(report, null, 2));

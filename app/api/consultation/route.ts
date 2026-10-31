@@ -1,114 +1,79 @@
 import { NextResponse } from "next/server";
-import { randomInt } from "node:crypto";
-import { sql } from "@/lib/db";
-import {
-  clientConfirmationEmail,
-  internalNotificationEmail,
-  mailConfigured,
-  sendMail,
-  type InquiryEmailData,
-} from "@/lib/email";
+import { createHash, randomBytes } from "node:crypto";
+import { clientConfirmationEmail, internalNotificationEmail, mailConfigured, sendMail, type InquiryEmailData } from "@/lib/email";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
+// Best-effort per-instance protection; no database or external form service.
+const attempts = new Map<string, { count: number; expires: number }>();
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const clean = (v: unknown, max: number) =>
-  typeof v === "string" ? v.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "").trim().slice(0, max) : "";
+const clean = (v: unknown, max: number) => typeof v === "string"
+  ? v.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "").trim().slice(0, max) : "";
+const fail = (error: string, status: number) => NextResponse.json({ success: false, error }, { status });
 
-const fail = (error: string, status: number) =>
-  NextResponse.json({ success: false, error }, { status });
+function allowed(key: string, limit: number, windowMs: number) {
+  const now = Date.now();
+  for (const [key, entry] of Array.from(attempts)) if (entry.expires <= now) attempts.delete(key);
+  const current = attempts.get(key);
+  if (current) {
+    if (current.count >= limit) return false;
+    current.count++;
+  } else {
+    if (attempts.size >= 5000) return false;
+    attempts.set(key, { count: 1, expires: now + windowMs });
+  }
+  return true;
+}
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json().catch(() => null);
-    if (!body || typeof body !== "object") return fail("Invalid request.", 400);
-
-    // Honeypot: real users never fill this hidden field
-    if (clean(body.website, 200)) {
-      return NextResponse.json({ success: true, referenceId: "PUL-RFP-0000-00000", receivedAt: new Date().toISOString() });
-    }
+    const raw = await request.text();
+    if (raw.length > 20000) return fail("The submitted message is too large.", 413);
+    const body = (() => { try { return JSON.parse(raw); } catch { return null; } })();
+    if (!body || typeof body !== "object" || Array.isArray(body)) return fail("Invalid request.", 400);
+    if (clean(body.website, 200)) return NextResponse.json({ success: true, referenceId: "PUL-RFP-0000-00000", receivedAt: new Date().toISOString() });
 
     const name = clean(body.name, 120);
     const email = clean(body.email, 200).toLowerCase();
-    const phone = clean(body.phone, 60);
     const organization = clean(body.organization, 200);
-    const orgType = clean(body.orgType, 120);
-    const service = clean(body.service, 200) || "General inquiry";
-    const timeline = clean(body.timeline, 120) || "Not specified";
-    const projectScope = clean(body.projectScope, 5000);
+    if (!name || !email || !organization) return fail("Please provide your Contact Name, Official Email, and Organization.", 400);
+    if (!EMAIL_RE.test(email)) return fail("Please provide a valid email address.", 400);
+    if (!mailConfigured()) return fail("Online delivery is temporarily unavailable. Please email info@pulconsulting.com directly.", 503);
 
-    if (!name || !email || !organization) {
-      return fail("Required fields missing. Please provide your Contact Name, Official Email, and Organization.", 400);
-    }
-    if (!EMAIL_RE.test(email)) {
-      return fail("Invalid email format. Please provide a valid organizational email address.", 400);
-    }
-
-    const db = sql();
-
-    // Throttle: max 5 submissions per email per hour
-    const recent = (await db`
-      SELECT count(*)::int AS n FROM inquiries
-      WHERE lower(email) = ${email} AND created_at > now() - interval '1 hour'`) as Array<{ n: number }>;
-    if ((recent[0]?.n ?? 0) >= 5) {
-      return fail("Too many submissions from this address. Please email info@pulconsulting.com directly.", 429);
+    const ip = request.headers.get("x-real-ip") || request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+    const digest = (value: string) => createHash("sha256").update(value).digest("hex");
+    if ((ip && !allowed(`ip:${digest(ip)}`, 6, 10 * 60 * 1000)) || !allowed(`email:${digest(email)}`, 5, 60 * 60 * 1000)) {
+      return NextResponse.json({ success: false, error: "Too many inquiries. Please wait or email info@pulconsulting.com directly." }, { status: 429, headers: { "Retry-After": "600" } });
     }
 
     const receivedAt = new Date();
-    let referenceId = "";
-    for (let attempt = 0; attempt < 5 && !referenceId; attempt++) {
-      const candidate = `PUL-RFP-${receivedAt.getFullYear()}-${randomInt(10000, 100000)}`;
-      const inserted = (await db`
-        INSERT INTO inquiries
-          (reference_id, name, email, phone, organization, org_type, service, timeline, project_scope)
-        VALUES
-          (${candidate}, ${name}, ${email}, ${phone || null}, ${organization}, ${orgType || null},
-           ${service}, ${timeline}, ${projectScope || null})
-        ON CONFLICT (reference_id) DO NOTHING
-        RETURNING reference_id`) as Array<{ reference_id: string }>;
-      if (inserted.length) referenceId = candidate;
-    }
-    if (!referenceId) throw new Error("Could not allocate a reference id");
-
-    // Telemetry without personal data
-    console.log("[PUL CONSULTATION] stored", { referenceId, service, timeline, emailDomain: email.split("@")[1] });
-
+    const referenceId = `PUL-RFP-${receivedAt.getFullYear()}-${randomBytes(6).toString("hex").toUpperCase()}`;
     const data: InquiryEmailData = {
-      referenceId, receivedAt, name, email, phone, organization, orgType, service, timeline, projectScope,
+      referenceId, receivedAt, name, email, organization,
+      phone: clean(body.phone, 60), orgType: clean(body.orgType, 120),
+      service: clean(body.service, 200) || "General inquiry",
+      timeline: clean(body.timeline, 120) || "Not specified",
+      projectScope: clean(body.projectScope, 5000),
     };
 
-    let notificationSent = false;
-    let confirmationSent = false;
-
-    if (mailConfigured()) {
-      const notifyTo = process.env.NOTIFICATION_EMAIL || "info@pulconsulting.com";
-      const [internal, client] = await Promise.allSettled([
-        sendMail({ to: notifyTo, replyTo: email, ...internalNotificationEmail(data) }),
-        sendMail({ to: email, ...clientConfirmationEmail(data) }),
-      ]);
-      notificationSent = internal.status === "fulfilled";
-      confirmationSent = client.status === "fulfilled";
-      if (internal.status === "rejected") console.warn("[PUL CONSULTATION] notification email failed:", internal.reason?.message);
-      if (client.status === "rejected") console.warn("[PUL CONSULTATION] confirmation email failed:", client.reason?.message);
-
-      await db`UPDATE inquiries SET notification_sent = ${notificationSent}, confirmation_sent = ${confirmationSent}
-               WHERE reference_id = ${referenceId}`;
-    } else {
-      console.warn("[PUL CONSULTATION] SMTP_PASS not set — inquiry stored but no emails sent");
+    // Fixed destination: visitors cannot redirect inquiries to another mailbox.
+    try {
+      await sendMail({ to: "info@pulconsulting.com", replyTo: email, ...internalNotificationEmail(data) });
+    } catch (error) {
+      console.error("[PUL CONSULTATION] One.com delivery failed", { referenceId, code: (error as { code?: string }).code || "SMTP_ERROR" });
+      return fail("Your inquiry could not be emailed. Please try again later or contact info@pulconsulting.com directly.", 502);
     }
-
-    return NextResponse.json({
-      success: true,
-      referenceId,
-      receivedAt: receivedAt.toISOString(),
-      confirmationSent,
-      notificationSent,
-    });
-  } catch (error) {
-    console.error("[PUL CONSULTATION ERROR]", error instanceof Error ? error.message : error);
-    return fail(
-      "We could not process your inquiry right now. Please contact us at info@pulconsulting.com or +93 (786) 19 96 96.",
-      500
-    );
+    let confirmationSent = false;
+    try {
+      await sendMail({ to: email, replyTo: "info@pulconsulting.com", ...clientConfirmationEmail(data) });
+      confirmationSent = true;
+    } catch {
+      console.warn("[PUL CONSULTATION] acknowledgement failed", { referenceId });
+    }
+    console.log("[PUL CONSULTATION] accepted by One.com", { referenceId, confirmationSent });
+    return NextResponse.json({ success: true, referenceId, receivedAt: receivedAt.toISOString(), confirmationSent, notificationSent: true });
+  } catch {
+    return fail("We could not send your inquiry. Please email info@pulconsulting.com directly.", 500);
   }
 }

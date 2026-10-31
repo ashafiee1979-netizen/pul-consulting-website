@@ -1,8 +1,3 @@
-import AuthForm from "../AuthForm";
-import { signInWithEmail } from "./actions";
+import { redirect } from "next/navigation";
 
-export const metadata = { title: "Admin Sign In", alternates: { canonical: "/auth/sign-in" }, robots: { index: false, follow: false } };
-
-export default function Page() {
-  return <AuthForm mode="sign-in" action={signInWithEmail} />;
-}
+export default function RetiredAdminPage() { redirect("/#contact-section"); }

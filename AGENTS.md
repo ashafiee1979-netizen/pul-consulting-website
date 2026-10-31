@@ -1,23 +1,16 @@
-# Agent guide — PUL Consulting website
+# Agent guide - PUL Consulting website
 
-Personal project of Rahman Shafiee. Start with `OPEN_TASKS.md` (pick a task by ID) and `SETUP_NEON_EMAIL.md` (what exists).
+Next.js App Router, React, Tailwind and Nodemailer. Both Contact and Request Consultation use components/ConsultationModal.tsx and app/api/consultation/route.ts. Email goes directly through One.com to info@pulconsulting.com; there is no database or admin authentication dependency.
 
-## Stack
-Next.js 16 (App Router, Turbopack) · React 19 · Tailwind 3 · Neon Postgres via `@neondatabase/serverless` · Neon Auth (`@neondatabase/auth`) · Nodemailer over One.com SMTP (`send.one.com:465`).
-
-## Map
-- `app/api/consultation/route.ts` — form endpoint: validate, save to `inquiries`, send 2 emails.
-- `lib/email.ts` — both branded email templates + SMTP sender. `esc()` must wrap every user-supplied value.
-- `lib/db.ts` — `sql()` helper. `scripts/migrate.mjs` — idempotent schema setup (`node scripts/migrate.mjs`).
-- `lib/auth/server.ts`, `proxy.ts`, `app/auth/*`, `app/admin/page.tsx` — admin login and dashboard. Access is limited by `ADMIN_EMAILS`.
-- `components/ConsultationModal.tsx` — the public form.
-
-## Rules
-- Never read, print, or commit `.env.local` values; add new variable names to `.env.example`.
-- Database changes: new idempotent migration steps only; never drop or rewrite existing tables without asking.
-- Don't send test emails to real clients; don't create or delete Neon/One.com resources without the user's approval.
-- Keep brand colors from `tailwind.config.js` (`corp.*`); email colors are mirrored in `lib/email.ts`.
-- Verify with `npm run build` before finishing.
+- Read ONECOM_EMAIL_SETUP.md for the active delivery setup. SETUP_NEON_EMAIL.md and older task logs are historical.
+- Never read, print or commit .env.local values. Use .env.example for variable names.
+- Keep brand colors in tailwind.config.js and the shared card accent system.
+- Escape every user-controlled HTML value in lib/email.ts.
+- Never show inquiry success before SMTP accepts the internal notification.
+- Do not send test emails to clients. A live test requires authorization and an owner-controlled address.
+- Do not delete old Neon data or other external resources without explicit approval.
+- Run npm test, npm run lint and npm run build before finishing.
+- Read relevant guides in node_modules/next/dist/docs before changing Next.js code.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
