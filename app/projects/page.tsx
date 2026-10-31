@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ConsultationModal from "@/components/ConsultationModal";
@@ -23,7 +22,7 @@ export default function ProjectsPage() {
     <div className="flex flex-col min-h-screen bg-white text-corp-ink">
       <Navbar onOpenConsultation={() => handleOpenConsultation()} />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* Projects Page Hero - Bright, Elegant Panoramic Executive Banner */}
         <section className="relative min-h-[560px] sm:min-h-[580px] lg:min-h-[600px] flex items-center bg-corp-navyDark text-white py-12 sm:py-16 lg:py-20 overflow-hidden border-b border-corp-navySubtle">
           {/* Panoramic Background Image - Bright, Luminous & Clear */}

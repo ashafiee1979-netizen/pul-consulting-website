@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | PUL Consulting Services",
+  alternates: { canonical: "/privacy" },
+  title: "Privacy Policy",
   description:
     "Privacy Policy for PUL Consulting Services. Learn how we handle corporate inquiries, donor communications, and professional data in compliance with international standards.",
   openGraph: {

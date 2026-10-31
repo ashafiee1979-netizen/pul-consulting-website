@@ -2,18 +2,16 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ConsultationModal from "@/components/ConsultationModal";
 import { SERVICE_CARDS_15 } from "@/lib/data";
+import { serviceCardAccent } from "@/lib/card-accents";
 import { 
   CheckCircle2, 
   ArrowRight, 
-  ShieldCheck, 
-  Building2,
-  ChevronRight,
-  Briefcase
+  ShieldCheck,
+  ChevronRight
 } from "lucide-react";
 
 const DETAILED_CAPABILITIES: Record<string, { deliverables: string[]; methodology: string; pastClient: string }> = {
@@ -214,7 +212,7 @@ export default function ServicesPage() {
     <div className="flex flex-col min-h-screen bg-white text-corp-ink">
       <Navbar onOpenConsultation={() => setIsConsultationOpen(true)} />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* Solutions Page Hero - Bright, Shorter Panoramic Executive Visual & Animated Typography */}
         <section className="relative min-h-[560px] sm:min-h-[580px] lg:min-h-[600px] flex items-center bg-corp-navyDark text-white py-12 sm:py-16 lg:py-20 overflow-hidden border-b border-corp-navySubtle">
           {/* Panoramic Background Image - Bright, Luminous & Clear */}
@@ -287,6 +285,7 @@ export default function ServicesPage() {
         <section id="practice-catalog" className="py-16 sm:py-20 bg-corp-ice">
           <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8">
             {SERVICE_CARDS_15.map((service) => {
+              const accent = serviceCardAccent(service.category);
               const details = DETAILED_CAPABILITIES[service.id] || {
                 deliverables: [
                   "Comprehensive technical scope execution",
@@ -301,7 +300,7 @@ export default function ServicesPage() {
                 <div
                   key={service.id}
                   id={service.id}
-                  className="scroll-mt-28 sm:scroll-mt-32 bg-white rounded-md p-6 sm:p-8 border border-slate-200 shadow-xs hover:border-corp-blue transition-colors"
+                  className={`scroll-mt-28 sm:scroll-mt-32 bg-gradient-to-br from-white ${accent.wash} rounded-md p-6 sm:p-8 border border-slate-200 border-t-4 ${accent.border} shadow-xs hover:shadow-card transition-shadow`}
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     {/* Left: Dedicated Service Thumbnail Photo - Clean & Unobstructed */}
@@ -319,7 +318,7 @@ export default function ServicesPage() {
                     {/* Middle: Title, Description & Methodology */}
                     <div className="lg:col-span-5 space-y-3">
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-[11px] font-bold text-corp-blue uppercase tracking-wider bg-corp-ice px-2.5 py-0.5 rounded border border-slate-200">
+                        <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded border ${accent.icon}`}>
                           {service.pillar}
                         </span>
                         <span className="text-[11px] font-medium text-corp-navy bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
@@ -356,7 +355,7 @@ export default function ServicesPage() {
                     </div>
 
                     {/* Right: Key Deliverables & RFP Trigger */}
-                    <div className="lg:col-span-3 bg-slate-50 p-4 sm:p-5 rounded border border-slate-200 flex flex-col justify-between h-full">
+                    <div className={`lg:col-span-3 bg-gradient-to-br from-white ${accent.wash} p-4 sm:p-5 rounded border border-slate-200 flex flex-col justify-between h-full`}>
                       <div>
                         <h4 className="text-[11px] font-bold text-corp-ink uppercase tracking-wider mb-2.5">
                           Key Deliverables

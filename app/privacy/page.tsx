@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { CARD_ACCENTS } from "@/lib/card-accents";
+import { COMPANY_INFO } from "@/lib/data";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ConsultationModal from "@/components/ConsultationModal";
-import { ShieldCheck, ChevronRight, Lock, FileText, Mail } from "lucide-react";
+import { ShieldCheck, ChevronRight } from "lucide-react";
 
 export default function PrivacyPolicyPage() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -14,7 +16,7 @@ export default function PrivacyPolicyPage() {
     <div className="flex flex-col min-h-screen bg-white text-corp-ink">
       <Navbar onOpenConsultation={() => setIsConsultationOpen(true)} />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* Header Banner */}
         <section className="bg-corp-navyDark text-white py-14 sm:py-16 border-b border-corp-navySubtle">
           <div className="max-w-4xl mx-auto px-4 sm:px-8">
@@ -29,7 +31,7 @@ export default function PrivacyPolicyPage() {
               PUL Consulting Services is committed to transparency, institutional confidentiality, and safeguarding all personal and professional information shared through our platforms.
             </p>
             <div className="mt-4 flex items-center gap-2 text-xs text-slate-400">
-              <span>Last updated: January 2026</span>
+              <span>Last updated: October 31, 2026</span>
               <span>•</span>
               <span>Effective: Ongoing</span>
             </div>
@@ -48,7 +50,7 @@ export default function PrivacyPolicyPage() {
 
             <div className="space-y-10 text-sm sm:text-[15px] text-corp-ink/90 leading-relaxed">
               {/* Section 1 */}
-              <div>
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[0].border} ${CARD_ACCENTS[0].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">01.</span>
                   Institutional Overview &amp; Scope
@@ -61,7 +63,7 @@ export default function PrivacyPolicyPage() {
               </div>
 
               {/* Section 2 */}
-              <div>
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[1].border} ${CARD_ACCENTS[1].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">02.</span>
                   Information We Collect
@@ -77,13 +79,13 @@ export default function PrivacyPolicyPage() {
                     <strong className="text-corp-ink">Technical Metadata:</strong> Standard web server logs collect IP addresses, browser types, referring pages, and access timestamps to ensure firewall integrity, detect denial-of-service attempts, and optimize content delivery performance.
                   </li>
                   <li>
-                    <strong className="text-corp-ink">No Sensitive Payment Information:</strong> We do not process commercial consumer credit cards or store personal financial credentials through this promotional website. All contract billings proceed through audited institutional wire transfers and formal escrow mechanisms.
+                    <strong className="text-corp-ink">No Sensitive Payment Information:</strong> We do not process commercial consumer credit cards or store personal financial credentials through this promotional website. Payment arrangements are agreed separately for each engagement.
                   </li>
                 </ul>
               </div>
 
               {/* Section 3 */}
-              <div>
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[2].border} ${CARD_ACCENTS[2].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">03.</span>
                   Purpose and Legal Basis of Processing
@@ -100,7 +102,7 @@ export default function PrivacyPolicyPage() {
               </div>
 
               {/* Section 4 */}
-              <div>
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[3].border} ${CARD_ACCENTS[3].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">04.</span>
                   Confidentiality, Non-Disclosure &amp; Information Sharing
@@ -109,12 +111,12 @@ export default function PrivacyPolicyPage() {
                   <strong>We do not sell, rent, monetize, or trade contact information or institutional client data to any third-party marketing entities.</strong>
                 </p>
                 <p className="text-corp-muted">
-                  Information may be shared only under the following strict conditions: (a) with authorized consortium affiliates (such as PUL Global Partners LLC, USA) solely for fulfilling client project requirements; (b) with trusted infrastructure providers (such as encrypted transactional email delivery systems and cloud hosting providers) operating under strict data processing agreements; or (c) when required by binding legal process, court order, or international compliance mandates.
+                  Information is available to authorized personnel and service providers as needed to respond to inquiries and operate this website. Relevant information may be shared with a project partner when needed to address your request, or disclosed where required by applicable legal obligations.
                 </p>
               </div>
 
               {/* Section 5 */}
-              <div>
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[4].border} ${CARD_ACCENTS[4].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">05.</span>
                   Information Security &amp; Data Safeguards
@@ -125,30 +127,30 @@ export default function PrivacyPolicyPage() {
               </div>
 
               {/* Section 6 */}
-              <div>
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[0].border} ${CARD_ACCENTS[0].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">06.</span>
                   Cross-Border Data Transfers
                 </h2>
                 <p>
-                  Given our dual-continent presence connecting Kabul headquarters with consortium operations in the United States and partner hubs globally, communications submitted through this website may be routed through international hosting infrastructure adhering to standard data protection frameworks.
+                  Inquiry records are stored in a Neon Postgres database in Northern Virginia, United States. Access to the inquiry dashboard is restricted to authorized PUL administrators. Hosting, authentication, and email providers process information needed to operate the website and deliver inquiry notifications and confirmations.
                 </p>
               </div>
 
               {/* Section 7 */}
-              <div className="pt-6 border-t border-slate-200">
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[1].border} ${CARD_ACCENTS[1].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">07.</span>
                   Institutional Inquiries &amp; Contact
                 </h2>
                 <p className="mb-4">
-                  For questions regarding this policy, data protection requests, or to update information previously submitted, please direct official inquiries to our compliance desk:
+                  We retain inquiry records as needed to respond to requests, manage resulting engagements, and meet applicable recordkeeping obligations. To request a copy, correction, or deletion of your information, contact us below and quote your inquiry reference if available. We will review your request and explain any records that must be retained.
                 </p>
-                <div className="bg-corp-ice border border-slate-200 rounded-lg p-5 text-sm space-y-2">
-                  <p className="font-bold text-corp-ink">PUL Consulting Services — Compliance &amp; Governance Desk</p>
+                <div className="bg-teal-50/60 border border-teal-200 rounded-lg p-5 text-sm space-y-2">
+                  <p className="font-bold text-corp-ink">PUL Consulting Services — Inquiry Contact</p>
                   <p className="text-corp-muted">Email: <a href="mailto:info@pulconsulting.com" className="text-corp-blue hover:underline font-semibold">info@pulconsulting.com</a></p>
-                  <p className="text-corp-muted">Kabul HQ: 4th Street, Qala-e-Fatullah, District 10, Kabul, Afghanistan</p>
-                  <p className="text-corp-muted">North America Liaison: PUL Global Partners LLC, Reston, VA, USA</p>
+                  <p className="text-corp-muted">Kabul HQ: {COMPANY_INFO.contacts.kabulAddress}</p>
+                  <p className="text-corp-muted">U.S. Partner Office: {COMPANY_INFO.contacts.usaAddress}</p>
                 </div>
               </div>
             </div>

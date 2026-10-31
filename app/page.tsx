@@ -19,10 +19,6 @@ export default function HomePage() {
     setIsConsultationOpen(true);
   };
 
-  const handleSelectService = (serviceTitle: string) => {
-    setSelectedServiceForModal(serviceTitle);
-    setIsConsultationOpen(true);
-  };
 
   const handleCloseConsultation = () => {
     setIsConsultationOpen(false);
@@ -34,7 +30,7 @@ export default function HomePage() {
       <Navbar onOpenConsultation={handleOpenConsultation} />
 
       {/* Main Flow */}
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* Executive Hero with Verified Metric Strip */}
         <HeroSection onOpenConsultation={handleOpenConsultation} />
 

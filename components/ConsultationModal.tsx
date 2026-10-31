@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { 
   X, 
   Send, 
@@ -8,13 +8,11 @@ import {
   Building2, 
   User, 
   Mail, 
-  Phone, 
-  FileText,
+  Phone,
   AlertCircle,
-  ExternalLink,
   MessageSquare
 } from "lucide-react";
-import { SERVICE_CARDS_15, COMPANY_INFO } from "@/lib/data";
+import { SERVICE_CARDS_15 } from "@/lib/data";
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -33,7 +31,7 @@ export default function ConsultationModal({
     phone: "",
     organization: "",
     orgType: "International Donor / Bilateral Mission",
-    service: initialService || SERVICE_CARDS_15[0].title,
+    service: initialService || "General inquiry",
     projectScope: "",
     timeline: "Immediate (Within 30 Days)",
     website: "", // honeypot — must stay empty
@@ -52,10 +50,15 @@ export default function ConsultationModal({
   const openerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (initialService) {
-      setFormData((prev) => ({ ...prev, service: initialService }));
-    }
+    setFormData((prev) => ({ ...prev, service: initialService || "General inquiry" }));
   }, [initialService]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -73,6 +76,17 @@ export default function ConsultationModal({
       setIsSubmitting(false);
     }
   }, [isOpen]);
+
+  const handleReset = useCallback(() => {
+    setSubmissionResult(null);
+    setSubmissionError(null);
+    setIsSubmitting(false);
+    onClose();
+    // Restore focus to opener element
+    setTimeout(() => {
+      openerRef.current?.focus();
+    }, 50);
+  }, [onClose]);
 
   // Trap focus and handle Escape
   useEffect(() => {
@@ -113,7 +127,7 @@ export default function ConsultationModal({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, submissionResult]);
+  }, [isOpen, submissionResult, handleReset]);
 
   if (!isOpen) return null;
 
@@ -150,16 +164,7 @@ export default function ConsultationModal({
     }
   };
 
-  const handleReset = () => {
-    setSubmissionResult(null);
-    setSubmissionError(null);
-    setIsSubmitting(false);
-    onClose();
-    // Restore focus to opener element
-    setTimeout(() => {
-      openerRef.current?.focus();
-    }, 50);
-  };
+
 
   return (
     <div 
@@ -175,7 +180,7 @@ export default function ConsultationModal({
     >
       <div 
         ref={modalRef}
-        className="relative w-full max-w-2xl max-h-[92vh] sm:max-h-[88vh] rounded-md bg-white border border-corp-line shadow-executive flex flex-col overflow-hidden"
+        className="relative w-full max-w-2xl max-h-[92vh] sm:max-h-[88vh] rounded-md bg-gradient-to-br from-white to-sky-50/60 border border-corp-line shadow-executive flex flex-col overflow-hidden"
       >
         {/* Pinned Header - Executive Navy */}
         <div className="px-6 py-4 border-b border-corp-navySubtle flex items-center justify-between bg-corp-navy text-white flex-shrink-0">
@@ -260,7 +265,7 @@ export default function ConsultationModal({
             <form id="consultation-form" onSubmit={handleSubmit} className="space-y-4">
               {/* Error banner if submission fails */}
               {submissionError && (
-                <div className="p-3 rounded bg-red-50 border border-red-200 text-xs text-red-700 flex items-start gap-2">
+                <div role="alert" className="p-3 rounded bg-red-50 border border-red-200 text-xs text-red-700 flex items-start gap-2">
                   <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
                   <div className="flex-1">
                     <p className="font-semibold">{submissionError}</p>
@@ -299,6 +304,7 @@ export default function ConsultationModal({
                     <input
                       ref={firstInputRef}
                       id="consult-name"
+                      maxLength={120}
                       type="text"
                       required
                       placeholder="e.g. John Doe / Ahmad Wahidi"
@@ -317,6 +323,7 @@ export default function ConsultationModal({
                     <Mail className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
                     <input
                       id="consult-email"
+                      maxLength={200}
                       type="email"
                       required
                       placeholder="e.g. j.doe@organization.org"
@@ -338,6 +345,7 @@ export default function ConsultationModal({
                     <Building2 className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
                     <input
                       id="consult-organization"
+                      maxLength={200}
                       type="text"
                       required
                       placeholder="e.g. USAID Contractor / Enterprise"
@@ -350,14 +358,14 @@ export default function ConsultationModal({
 
                 <div>
                   <label htmlFor="consult-phone" className="block text-xs font-bold text-corp-ink mb-1">
-                    Phone / WhatsApp *
+                    Phone / WhatsApp (optional)
                   </label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
                     <input
                       id="consult-phone"
                       type="text"
-                      required
+                      maxLength={60}
                       placeholder="+93 ... / +1 ..."
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -379,6 +387,10 @@ export default function ConsultationModal({
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                     className="w-full px-3 py-2 rounded border border-slate-300 text-corp-ink text-xs focus:outline-none focus:border-corp-blue"
                   >
+                    <option value="General inquiry">General inquiry</option>
+                    {initialService && !SERVICE_CARDS_15.some((service) => service.title === initialService) && initialService !== "General inquiry" && (
+                      <option value={initialService}>{initialService}</option>
+                    )}
                     {SERVICE_CARDS_15.map((s) => (
                       <option key={s.id} value={s.title}>
                         {s.title}
@@ -412,6 +424,7 @@ export default function ConsultationModal({
                 </label>
                 <textarea
                   id="consult-scope"
+                  maxLength={5000}
                   rows={3}
                   placeholder="Describe your objectives, project location, estimated team size, and any specific requirements."
                   value={formData.projectScope}

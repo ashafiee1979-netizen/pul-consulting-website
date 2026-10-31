@@ -139,7 +139,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
           </Link>
 
           {/* Desktop Navigation Links: Home, Solutions, Projects, About, Corporate Partners, Contact */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-6 xl:gap-8">
             {/* Home */}
             <Link
               href="/"
@@ -155,10 +155,22 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
               className="relative"
               onMouseEnter={() => setSolutionsDropdownOpen(true)}
               onMouseLeave={() => setSolutionsDropdownOpen(false)}
+              onFocus={() => setSolutionsDropdownOpen(true)}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setSolutionsDropdownOpen(false);
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                  dropdownRef.current?.querySelector("a")?.focus();
+                  setSolutionsDropdownOpen(false);
+                }
+              }}
             >
               <Link
                 href="/services"
                 onClick={() => setSolutionsDropdownOpen(false)}
+                aria-expanded={solutionsDropdownOpen}
+                aria-controls="solutions-navigation"
                 className="flex items-center gap-1.5 text-[15px] xl:text-base font-semibold text-corp-ink hover:text-corp-blue transition-colors py-1 group/sol"
               >
                 <span>Solutions</span>
@@ -169,7 +181,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
 
               {/* Mega Dropdown Menu - Perfectly Aligned & Structured */}
               {solutionsDropdownOpen && (
-                <div className="absolute top-full -left-36 lg:-left-44 xl:-left-40 w-[840px] xl:w-[880px] bg-white rounded-lg shadow-executive border border-slate-200 p-5 z-50 animate-fade-in">
+                <div id="solutions-navigation" className="absolute top-full -left-36 lg:-left-44 xl:-left-40 w-[840px] xl:w-[880px] bg-white rounded-lg shadow-executive border border-slate-200 p-5 z-50 animate-fade-in">
                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
                     <div className="flex items-center gap-2">
                       <Layers className="w-4 h-4 text-corp-blue" />
@@ -295,7 +307,7 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
           <div id="mobile-navigation" className="lg:hidden bg-white border-b border-corp-line px-6 py-6 shadow-lg max-h-[85vh] overflow-y-auto">
-            <nav className="flex flex-col gap-2">
+            <nav aria-label="Mobile navigation" className="flex flex-col gap-2">
               <Link
                 href="/"
                 onClick={handleHomeClick}

@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SERVICE_CARDS_15 } from "@/lib/data";
-import { CARD_ACCENTS } from "@/lib/card-accents";
-import { ArrowRight, ChevronRight, ShieldCheck } from "lucide-react";
+import { serviceCardAccent } from "@/lib/card-accents";
+import { ArrowRight, ChevronRight } from "lucide-react";
 
 interface Services15GridProps {
   onOpenConsultation: () => void;
@@ -20,7 +20,7 @@ const CORE_PUL_PRACTICES = [
   "events-management",
 ];
 
-export default function Services15Grid({ onOpenConsultation }: Services15GridProps) {
+export default function Services15Grid(_props: Services15GridProps) {
   const [viewScope, setViewScope] = useState<"core" | "synergies" | "all">("core");
 
   const filteredCards = SERVICE_CARDS_15.filter((card) => {
@@ -131,7 +131,7 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
         */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {filteredCards.map((service) => {
-            const accent = CARD_ACCENTS[service.category === "Strategic PMO" ? 0 : service.category === "Technology & AI" ? 2 : service.category === "Workforce & Operations" ? 1 : 3];
+            const accent = serviceCardAccent(service.category);
             return (
               <Link
                 key={service.id}

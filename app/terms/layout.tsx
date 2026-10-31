@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | PUL Consulting Services",
+  alternates: { canonical: "/terms" },
+  title: "Terms of Service",
   description:
     "Terms of Service governing the use of the PUL Consulting Services website, capability statements, and preliminary RFP consultation inquiries.",
   openGraph: {

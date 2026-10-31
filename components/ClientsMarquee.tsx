@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { CLIENTS_LIST } from "@/lib/data";
+import { CARD_ACCENTS } from "@/lib/card-accents";
 import { ShieldCheck } from "lucide-react";
 
 export default function ClientsMarquee() {
@@ -52,10 +53,12 @@ export default function ClientsMarquee() {
 
         {/* Client Logos Grid - Fortune 500 clean presentation with hover reveal */}
         <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-          {filteredClients.map((client) => (
+          {filteredClients.map((client) => {
+            const accent = CARD_ACCENTS[client.category === "International Donor" ? 0 : client.category === "Global Enterprise" ? 1 : client.category === "Government Agency" ? 2 : 3];
+            return (
             <div
               key={client.name}
-              className="group bg-white rounded-md p-4 border border-slate-200 hover:border-corp-blue hover:shadow-xs transition-all duration-200 flex flex-col items-center justify-center text-center h-28"
+              className={`group bg-gradient-to-br from-white ${accent.wash} rounded-md p-4 border border-slate-200 border-t-4 ${accent.border} hover:shadow-xs transition-all duration-200 flex flex-col items-center justify-center text-center h-28`}
             >
               {/* Logo box */}
               <div className="relative w-full h-12 flex items-center justify-center filter grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-200">
@@ -73,7 +76,8 @@ export default function ClientsMarquee() {
                 {client.name}
               </span>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Fiduciary compliance footnote */}

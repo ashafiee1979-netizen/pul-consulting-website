@@ -1,4 +1,5 @@
 import nodemailer, { type Transporter } from "nodemailer";
+import { SITE_URL } from "./site-url";
 
 export interface InquiryEmailData {
   referenceId: string;
@@ -39,7 +40,7 @@ export function esc(value: string) {
 
 const multiline = (value: string) => esc(value).replace(/\r?\n/g, "<br/>");
 
-const siteUrl = () => (process.env.SITE_URL || "https://pulconsulting.com").replace(/\/$/, "");
+const siteUrl = () => SITE_URL;
 
 function formatDate(d: Date) {
   return d.toLocaleString("en-US", {

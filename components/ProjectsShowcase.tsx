@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { COMPREHENSIVE_PROJECT_DATABASE, DetailedProject } from "@/lib/data";
+import { COMPREHENSIVE_PROJECT_DATABASE } from "@/lib/data";
+import { projectCardAccent } from "@/lib/card-accents";
 import { 
   Building, 
   Calendar, 
   CheckCircle2, 
   ChevronRight, 
   ArrowRight, 
-  ShieldCheck, 
   MapPin, 
   Search, 
   FileText,
@@ -43,6 +43,7 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
   });
 
   const current = filteredProjects[activeProject] || filteredProjects[0];
+  const accent = projectCardAccent(current?.category || "");
 
   const handleSelectProject = (idx: number) => {
     setActiveProject(idx);
@@ -147,9 +148,10 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
                 <button
                   key={project.id}
                   onClick={() => handleSelectProject(idx)}
+                  aria-pressed={activeProject === idx}
                   className={`w-full text-left p-4 rounded-md border transition-all duration-200 flex items-start justify-between gap-3 ${
                     activeProject === idx
-                      ? "bg-white border-corp-blue shadow-xs ring-1 ring-corp-blue/20"
+                      ? `bg-gradient-to-br from-white ${projectCardAccent(project.category).wash} border-corp-blue shadow-xs ring-1 ring-corp-blue/20`
                       : "bg-white/70 border-slate-200 hover:bg-white hover:border-slate-300"
                   }`}
                 >
@@ -182,10 +184,10 @@ export default function ProjectsShowcase({ onOpenConsultation }: ProjectsShowcas
             {/* Right Column: In-Depth Selected Project Dossier */}
             <div id="project-dossier" className="lg:col-span-7 scroll-mt-24">
               {current && (
-                <div className="bg-white rounded-md p-6 sm:p-8 border border-slate-200 shadow-sm relative">
+                <div className={`bg-gradient-to-br from-white ${accent.wash} rounded-md p-6 sm:p-8 border border-slate-200 border-t-4 ${accent.border} shadow-sm relative`}>
                 {/* Header Badge & Status */}
                 <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100">
-                  <span className="px-2.5 py-1 rounded bg-corp-ice text-corp-navy text-xs font-bold border border-slate-200">
+                  <span className={`px-2.5 py-1 rounded text-xs font-bold border ${accent.icon}`}>
                     {current.badge || "Verified Delivery"}
                   </span>
                   <span className="px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200">

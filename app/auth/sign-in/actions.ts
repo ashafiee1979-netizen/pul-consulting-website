@@ -1,13 +1,14 @@
 "use server";
 
-import { auth, isAdminEmail } from "@/lib/auth/server";
+import { authConfigured, getAuth, isAdminEmail } from "@/lib/auth/server";
 import { redirect } from "next/navigation";
 
 export async function signInWithEmail(_prev: { error: string } | null, formData: FormData) {
   const email = String(formData.get("email") || "").trim();
   if (!isAdminEmail(email)) return { error: "This account does not have dashboard access." };
 
-  const { error } = await auth.signIn.email({
+  if (!authConfigured()) return { error: "Admin authentication is not configured." };
+  const { error } = await getAuth().signIn.email({
     email,
     password: String(formData.get("password") || ""),
   });

@@ -1,16 +1,18 @@
 import { redirect } from "next/navigation";
-import { auth, isAdminEmail } from "@/lib/auth/server";
+import { getAuth, isAdminEmail } from "@/lib/auth/server";
 import { sql, type InquiryRow } from "@/lib/db";
+import { signOut } from "./actions";
+import { CARD_ACCENTS } from "@/lib/card-accents";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Inquiries | PUL Consulting", robots: { index: false } };
+export const metadata = { title: "Inquiries", robots: { index: false, follow: false } };
 
 export default async function AdminPage() {
-  const { data: session } = await auth.getSession();
+  const { data: session } = await getAuth().getSession();
   if (!session?.user) redirect("/auth/sign-in");
   if (!isAdminEmail(session.user.email)) {
     return (
-      <main className="min-h-screen flex items-center justify-center p-6 text-corp-ink">
+      <main id="main-content" className="min-h-screen flex items-center justify-center p-6 text-corp-ink">
         <p>This account does not have access to the dashboard.</p>
       </main>
     );
@@ -20,17 +22,18 @@ export default async function AdminPage() {
     SELECT * FROM inquiries ORDER BY created_at DESC LIMIT 200`) as InquiryRow[];
 
   return (
-    <main className="min-h-screen bg-corp-ice">
+    <main id="main-content" className="min-h-screen bg-corp-ice">
       <header className="bg-corp-navy text-white px-6 py-4 flex items-center justify-between">
         <div>
           <h1 className="font-serif text-lg font-bold">Client inquiries</h1>
           <p className="text-xs text-sky-200">{rows.length} most recent · signed in as {session.user.email}</p>
         </div>
+        <form action={signOut}><button className="rounded bg-corp-blue px-4 py-2 text-sm font-semibold hover:bg-corp-blueHover">Sign out</button></form>
       </header>
       <div className="p-4 sm:p-6 max-w-6xl mx-auto space-y-3">
         {rows.length === 0 && <p className="text-corp-muted text-sm">No inquiries yet.</p>}
-        {rows.map((r) => (
-          <article key={r.id} className="bg-white border border-corp-line rounded-md p-4 shadow-xs">
+        {rows.map((r, index) => (
+          <article key={r.id} className={`bg-gradient-to-br from-white ${CARD_ACCENTS[index % CARD_ACCENTS.length].wash} border border-corp-line border-t-4 ${CARD_ACCENTS[index % CARD_ACCENTS.length].border} rounded-md p-4 shadow-xs`}>
             <div className="flex flex-wrap items-center justify-between gap-2">
               <span className="font-mono text-xs font-bold bg-sky-100 text-corp-navy border border-sky-300 rounded-full px-3 py-1">
                 {r.reference_id}

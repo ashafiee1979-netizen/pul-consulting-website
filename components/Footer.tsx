@@ -13,7 +13,7 @@ import {
   Building,
   ArrowUp
 } from "lucide-react";
-import { COMPANY_INFO, SERVICE_CARDS_15, PARTNER_COMPANIES } from "@/lib/data";
+import { COMPANY_INFO, SERVICE_CARDS_15 } from "@/lib/data";
 
 interface FooterProps {
   onOpenConsultation?: () => void;

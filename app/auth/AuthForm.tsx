@@ -18,8 +18,8 @@ export default function AuthForm({
     "w-full px-3 py-2.5 rounded border border-slate-300 text-corp-ink text-sm focus:outline-none focus:border-corp-blue";
 
   return (
-    <main className="min-h-screen bg-corp-ice flex items-center justify-center p-4">
-      <div className="w-full max-w-sm bg-white border border-corp-line rounded-md shadow-executive overflow-hidden">
+    <main id="main-content" className="min-h-screen bg-corp-ice flex items-center justify-center p-4">
+      <div className="w-full max-w-sm bg-gradient-to-br from-white to-sky-50/60 border border-corp-line border-t-4 border-t-sky-500 rounded-md shadow-executive overflow-hidden">
         <div className="bg-corp-navy px-6 py-5">
           <h1 className="font-serif text-lg font-bold text-white">PUL Consulting</h1>
           <p className="text-xs text-sky-200">{isUp ? "Create admin account" : "Admin sign in"}</p>
@@ -66,6 +66,7 @@ export default function AuthForm({
             )}
           </p>
         </form>
+        <p className="px-6 pb-5 text-center text-xs"><Link href="/" className="text-corp-blue underline">Return to website</Link></p>
       </div>
     </main>
   );

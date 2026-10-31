@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About Us & Our Partners",
   description: "Established in Kabul in 2010, PUL Consulting combines local delivery experience with specialist partners in advisory, language services, and technology.",
   openGraph: {

@@ -1,6 +1,6 @@
 "use server";
 
-import { auth, isAdminEmail } from "@/lib/auth/server";
+import { authConfigured, getAuth, isAdminEmail } from "@/lib/auth/server";
 import { redirect } from "next/navigation";
 
 export async function signUpWithEmail(_prev: { error: string } | null, formData: FormData) {
@@ -8,7 +8,8 @@ export async function signUpWithEmail(_prev: { error: string } | null, formData:
   // Only allow-listed addresses may register; everyone else is refused.
   if (!isAdminEmail(email)) return { error: "Registration is restricted to PUL Consulting administrators." };
 
-  const { error } = await auth.signUp.email({
+  if (!authConfigured()) return { error: "Admin authentication is not configured." };
+  const { error } = await getAuth().signUp.email({
     email,
     name: String(formData.get("name") || ""),
     password: String(formData.get("password") || ""),

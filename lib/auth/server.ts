@@ -1,11 +1,19 @@
 import { createNeonAuth } from "@neondatabase/auth/next/server";
 
-export const auth = createNeonAuth({
-  baseUrl: process.env.NEON_AUTH_BASE_URL || "https://auth.neon.tech",
-  cookies: {
-    secret: process.env.NEON_AUTH_COOKIE_SECRET || "build_fallback_secret_32_chars_long_placeholder",
-  },
-});
+let auth: ReturnType<typeof createNeonAuth> | undefined;
+
+export function authConfigured() {
+  return Boolean(process.env.NEON_AUTH_BASE_URL && (process.env.NEON_AUTH_COOKIE_SECRET?.length || 0) >= 32);
+}
+
+export function getAuth() {
+  if (!authConfigured()) throw new Error("Admin authentication is not configured.");
+  auth ??= createNeonAuth({
+    baseUrl: process.env.NEON_AUTH_BASE_URL!,
+    cookies: { secret: process.env.NEON_AUTH_COOKIE_SECRET! },
+  });
+  return auth;
+}
 
 export function isAdminEmail(email?: string | null) {
   if (!email) return false;

@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { CARD_ACCENTS } from "@/lib/card-accents";
+import { COMPANY_INFO } from "@/lib/data";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ConsultationModal from "@/components/ConsultationModal";
-import { Scale, ChevronRight, FileCheck, ShieldAlert } from "lucide-react";
+import { Scale, ChevronRight } from "lucide-react";
 
 export default function TermsOfServicePage() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -14,7 +16,7 @@ export default function TermsOfServicePage() {
     <div className="flex flex-col min-h-screen bg-white text-corp-ink">
       <Navbar onOpenConsultation={() => setIsConsultationOpen(true)} />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* Header Banner */}
         <section className="bg-corp-navyDark text-white py-14 sm:py-16 border-b border-corp-navySubtle">
           <div className="max-w-4xl mx-auto px-4 sm:px-8">
@@ -29,7 +31,7 @@ export default function TermsOfServicePage() {
               These terms govern access to the digital properties and informational resources of PUL Consulting Services.
             </p>
             <div className="mt-4 flex items-center gap-2 text-xs text-slate-400">
-              <span>Last updated: January 2026</span>
+              <span>Last updated: October 31, 2026</span>
               <span>•</span>
               <span>Effective: Ongoing</span>
             </div>
@@ -48,7 +50,7 @@ export default function TermsOfServicePage() {
 
             <div className="space-y-10 text-sm sm:text-[15px] text-corp-ink/90 leading-relaxed">
               {/* Section 1 */}
-              <div>
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[0].border} ${CARD_ACCENTS[0].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">01.</span>
                   Acceptance of Terms
@@ -59,7 +61,7 @@ export default function TermsOfServicePage() {
               </div>
 
               {/* Section 2 */}
-              <div>
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[1].border} ${CARD_ACCENTS[1].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">02.</span>
                   Nature of Online Materials &amp; Informational Scope
@@ -75,7 +77,7 @@ export default function TermsOfServicePage() {
               </div>
 
               {/* Section 3 */}
-              <div>
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[2].border} ${CARD_ACCENTS[2].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">03.</span>
                   Intellectual Property &amp; Trademarks
@@ -89,7 +91,7 @@ export default function TermsOfServicePage() {
               </div>
 
               {/* Section 4 */}
-              <div>
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[3].border} ${CARD_ACCENTS[3].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">04.</span>
                   Permitted &amp; Prohibited Use
@@ -105,7 +107,7 @@ export default function TermsOfServicePage() {
               </div>
 
               {/* Section 5 */}
-              <div>
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[4].border} ${CARD_ACCENTS[4].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">05.</span>
                   Limitation of Liability &amp; Disclaimers
@@ -116,7 +118,7 @@ export default function TermsOfServicePage() {
               </div>
 
               {/* Section 6 */}
-              <div className="pt-6 border-t border-slate-200">
+              <div className={`rounded-lg border border-slate-200 border-t-4 p-5 sm:p-6 bg-gradient-to-br from-white ${CARD_ACCENTS[0].border} ${CARD_ACCENTS[0].wash}`}>
                 <h2 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mb-3 flex items-center gap-2">
                   <span className="text-corp-blue font-sans text-base">06.</span>
                   Governing Law &amp; Inquiries
@@ -124,10 +126,10 @@ export default function TermsOfServicePage() {
                 <p className="mb-4">
                   These Terms of Service are governed by and construed in accordance with the applicable laws of Afghanistan, and where international consortium transactions apply, relevant state and federal commercial laws of the United States. For any inquiries regarding these terms:
                 </p>
-                <div className="bg-corp-ice border border-slate-200 rounded-lg p-5 text-sm space-y-2">
-                  <p className="font-bold text-corp-ink">PUL Consulting Services — Office of the General Counsel / Compliance Desk</p>
+                <div className="bg-teal-50/60 border border-teal-200 rounded-lg p-5 text-sm space-y-2">
+                  <p className="font-bold text-corp-ink">PUL Consulting Services — Inquiry Contact</p>
                   <p className="text-corp-muted">Email: <a href="mailto:info@pulconsulting.com" className="text-corp-blue hover:underline font-semibold">info@pulconsulting.com</a></p>
-                  <p className="text-corp-muted">Main Operations: 4th Street, Qala-e-Fatullah, Kabul, Afghanistan</p>
+                  <p className="text-corp-muted">Main Operations: {COMPANY_INFO.contacts.kabulAddress}</p>
                 </div>
               </div>
             </div>

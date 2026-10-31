@@ -3,7 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import { PARTNER_COMPANIES } from "@/lib/data";
-import { Globe2, ExternalLink, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { CARD_ACCENTS } from "@/lib/card-accents";
+import { Globe2, ExternalLink, CheckCircle2 } from "lucide-react";
 
 export default function EcosystemSection() {
   return (
@@ -25,7 +26,8 @@ export default function EcosystemSection() {
 
         {/* 3 Partner Companies Grid */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {PARTNER_COMPANIES.map((partner) => {
+          {PARTNER_COMPANIES.map((partner, index) => {
+            const accent = CARD_ACCENTS[index];
             const partnerAnchorId = partner.name.toLowerCase().includes("pul global")
               ? "partner-pul-global"
               : partner.name.toLowerCase().includes("linguist")
@@ -36,11 +38,11 @@ export default function EcosystemSection() {
               <div
                 key={partner.name}
                 id={partnerAnchorId}
-                className="scroll-mt-28 bg-white rounded-md p-6 sm:p-7 border border-slate-200 hover:border-corp-blue hover:shadow-card transition-all duration-200 flex flex-col justify-between"
+                className={`scroll-mt-28 bg-gradient-to-br from-white ${accent.wash} rounded-md p-6 sm:p-7 border border-slate-200 border-t-4 ${accent.border} hover:shadow-card transition-shadow duration-200 flex flex-col justify-between`}
               >
                 <div>
                   {/* Header with Logo and Badge */}
-                  <div className="flex items-start justify-between gap-4 mb-4">
+                  <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                     <div className="h-14 w-44 flex items-center justify-start px-2.5 py-1 bg-slate-50/70 border border-slate-200/80 rounded-lg">
                       <Image
                         src={partner.logo}
@@ -50,7 +52,7 @@ export default function EcosystemSection() {
                         className={`${partner.logoClassName || "h-8 w-auto"} object-contain object-left`}
                       />
                     </div>
-                    <span className="px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-corp-ice text-corp-navy border border-slate-200 shrink-0">
+                    <span className={`px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wider border shrink-0 ${accent.icon}`}>
                       {partner.badge}
                     </span>
                   </div>
@@ -59,7 +61,7 @@ export default function EcosystemSection() {
                 <h3 className="text-lg font-serif font-bold text-corp-ink">
                   {partner.name}
                 </h3>
-                <div className="mt-1 flex items-center gap-1.5 text-xs text-corp-blue font-semibold">
+                <div className={`mt-1 flex flex-wrap items-center gap-1.5 text-xs ${accent.text} font-semibold`}>
                   <Globe2 className="w-3.5 h-3.5" />
                   <span>{partner.location}</span>
                   <span className="text-slate-300">•</span>

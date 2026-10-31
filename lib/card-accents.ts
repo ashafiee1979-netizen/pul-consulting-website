@@ -6,3 +6,11 @@ export const CARD_ACCENTS = [
   { border: "border-t-amber-500", wash: "to-amber-50/60", icon: "bg-amber-50 text-amber-800 border-amber-200", text: "text-amber-800" },
   { border: "border-t-emerald-500", wash: "to-emerald-50/60", icon: "bg-emerald-50 text-emerald-700 border-emerald-200", text: "text-emerald-700" },
 ];
+
+export function serviceCardAccent(category: string) {
+  return CARD_ACCENTS[category === "Strategic PMO" ? 0 : category === "Technology & AI" ? 2 : category === "Workforce & Operations" ? 1 : 3];
+}
+
+export function projectCardAccent(category: string) {
+  return CARD_ACCENTS[/Training|Capacity/.test(category) ? 4 : /Linguistic|Translation/.test(category) ? 3 : /IT|Networking/.test(category) ? 2 : /Human Resources|Telecom|Workforce/.test(category) ? 1 : 0];
+}

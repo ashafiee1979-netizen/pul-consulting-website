@@ -3,15 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import { 
-  Building, 
   Calendar, 
   CheckCircle2, 
   ArrowRight, 
   ShieldCheck, 
-  MapPin, 
-  FileText,
-  Layers,
-  ChevronRight
+  MapPin
 } from "lucide-react";
 import { COMPREHENSIVE_PROJECT_DATABASE } from "@/lib/data";
 import { CARD_ACCENTS } from "@/lib/card-accents";
@@ -20,7 +16,7 @@ interface ProjectsHomePreviewProps {
   onOpenConsultation: () => void;
 }
 
-export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHomePreviewProps) {
+export default function ProjectsHomePreview(_props: ProjectsHomePreviewProps) {
   const featuredProjectIds = ["huawei-master-agreement", "etisalat-callcenter-deployment", "awdp-creative-usaid"];
   const featuredProjects = featuredProjectIds.flatMap((id) => {
     const project = COMPREHENSIVE_PROJECT_DATABASE.find((entry) => entry.id === id);
