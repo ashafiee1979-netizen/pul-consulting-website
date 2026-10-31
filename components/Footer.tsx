@@ -8,7 +8,6 @@ import {
   Phone, 
   Mail, 
   ExternalLink, 
-  ShieldCheck,
   Globe2,
   Building,
   ArrowUp
@@ -48,16 +47,26 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-8">
           {/* Col 1: Identity & Official Compliance (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="relative h-11 w-auto bg-white p-1 rounded">
+            <div className="inline-flex flex-col items-center rounded-md bg-white px-2.5 py-2 shadow-xs">
+              <div className="relative">
                 <Image
                   src="/assets/brand/pul-consulting-logo.jpg"
                   alt="PUL Consulting Services Logo"
                   width={150}
-                  height={44}
-                  className="h-9 w-auto object-contain"
+                  height={68}
+                  className="h-auto w-28 object-contain"
                 />
               </div>
+              <span className="mt-1 font-serif text-[10px] italic font-semibold tracking-wide text-corp-navy">
+                Bridging the Gap
+              </span>
+            </div>
+
+            <div className="max-w-sm rounded-md border border-white/10 bg-corp-navy/40 px-3 py-2.5 text-[11px] leading-relaxed">
+              <p className="font-semibold text-slate-200">Established 2010 <span className="text-slate-500">•</span> Kabul, Afghanistan</p>
+              <p className="mt-1 text-slate-400">
+                MoCI Reg. #21679 <span className="text-slate-600">•</span> AISA License #D-34532 <span className="text-slate-600">•</span> TIN 9000010281
+              </p>
             </div>
 
             <p className="text-xs text-slate-300 leading-relaxed max-w-sm">
@@ -193,20 +202,6 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Corporate Identity & Regulatory Information Bar */}
-        <div className="mt-8 pt-5 border-t border-corp-navySubtle flex flex-col lg:flex-row items-center justify-between gap-3 text-xs text-slate-300">
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 text-center lg:text-left text-[11px]">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-corp-navy text-sky-200 font-medium border border-slate-700">
-              <ShieldCheck className="w-3.5 h-3.5 text-corp-blue" />
-              <span>Established 2010 • Kabul, Afghanistan</span>
-            </span>
-            <span className="text-slate-300">
-              MoCI Reg. #21679 <span className="text-slate-600">•</span> AISA License #D-34532 <span className="text-slate-600">•</span> TIN 9000010281
-            </span>
-          </div>
-
         </div>
 
         {/* Bottom Strip */}
