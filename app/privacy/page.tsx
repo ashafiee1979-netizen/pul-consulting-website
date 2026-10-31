@@ -158,7 +158,7 @@ export default function PrivacyPolicyPage() {
         </section>
       </main>
 
-      <Footer onOpenConsultation={() => setIsConsultationOpen(true)} />
+      <Footer />
 
       <ConsultationModal
         isOpen={isConsultationOpen}

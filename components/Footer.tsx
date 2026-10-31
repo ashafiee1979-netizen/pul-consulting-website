@@ -14,34 +14,13 @@ import {
 } from "lucide-react";
 import { COMPANY_INFO, SERVICE_CARDS_15 } from "@/lib/data";
 
-interface FooterProps {
-  onOpenConsultation?: () => void;
-}
-
-export default function Footer({ onOpenConsultation }: FooterProps) {
+export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <footer id="contact-section" className="bg-corp-navyDark text-slate-300 border-t border-corp-navySubtle">
-      {/* Executive Call to Action Strip */}
-      <div className="border-b border-corp-navySubtle bg-corp-navy px-4 py-7 sm:px-8 sm:py-8">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-center sm:text-left">
-            <h3 className="text-xl sm:text-2xl font-serif font-bold text-white tracking-tight">
-              Discuss your project with our team
-            </h3>
-          </div>
-          <button
-            onClick={() => onOpenConsultation?.()}
-            className="flex-shrink-0 px-6 py-3 rounded-md bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-all active:scale-98"
-          >
-            Request Consultation
-          </button>
-        </div>
-      </div>
-
       {/* Directory Grid */}
       <div className="max-w-7xl mx-auto px-4 py-10 sm:px-8 sm:py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-8">

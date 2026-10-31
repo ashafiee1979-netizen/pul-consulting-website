@@ -128,7 +128,7 @@ export default function AboutPage() {
       </main>
 
       {/* Executive Footer */}
-      <Footer onOpenConsultation={() => handleOpenConsultation()} />
+      <Footer />
 
       {/* Fast Consultation & RFP Modal */}
       <ConsultationModal

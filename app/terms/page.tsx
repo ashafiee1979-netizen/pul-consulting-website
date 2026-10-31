@@ -137,7 +137,7 @@ export default function TermsOfServicePage() {
         </section>
       </main>
 
-      <Footer onOpenConsultation={() => setIsConsultationOpen(true)} />
+      <Footer />
 
       <ConsultationModal
         isOpen={isConsultationOpen}

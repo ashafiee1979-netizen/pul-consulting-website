@@ -99,7 +99,7 @@ export default function ProjectsPage() {
       </main>
 
       {/* Executive Footer */}
-      <Footer onOpenConsultation={() => handleOpenConsultation()} />
+      <Footer />
 
       {/* Fast Consultation & RFP Modal */}
       <ConsultationModal

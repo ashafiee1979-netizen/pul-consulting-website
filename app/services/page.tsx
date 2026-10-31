@@ -388,7 +388,7 @@ export default function ServicesPage() {
         </section>
       </main>
 
-      <Footer onOpenConsultation={() => setIsConsultationOpen(true)} />
+      <Footer />
 
       <ConsultationModal
         isOpen={isConsultationOpen}
