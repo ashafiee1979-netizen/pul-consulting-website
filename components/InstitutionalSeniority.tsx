@@ -27,6 +27,15 @@ const STRENGTH_ICONS: Record<string, React.ElementType> = {
   Globe2,
 };
 
+// Match the five delivery-stage accents already used on the home page.
+const CARD_ACCENTS = [
+  { border: "border-t-sky-500", wash: "to-sky-50/60", icon: "bg-sky-50 text-sky-700 border-sky-200", text: "text-sky-700" },
+  { border: "border-t-teal-500", wash: "to-teal-50/60", icon: "bg-teal-50 text-teal-700 border-teal-200", text: "text-teal-700" },
+  { border: "border-t-indigo-500", wash: "to-indigo-50/60", icon: "bg-indigo-50 text-indigo-700 border-indigo-200", text: "text-indigo-700" },
+  { border: "border-t-amber-500", wash: "to-amber-50/60", icon: "bg-amber-50 text-amber-800 border-amber-200", text: "text-amber-800" },
+  { border: "border-t-emerald-500", wash: "to-emerald-50/60", icon: "bg-emerald-50 text-emerald-700 border-emerald-200", text: "text-emerald-700" },
+];
+
 export default function InstitutionalSeniority() {
   const deliveryGates = [
     {
@@ -84,17 +93,18 @@ export default function InstitutionalSeniority() {
 
         {/* 6 Institutional Pillars Grid */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {INSTITUTIONAL_STRENGTHS.map((item) => {
+          {INSTITUTIONAL_STRENGTHS.map((item, index) => {
             const Icon = STRENGTH_ICONS[item.icon] || ShieldCheck;
+            const accent = CARD_ACCENTS[index % CARD_ACCENTS.length];
 
             return (
               <div
                 key={item.title}
-                className="bg-white rounded-md p-6 border border-slate-200 hover:border-corp-blue hover:shadow-card transition-all duration-200 flex flex-col justify-between"
+                className={`bg-gradient-to-br from-white ${accent.wash} rounded-md p-6 border border-slate-200 border-t-4 ${accent.border} hover:shadow-card transition-shadow duration-200 flex flex-col justify-between`}
               >
                 <div>
-                  <div className="w-10 h-10 rounded bg-corp-ice border border-slate-200 flex items-center justify-center text-corp-navy mb-4">
-                    <Icon className="w-5 h-5 text-corp-blue" />
+                  <div className={`w-10 h-10 rounded border flex items-center justify-center mb-4 ${accent.icon}`}>
+                    <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="text-base font-bold text-corp-ink leading-snug">
                     {item.title}
@@ -104,7 +114,7 @@ export default function InstitutionalSeniority() {
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-semibold text-corp-blue">
+                <div className={`mt-5 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-semibold ${accent.text}`}>
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>Our Delivery Foundation</span>
                 </div>
@@ -128,17 +138,18 @@ export default function InstitutionalSeniority() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-            {deliveryGates.map((gate) => {
+            {deliveryGates.map((gate, index) => {
               const GateIcon = gate.icon;
+              const accent = CARD_ACCENTS[index];
               return (
                 <div
                   key={gate.gate}
-                  className="bg-white rounded-md p-5 border-t-4 border-t-corp-navy border-x border-b border-slate-200 flex flex-col justify-between shadow-xs hover:border-corp-blue hover:shadow-card transition-all"
+                  className={`bg-gradient-to-br from-white ${accent.wash} rounded-md p-5 border-t-4 ${accent.border} border-x border-b border-slate-200 flex flex-col justify-between shadow-xs hover:shadow-card transition-shadow`}
                 >
                   <div>
-                    <div className="flex items-center justify-between text-xs text-corp-blue font-bold uppercase tracking-wider mb-3">
+                    <div className={`flex items-center justify-between text-xs ${accent.text} font-bold uppercase tracking-wider mb-3`}>
                       <span>{gate.gate}</span>
-                      <GateIcon className="w-4 h-4 text-corp-muted" />
+                      <GateIcon className="w-4 h-4" />
                     </div>
                     <h4 className="text-base font-serif font-bold text-corp-ink mb-1.5">
                       {gate.title}
@@ -148,7 +159,7 @@ export default function InstitutionalSeniority() {
                     </p>
                   </div>
                   <div className="mt-5 pt-3 border-t border-slate-100">
-                    <span className="inline-block text-[10px] font-bold text-corp-navy uppercase tracking-wider">
+                    <span className={`inline-block rounded border px-2 py-1 text-[10px] font-bold uppercase tracking-wider ${accent.icon}`}>
                       {gate.badge}
                     </span>
                   </div>
