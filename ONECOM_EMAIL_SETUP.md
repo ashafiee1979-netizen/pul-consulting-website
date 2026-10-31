@@ -11,7 +11,7 @@ In the existing Vercel project pul-consulting-website, configure:
 - SMTP_PORT: 465 (implicit TLS), or 587 if specifically needed (STARTTLS is required).
 - SITE_URL: the currently public website origin; change to https://pulconsulting.com at domain cutover.
 
-The application fixes SMTP host to send.one.com and recipient to info@pulconsulting.com. It does not accept SMTP hosts or recipient addresses from visitors. SMTP_HOST and NOTIFICATION_EMAIL are no longer required. DATABASE_URL, NEON_AUTH_BASE_URL, NEON_AUTH_COOKIE_SECRET and ADMIN_EMAILS are unused and can be removed from the project's environment configuration. Existing Neon data/resources have not been deleted.
+The application fixes SMTP host to send.one.com and recipient to info@pulconsulting.com. It does not accept SMTP hosts or recipient addresses from visitors. SMTP_HOST and NOTIFICATION_EMAIL are no longer required. DATABASE_URL, NEON_AUTH_BASE_URL, NEON_AUTH_COOKIE_SECRET and ADMIN_EMAILS were removed from the project's Vercel environment configuration with owner approval on 31 October 2026. Existing Neon data/resources have not been deleted.
 
 The last live test of the previous implementation returned SMTP 535 authentication failed. Confirm the current mailbox password with One.com and replace the Vercel production SMTP_PASS; redeploy after changing it. Being signed into One.com's control panel does not reveal the mailbox password. No mailbox password is reset automatically.
 
@@ -24,3 +24,7 @@ Honeypot, field validation, payload limit, and bounded per-instance email/IP rat
 Run npm test, npm run lint and npm run build. Tests use mocked SMTP and must never send live mail. The retired /admin and /auth pages redirect to the public contact section; old auth API requests return 410. scripts/check-site.mjs checks public pages, links, images and safe validation/honeypot requests without sending mail.
 
 The website remains hosted on Vercel; One.com is the only email delivery provider. Domain/DNS cutover is a separate task. Preserve One.com MX, SPF, DKIM and DMARC records.
+
+## Migration verification, 31 October 2026
+
+Application commit 4119b85062501a9f70438f83beb4d57ef71b1b55 was deployed to production. All six public pages, 30 internal links, three external sites, 35 image URLs, safe validation/honeypot checks, retired admin redirect, 404 and security-header checks passed. Both Contact and Request Consultation opened the same dialog in the browser. The four unused Neon/admin Vercel entries were removed and confirmed absent through metadata-only inspection. The owner requested no test email, so none was sent. SMTP_PASS metadata still showed its previous saved revision at the time of inspection; final live connection verification remains pending private password entry and redeployment.
