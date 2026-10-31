@@ -14,6 +14,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import { COMPREHENSIVE_PROJECT_DATABASE } from "@/lib/data";
+import { CARD_ACCENTS } from "@/lib/card-accents";
 
 interface ProjectsHomePreviewProps {
   onOpenConsultation: () => void;
@@ -54,16 +55,18 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
 
         {/* 3 Featured Flagship Program Cards */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featuredProjects.map((project) => (
+          {featuredProjects.map((project, index) => {
+            const accent = CARD_ACCENTS[index];
+            return (
             <Link
               key={project.id}
               href="/projects"
-              className="bg-white rounded-lg p-6 border border-slate-200 hover:border-corp-blue hover:shadow-card transition-all duration-200 flex flex-col justify-between group"
+              className={`bg-gradient-to-br from-white ${accent.wash} rounded-lg p-6 border border-slate-200 border-t-4 ${accent.border} hover:shadow-card transition-all duration-200 flex flex-col justify-between group`}
             >
               <div>
                 {/* Header with Client & Period */}
                 <div className="flex items-start justify-between gap-2 mb-3">
-                  <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-corp-ice text-corp-navy border border-slate-200">
+                  <span className={`px-2.5 py-0.5 rounded text-[11px] font-bold border ${accent.icon}`}>
                     {project.client}
                   </span>
                   <span className="text-xs text-corp-muted font-medium flex items-center gap-1">
@@ -93,18 +96,19 @@ export default function ProjectsHomePreview({ onOpenConsultation }: ProjectsHome
                     Selected Deliverable
                   </span>
                   <div className="flex items-start gap-1.5 text-xs text-slate-600">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className={`w-3.5 h-3.5 ${accent.text} flex-shrink-0 mt-0.5`} />
                     <span className="line-clamp-2">{project.keyOutputs[0]}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-corp-blue">
+              <div className={`mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold ${accent.text}`}>
                 <span>View Project Portfolio</span>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
 
         {/* Bottom Banner directing to full Registry & Case Studies */}

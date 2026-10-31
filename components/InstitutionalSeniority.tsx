@@ -17,6 +17,7 @@ import {
   BadgeCheck
 } from "lucide-react";
 import { INSTITUTIONAL_STRENGTHS } from "@/lib/data";
+import { CARD_ACCENTS } from "@/lib/card-accents";
 
 const STRENGTH_ICONS: Record<string, React.ElementType> = {
   Clock,
@@ -26,15 +27,6 @@ const STRENGTH_ICONS: Record<string, React.ElementType> = {
   MapPin,
   Globe2,
 };
-
-// Match the five delivery-stage accents already used on the home page.
-const CARD_ACCENTS = [
-  { border: "border-t-sky-500", wash: "to-sky-50/60", icon: "bg-sky-50 text-sky-700 border-sky-200", text: "text-sky-700" },
-  { border: "border-t-teal-500", wash: "to-teal-50/60", icon: "bg-teal-50 text-teal-700 border-teal-200", text: "text-teal-700" },
-  { border: "border-t-indigo-500", wash: "to-indigo-50/60", icon: "bg-indigo-50 text-indigo-700 border-indigo-200", text: "text-indigo-700" },
-  { border: "border-t-amber-500", wash: "to-amber-50/60", icon: "bg-amber-50 text-amber-800 border-amber-200", text: "text-amber-800" },
-  { border: "border-t-emerald-500", wash: "to-emerald-50/60", icon: "bg-emerald-50 text-emerald-700 border-emerald-200", text: "text-emerald-700" },
-];
 
 export default function InstitutionalSeniority() {
   const deliveryGates = [

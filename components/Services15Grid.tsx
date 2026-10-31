@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { SERVICE_CARDS_15 } from "@/lib/data";
+import { CARD_ACCENTS } from "@/lib/card-accents";
 import { ArrowRight, ChevronRight, ShieldCheck } from "lucide-react";
 
 interface Services15GridProps {
@@ -89,22 +90,22 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
 
         {/* 4 Strategic Pillars Overview Bar */}
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <div className="p-3.5 rounded-lg bg-corp-ice/70 border border-slate-200">
+          <div className="p-3.5 rounded-lg bg-gradient-to-br from-white to-sky-50/60 border border-slate-200 border-t-4 border-t-sky-500">
             <span className="text-[10px] font-bold text-corp-blue uppercase tracking-wider block">Pillar I</span>
             <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Strategic PMO &amp; Governance</h4>
             <span className="text-[11px] text-corp-muted mt-1 block">Delivered by PUL Consulting HQ</span>
           </div>
-          <div className="p-3.5 rounded-lg bg-corp-ice/70 border border-slate-200">
+          <div className="p-3.5 rounded-lg bg-gradient-to-br from-white to-indigo-50/60 border border-slate-200 border-t-4 border-t-indigo-500">
             <span className="text-[10px] font-bold text-sky-600 uppercase tracking-wider block">Pillar II</span>
             <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Technology &amp; Enterprise AI</h4>
             <span className="text-[11px] text-corp-muted mt-1 block">With Quantu Tech LLC</span>
           </div>
-          <div className="p-3.5 rounded-lg bg-corp-ice/70 border border-slate-200">
+          <div className="p-3.5 rounded-lg bg-gradient-to-br from-white to-teal-50/60 border border-slate-200 border-t-4 border-t-teal-500">
             <span className="text-[10px] font-bold text-corp-blue uppercase tracking-wider block">Pillar III</span>
             <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Workforce &amp; Operations</h4>
             <span className="text-[11px] text-corp-muted mt-1 block">Delivered by PUL Consulting HQ</span>
           </div>
-          <div className="p-3.5 rounded-lg bg-corp-ice/70 border border-slate-200">
+          <div className="p-3.5 rounded-lg bg-gradient-to-br from-white to-amber-50/60 border border-slate-200 border-t-4 border-t-amber-500">
             <span className="text-[10px] font-bold text-sky-600 uppercase tracking-wider block">Pillar IV</span>
             <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Language &amp; Logistics</h4>
             <span className="text-[11px] text-corp-muted mt-1 block">With Linguist Point International</span>
@@ -130,11 +131,12 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
         */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {filteredCards.map((service) => {
+            const accent = CARD_ACCENTS[service.category === "Strategic PMO" ? 0 : service.category === "Technology & AI" ? 2 : service.category === "Workforce & Operations" ? 1 : 3];
             return (
               <Link
                 key={service.id}
                 href={`/services#${service.id}`}
-                className="group bg-white rounded-xl overflow-hidden border border-slate-200/90 hover:border-corp-blue hover:shadow-card transition-all duration-300 flex flex-col justify-between shadow-xs hover:-translate-y-0.5"
+                className={`group bg-white rounded-xl overflow-hidden border border-slate-200/90 border-t-4 ${accent.border} hover:shadow-card transition-all duration-300 flex flex-col justify-between shadow-xs hover:-translate-y-0.5`}
               >
                 {/* TOP: Dedicated Photo Frame with subtle tone & category badge */}
                 <div className="relative h-44 w-full overflow-hidden bg-slate-100">
@@ -158,9 +160,9 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
                 </div>
 
                 {/* BOTTOM: Pristine Corporate White Space with Clear Typography */}
-                <div className="p-5 flex-1 flex flex-col justify-between bg-white">
+                <div className={`p-5 flex-1 flex flex-col justify-between bg-gradient-to-br from-white ${accent.wash}`}>
                   <div>
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-corp-blue mb-1">
+                    <p className={`text-[11px] font-bold uppercase tracking-wider ${accent.text} mb-1`}>
                       {service.kicker}
                     </p>
                     <h3 className="text-base sm:text-lg font-serif font-bold text-corp-ink group-hover:text-corp-blue transition-colors leading-snug">
@@ -171,14 +173,14 @@ export default function Services15Grid({ onOpenConsultation }: Services15GridPro
                     </p>
 
                     {/* Distinct Delivery Ownership Badge */}
-                    <div className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-50 border border-slate-200/80 text-[11px] text-corp-navy font-medium">
+                    <div className={`mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded border text-[11px] font-medium ${accent.icon}`}>
                       <span className="w-1.5 h-1.5 rounded-full bg-corp-blue flex-shrink-0" />
                       <span className="truncate">{service.deliveryBy}</span>
                     </div>
                   </div>
 
                   {/* Bottom Action Footer */}
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-corp-blue group-hover:text-corp-navy transition-colors">
+                  <div className={`mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold ${accent.text} group-hover:text-corp-navy transition-colors`}>
                     <span>View Scope & Deliverables</span>
                     <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>

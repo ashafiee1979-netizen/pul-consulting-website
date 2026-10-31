@@ -17,6 +17,7 @@ import {
   CheckCircle2
 } from "lucide-react";
 import { PARTNER_COMPANIES } from "@/lib/data";
+import { CARD_ACCENTS } from "@/lib/card-accents";
 
 interface GateDetail {
   step: string;
@@ -177,12 +178,13 @@ export default function AboutPartnersHomePreview() {
             />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative z-10">
-              {deliveryGates.map((gate) => {
+              {deliveryGates.map((gate, index) => {
                 const Icon = gate.icon;
+                const accent = CARD_ACCENTS[index];
                 return (
                   <div
                     key={gate.step}
-                    className={`bg-white rounded-xl border border-slate-200 p-5 flex flex-col justify-between shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${gate.borderHover} group relative overflow-hidden`}
+                    className={`bg-gradient-to-br from-white ${accent.wash} rounded-xl border border-slate-200 p-5 flex flex-col justify-between shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${gate.borderHover} group relative overflow-hidden`}
                   >
                     {/* Top Signature Gradient Accent Bar */}
                     <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${gate.gradient}`} />
@@ -248,7 +250,8 @@ export default function AboutPartnersHomePreview() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {PARTNER_COMPANIES.map((partner) => {
+            {PARTNER_COMPANIES.map((partner, index) => {
+              const accent = CARD_ACCENTS[index];
               const partnerAnchorId = partner.name.toLowerCase().includes("pul global")
                 ? "partner-pul-global"
                 : partner.name.toLowerCase().includes("linguist")
@@ -259,7 +262,7 @@ export default function AboutPartnersHomePreview() {
                 <Link
                   key={partner.name}
                   href={`/about#${partnerAnchorId}`}
-                  className="group bg-white rounded-lg p-5 border border-slate-200 hover:border-corp-blue hover:shadow-card transition-all flex flex-col justify-between"
+                  className={`group bg-gradient-to-br from-white ${accent.wash} rounded-lg p-5 border border-slate-200 border-t-4 ${accent.border} hover:shadow-card transition-all flex flex-col justify-between`}
                 >
                   <div>
                     {/* Header with Logo and Badge */}
@@ -273,7 +276,7 @@ export default function AboutPartnersHomePreview() {
                           className={`${partner.logoClassName || "h-8 w-auto"} object-contain object-left`}
                         />
                       </div>
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-corp-ice text-corp-navy border border-slate-200 shrink-0">
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border shrink-0 ${accent.icon}`}>
                         {partner.badge}
                       </span>
                     </div>
@@ -281,7 +284,7 @@ export default function AboutPartnersHomePreview() {
                     <h4 className="text-base font-serif font-bold text-corp-ink group-hover:text-corp-blue transition-colors">
                       {partner.name}
                     </h4>
-                    <div className="mt-1 flex items-center gap-1.5 text-xs text-corp-blue font-semibold">
+                    <div className={`mt-1 flex items-center gap-1.5 text-xs ${accent.text} font-semibold`}>
                       <Globe2 className="w-3 h-3" />
                       <span>{partner.location}</span>
                     </div>
@@ -290,7 +293,7 @@ export default function AboutPartnersHomePreview() {
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-corp-blue group-hover:text-corp-navy transition-colors">
+                  <div className={`mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold ${accent.text} group-hover:text-corp-navy transition-colors`}>
                     <span>View Partner Profile</span>
                     <span className="transform group-hover:translate-x-1 transition-transform">→</span>
                   </div>
