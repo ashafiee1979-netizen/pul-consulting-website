@@ -8,8 +8,8 @@ import {
   Phone, 
   Mail, 
   ExternalLink, 
-  ShieldCheck, 
-  Globe2, 
+  ShieldCheck,
+  Globe2,
   Building,
   ArrowUp
 } from "lucide-react";
@@ -27,19 +27,16 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
   return (
     <footer id="contact-section" className="bg-corp-navyDark text-slate-300 border-t border-corp-navySubtle">
       {/* Executive Call to Action Strip */}
-      <div className="border-b border-corp-navySubtle bg-corp-navy py-12 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="max-w-2xl text-center md:text-left">
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight">
-              Let’s Discuss Your Next Assignment
+      <div className="border-b border-corp-navySubtle bg-corp-navy px-4 py-7 sm:px-8 sm:py-8">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-center sm:text-left">
+            <h3 className="text-xl sm:text-2xl font-serif font-bold text-white tracking-tight">
+              Discuss your project with our team
             </h3>
-            <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Tell us about your objectives, location, and delivery requirements. We will help identify the expertise and operational support your project needs.
-            </p>
           </div>
           <button
             onClick={() => onOpenConsultation?.()}
-            className="flex-shrink-0 px-6 py-3.5 rounded-md bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-all active:scale-98"
+            className="flex-shrink-0 px-6 py-3 rounded-md bg-corp-blue hover:bg-corp-blueHover text-white font-bold text-xs uppercase tracking-wider shadow-xs transition-all active:scale-98"
           >
             Request Consultation
           </button>
@@ -47,8 +44,8 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
       </div>
 
       {/* Directory Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+      <div className="max-w-7xl mx-auto px-4 py-10 sm:px-8 sm:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-8">
           {/* Col 1: Identity & Official Compliance (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
@@ -64,14 +61,8 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             </div>
 
             <p className="text-xs text-slate-300 leading-relaxed max-w-sm">
-              Established in Kabul in 2010, PUL Consulting Services provides management consulting, workforce services, and project delivery support across Afghanistan.
+              PUL Consulting Services provides management consulting, workforce services, and project delivery support across Afghanistan.
             </p>
-
-            <div className="pt-2 text-[11px] text-slate-400 space-y-1">
-              <div><strong className="text-slate-200">Legal Registration:</strong> MoCI Reg # 21679</div>
-              <div><strong className="text-slate-200">AISA Operating License:</strong> # D-34532</div>
-              <div><strong className="text-slate-200">Tax Identification (TIN):</strong> 9000010281</div>
-            </div>
           </div>
 
           {/* Col 2: Practice Capabilities (3 cols) */}
@@ -152,8 +143,8 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
           </div>
 
           {/* Col 4: Contacts & Offices (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4">
+          <div className="lg:col-span-3 space-y-2.5">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3">
               Offices &amp; Contact
             </h4>
 
@@ -169,7 +160,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             </div>
 
             {/* Shahr-e-Naw Branch */}
-            <div className="text-xs space-y-1 pt-1">
+            <div className="text-xs space-y-1">
               <div className="font-semibold text-white flex items-center gap-1.5">
                 <Building className="w-3.5 h-3.5 text-corp-blue flex-shrink-0" />
                 <span>Marketing &amp; Events Office</span>
@@ -180,7 +171,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             </div>
 
             {/* USA Partner Office */}
-            <div className="text-xs space-y-1 pt-1">
+            <div className="text-xs space-y-1">
               <div className="font-semibold text-white flex items-center gap-1.5">
                 <Globe2 className="w-3.5 h-3.5 text-corp-blue flex-shrink-0" />
                 <span>U.S. Partner Office</span>
@@ -192,64 +183,39 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
 
             {/* Direct Lines */}
             <div className="pt-2 border-t border-corp-navySubtle space-y-1 text-xs">
-              <div className="flex items-center gap-2 text-slate-300">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-slate-300">
                 <Phone className="w-3.5 h-3.5 text-corp-blue flex-shrink-0" />
-                <span>+93 (786) 19 96 96 / +93 (786) 600 597</span>
+                <a href="tel:+93786199696" className="hover:text-white transition-colors">+93 (786) 19 96 96</a>
+                <span className="text-slate-500">/</span>
+                <a href="tel:+93786600597" className="hover:text-white transition-colors">+93 (786) 600 597</a>
               </div>
               <div className="flex items-center gap-2 text-slate-300">
                 <Mail className="w-3.5 h-3.5 text-corp-blue flex-shrink-0" />
-                <span>info@pulconsulting.com</span>
+                <a href="mailto:info@pulconsulting.com" className="hover:text-white transition-colors">info@pulconsulting.com</a>
               </div>
             </div>
           </div>
         </div>
 
         {/* Corporate Identity & Regulatory Information Bar */}
-        <div className="mt-12 pt-6 border-t border-corp-navySubtle flex flex-col lg:flex-row items-center justify-between gap-4 text-xs text-slate-300">
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3 text-center lg:text-left text-[11px]">
+        <div className="mt-8 pt-5 border-t border-corp-navySubtle flex flex-col lg:flex-row items-center justify-between gap-3 text-xs text-slate-300">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 text-center lg:text-left text-[11px]">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-corp-navy text-sky-200 font-medium border border-slate-700">
               <ShieldCheck className="w-3.5 h-3.5 text-corp-blue" />
-              <span>Founded 2010 • Kabul, Afghanistan</span>
+              <span>Established 2010 • Kabul, Afghanistan</span>
             </span>
-            <span className="hidden md:inline text-slate-600">|</span>
             <span className="text-slate-300">
-              Ministry of Commerce Reg # 21679 • AISA License # D-34532 • TIN 9000010281
+              MoCI Reg. #21679 <span className="text-slate-600">•</span> AISA License #D-34532 <span className="text-slate-600">•</span> TIN 9000010281
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-end gap-4 sm:gap-5 text-slate-300 text-xs">
-            <a 
-              href="tel:+93786199696" 
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5 text-corp-blue" />
-              <span>+93 (786) 19 96 96</span>
-            </a>
-            <a 
-              href="mailto:info@pulconsulting.com" 
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <Mail className="w-3.5 h-3.5 text-corp-blue" />
-              <span>info@pulconsulting.com</span>
-            </a>
-            <a 
-              href="https://pulglobal.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-slate-400 hover:text-corp-blue transition-colors"
-            >
-              <span>U.S. Partner: PUL Global</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
         </div>
 
         {/* Bottom Strip */}
-        <div className="mt-14 pt-8 border-t border-corp-navySubtle flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="mt-6 pt-5 border-t border-corp-navySubtle flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
             <p>
-              &copy; 2010 – {new Date().getFullYear()} PUL Consulting Services. All rights reserved. 
-              Registered under the laws of Afghanistan.
+              &copy; {new Date().getFullYear()} PUL Consulting Services. All rights reserved.
             </p>
             <div className="flex items-center gap-2.5 text-[11px] text-slate-400">
               <span className="hidden sm:inline text-slate-600">|</span>
