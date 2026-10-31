@@ -69,7 +69,7 @@ export const COMPANY_INFO = {
     kabulAddress: "Sayed Kaihan Street, Jai Rayees, Darulaman Road, Kabul, Afghanistan",
     kabulBranch: "Ansari Square, Shahr-e-Naw, Kabul, Afghanistan",
     usaAddress: "PUL Global Partners LLC, Stafford & Fairfax, Virginia, United States",
-    phones: ["+93 (786) 19 96 96", "+93 (786) 600 597", "+93 (798) 888 555"],
+    phones: ["+93 (786) 600 597"],
     emails: ["info@pulconsulting.com", "amin@pulconsulting.com"],
     website: "https://pulconsulting.com",
     partnerWebsite: "https://pulglobal.com",

@@ -10,7 +10,6 @@ import {
   Mail, 
   Phone,
   AlertCircle,
-  MessageSquare
 } from "lucide-react";
 import { SERVICE_CARDS_15 } from "@/lib/data";
 
@@ -40,8 +39,6 @@ export default function ConsultationModal({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [submissionResult, setSubmissionResult] = useState<{
-    referenceId: string;
-    receivedAt: string;
     confirmationSent: boolean;
   } | null>(null);
 
@@ -152,8 +149,6 @@ export default function ConsultationModal({
       }
 
       setSubmissionResult({
-        referenceId: data.referenceId,
-        receivedAt: data.receivedAt,
         confirmationSent: Boolean(data.confirmationSent),
       });
     } catch (err: unknown) {
@@ -205,64 +200,51 @@ export default function ConsultationModal({
         <div className="p-6 overflow-y-auto space-y-4">
           {submissionResult ? (
             /* Clear Confirmation Screen: Email Sent to PMO */
-            <div className="text-center py-6 px-4 space-y-4">
-              <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-600 flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-8 h-8 text-emerald-600" />
+            <div className="max-w-lg mx-auto py-5 sm:py-8 px-2 sm:px-4 text-center">
+              <div className="w-16 h-16 rounded-full bg-corp-ice border border-sky-200 flex items-center justify-center mx-auto">
+                <CheckCircle2 className="w-8 h-8 text-corp-blue" aria-hidden="true" />
               </div>
-              <div>
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold bg-sky-100 text-corp-navy border border-sky-300">
-                  Tracking Code: {submissionResult.referenceId}
-                </span>
-                <h4 className="text-xl sm:text-2xl font-serif font-bold text-corp-ink mt-2">
-                  Thank You. Your Inquiry Has Been Received.
-                </h4>
-              </div>
-              <p className="text-xs sm:text-sm text-corp-muted max-w-md mx-auto leading-relaxed">
-                Thank you, <strong className="text-corp-ink">{formData.name}</strong>. Your inquiry regarding{" "}
-                <strong className="text-corp-blue">{formData.service}</strong> for{" "}
-                <strong className="text-corp-ink">{formData.organization}</strong> has been recorded for review by our team.
+              <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.16em] text-corp-blue">
+                Submission complete
+              </p>
+              <h4 className="mt-2 text-2xl sm:text-3xl font-serif font-bold text-corp-ink">
+                Thank you, {formData.name}.
+              </h4>
+              <p className="mt-3 text-sm text-corp-muted leading-relaxed">
+                PUL Consulting Services has received your inquiry about{" "}
+                <strong className="text-corp-ink">{formData.service}</strong> for{" "}
+                <strong className="text-corp-ink">{formData.organization}</strong>. Our team will review the details and contact you about next steps.
               </p>
 
-              <div className="p-4 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 max-w-md mx-auto text-center space-y-1">
-                <p className="font-bold text-emerald-900 text-sm">
-                  ✓ Inquiry emailed to PUL Consulting
-                </p>
-                <p className="text-[11px] text-emerald-700">
-                  Please keep reference <strong>{submissionResult.referenceId}</strong> for any follow-up. Our team will review your requirements and contact you to discuss next steps.{" "}
+              <div className="mt-6 rounded-md border border-slate-200 bg-white px-4 py-4 text-left shadow-xs">
+                <p className="text-sm font-semibold text-corp-ink">Email confirmation</p>
+                <p className="mt-1 text-xs text-corp-muted leading-relaxed">
                   {submissionResult.confirmationSent
-                    ? <>A confirmation email is on its way to <strong>{formData.email}</strong>.</>
-                    : <>Your inquiry was emailed to info@pulconsulting.com, but we could not send your confirmation copy. Please keep this reference for follow-up.</>}
+                    ? <>A confirmation has been sent to <strong className="text-corp-ink">{formData.email}</strong>.</>
+                    : <>Your inquiry reached our team, but we could not send a confirmation to <strong className="text-corp-ink">{formData.email}</strong>. For assistance, email <a href="mailto:info@pulconsulting.com" className="text-corp-blue underline underline-offset-2">info@pulconsulting.com</a>.</>}
                 </p>
               </div>
 
-              {/* Instant WhatsApp alternative if urgent */}
-              <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs text-corp-ink max-w-md mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-left">
-                <div>
-                  <span className="font-semibold text-corp-navy block text-xs">Need an Immediate Response?</span>
-                  <span className="text-[11px] text-corp-muted">Contact our Kabul PMO directly via WhatsApp</span>
-                </div>
-                <a
-                  href={`https://wa.me/93786199696?text=${encodeURIComponent(`Hello PUL Consulting PMO, I have submitted project inquiry reference ${submissionResult.referenceId} regarding ${formData.service} on behalf of ${formData.organization}.`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs transition-colors shrink-0 shadow-xs"
-                >
-                  <MessageSquare className="w-3.5 h-3.5" />
-                  <span>WhatsApp PMO</span>
-                </a>
-              </div>
-
-              <div className="pt-2">
+              <div className="mt-6">
                 <button
                   onClick={handleReset}
-                  className="px-8 py-2.5 rounded bg-corp-navy text-white font-bold text-xs uppercase tracking-wider shadow-xs hover:bg-corp-navyDark transition-colors"
+                  className="px-8 py-2.5 rounded-md bg-corp-navy text-white font-bold text-xs uppercase tracking-wider shadow-xs hover:bg-corp-navyDark transition-colors"
                 >
-                  Close
+                  Return to website
                 </button>
               </div>
             </div>
           ) : (
             <form id="consultation-form" onSubmit={handleSubmit} className="space-y-4">
+              {isSubmitting && (
+                <div role="status" aria-live="polite" className="flex items-start gap-3 rounded-md border border-sky-200 bg-sky-50 px-4 py-3 text-corp-ink">
+                  <span className="mt-0.5 inline-block h-4 w-4 shrink-0 rounded-full border-2 border-corp-blue border-t-transparent animate-spin" aria-hidden="true" />
+                  <div>
+                    <p className="text-xs font-semibold">Sending your inquiry</p>
+                    <p className="mt-0.5 text-[11px] text-corp-muted">Please keep this window open while we send your message to PUL Consulting Services.</p>
+                  </div>
+                </div>
+              )}
               {/* Error banner if submission fails */}
               {submissionError && (
                 <div role="alert" className="p-3 rounded bg-red-50 border border-red-200 text-xs text-red-700 flex items-start gap-2">
@@ -274,7 +256,7 @@ export default function ConsultationModal({
                       <a href="mailto:info@pulconsulting.com" className="underline font-bold">
                         info@pulconsulting.com
                       </a>{" "}
-                      or call +93 (786) 19 96 96.
+                      or call +93 (786) 600 597.
                     </p>
                   </div>
                 </div>
@@ -464,7 +446,7 @@ export default function ConsultationModal({
                 {isSubmitting ? (
                   <>
                     <span className="inline-block w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>Submitting...</span>
+                    <span>Sending...</span>
                   </>
                 ) : (
                   <>

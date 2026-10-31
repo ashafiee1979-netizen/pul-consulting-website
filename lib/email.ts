@@ -118,8 +118,6 @@ export function clientConfirmationEmail(d: InquiryEmailData) {
   const body = `
 <p style="margin:14px 0 18px;">Dear ${esc(first)},</p>
 <p style="margin:0 0 18px;">Thank you for contacting PUL Consulting Services. We have received your inquiry on behalf of <strong>${esc(d.organization)}</strong> and it has been delivered to our inquiry mailbox.</p>
-<p style="margin:0 0 22px;">${refBadge(d.referenceId)}<br/><span style="font-size:12px;color:${BRAND.muted};">Please quote this reference in any correspondence.</span></p>
-
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.ice};border:1px solid ${BRAND.line};border-radius:4px;margin:0 0 26px;">
   ${detailRows([
     ["Practice area", esc(d.service)],
@@ -140,14 +138,13 @@ export function clientConfirmationEmail(d: InquiryEmailData) {
 
 <p style="margin:0 0 22px;">Need to add information or reach us sooner? Simply reply to this email, or contact us directly:</p>
 <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 6px;"><tr>
-  <td style="padding:0 10px 10px 0;">${button("mailto:info@pulconsulting.com?subject=" + encodeURIComponent("Re: " + d.referenceId), "Reply to PMO")}</td>
-  <td style="padding:0 0 10px;">${button("https://wa.me/93786199696?text=" + encodeURIComponent("Hello PUL Consulting, I submitted inquiry " + d.referenceId + "."), "WhatsApp", "#1f8f5f")}</td>
+  <td style="padding:0 10px 10px 0;">${button("mailto:info@pulconsulting.com?subject=" + encodeURIComponent("PUL Consulting inquiry follow-up"), "Contact our team")}</td>
 </tr></table>
-<p style="margin:12px 0 0;font-size:13px;color:${BRAND.muted};">Phone: +93 (786) 19 96 96</p>
+<p style="margin:12px 0 0;font-size:13px;color:${BRAND.muted};">Phone: +93 (786) 600 597</p>
 <p style="margin:26px 0 0;">With regards,<br/><strong style="font-family:${SERIF};">PUL Consulting Services</strong><br/><span style="font-size:13px;color:${BRAND.muted};">Program Management Office</span></p>`;
 
   const html = shell({
-    preheader: `We received your inquiry — reference ${d.referenceId}. We'll respond within 24 business hours.`,
+    preheader: "PUL Consulting Services has received your inquiry. Our team will review it and contact you about next steps.",
     eyebrow: "Inquiry received",
     title: "Thank you — we have your inquiry",
     body,
@@ -155,21 +152,20 @@ export function clientConfirmationEmail(d: InquiryEmailData) {
 
   const text = `Dear ${first},
 
-Thank you for contacting PUL Consulting Services. We have received your inquiry on behalf of ${d.organization}.
+Thank you for contacting PUL Consulting Services. We have received your inquiry on behalf of ${d.organization} and our team will review the details.
 
-Reference: ${d.referenceId}
 Practice area: ${d.service}
 Timeline: ${d.timeline}
 Submitted: ${formatDate(d.receivedAt)}
 
-What happens next: our team reviews your inquiry and will contact you within 24 business hours.
+Our team will contact you about next steps.
 
-Reply to this email, write to info@pulconsulting.com, or call +93 (786) 19 96 96.
+Reply to this email, write to info@pulconsulting.com, or call +93 (786) 600 597.
 
 PUL Consulting Services — Program Management Office`;
 
   return {
-    subject: `We received your inquiry — ${d.referenceId}`,
+    subject: "Thank you for contacting PUL Consulting Services",
     html,
     text,
   };
