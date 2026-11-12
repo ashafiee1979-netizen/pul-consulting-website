@@ -11,34 +11,64 @@ interface Services15GridProps {
   onOpenConsultation: () => void;
 }
 
-const CORE_PUL_PRACTICES = [
-  "pmo-management",
-  "training-capacity",
-  "hr-workforce",
-  "monitoring-evaluation",
-  "call-center-operations",
-  "events-management",
+type CapabilityGroupId = "program-delivery" | "people-engagement" | "technology-communications" | "business-operations" | "all";
+type CapabilityGroup = {
+  id: Exclude<CapabilityGroupId, "all">;
+  label: string;
+  description: string;
+  capabilityIds: readonly string[];
+  accent: string;
+  selected: string;
+};
+
+const CAPABILITY_GROUPS: CapabilityGroup[] = [
+  {
+    id: "program-delivery",
+    label: "Program Delivery & Learning",
+    description: "Project leadership, training, and results measurement.",
+    capabilityIds: ["pmo-management", "training-capacity", "monitoring-evaluation"],
+    accent: "border-t-sky-500",
+    selected: "border-sky-500 bg-sky-50/70",
+  },
+  {
+    id: "people-engagement",
+    label: "People & Public Engagement",
+    description: "Workforce services, language access, and inclusive outreach.",
+    capabilityIds: ["hr-workforce", "call-center-operations", "translation-interpretation", "empowerment-initiatives"],
+    accent: "border-t-teal-500",
+    selected: "border-teal-500 bg-teal-50/70",
+  },
+  {
+    id: "technology-communications",
+    label: "Technology & Communications",
+    description: "Digital transformation, secure IT, and media production.",
+    capabilityIds: ["ai-transformation", "it-infrastructure", "media-communications"],
+    accent: "border-t-indigo-500",
+    selected: "border-indigo-500 bg-indigo-50/70",
+  },
+  {
+    id: "business-operations",
+    label: "Business & Field Operations",
+    description: "Market entry, finance, logistics, events, and facilities.",
+    capabilityIds: ["events-management", "business-registration", "financial-tax-compliance", "supply-chain-logistics", "secure-facilities"],
+    accent: "border-t-amber-500",
+    selected: "border-amber-500 bg-amber-50/70",
+  },
 ];
 
 export default function Services15Grid(_props: Services15GridProps) {
-  const [viewScope, setViewScope] = useState<"core" | "synergies" | "all">("core");
-
-  const filteredCards = SERVICE_CARDS_15.filter((card) => {
-    if (viewScope === "core") {
-      return CORE_PUL_PRACTICES.includes(card.id);
-    }
-    if (viewScope === "synergies") {
-      return !CORE_PUL_PRACTICES.includes(card.id);
-    }
-    return true;
-  });
+  const [activeGroup, setActiveGroup] = useState<CapabilityGroupId>("program-delivery");
+  const selectedGroup = CAPABILITY_GROUPS.find((group) => group.id === activeGroup);
+  const filteredCards = selectedGroup
+    ? SERVICE_CARDS_15.filter((card) => selectedGroup.capabilityIds.includes(card.id))
+    : SERVICE_CARDS_15;
 
   return (
     <section id="services" className="py-16 sm:py-20 bg-white border-b border-corp-line">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         {/* Section Heading */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-corp-line">
-          <div className="max-w-3xl">
+        <div className="max-w-3xl pb-7 border-b border-corp-line">
+          <div>
             <p className="text-[11px] font-bold uppercase tracking-wider text-corp-blue">
               Our Expertise
             </p>
@@ -49,73 +79,54 @@ export default function Services15Grid(_props: Services15GridProps) {
               From project management and workforce operations to training and technology, our services combine PUL Consulting’s local delivery experience with specialist partner expertise.
             </p>
           </div>
-
-          {/* Scope selection tabs */}
-          <div className="flex flex-wrap items-center gap-2">
-            <button
-              aria-pressed={viewScope === "core"}
-              onClick={() => setViewScope("core")}
-              className={`px-3.5 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all ${
-                viewScope === "core"
-                  ? "bg-corp-navy text-white shadow-xs"
-                  : "bg-corp-ice text-corp-muted hover:text-corp-ink border border-slate-200 hover:border-slate-300"
-              }`}
-            >
-              Core Services
-            </button>
-            <button
-              aria-pressed={viewScope === "synergies"}
-              onClick={() => setViewScope("synergies")}
-              className={`px-3.5 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all ${
-                viewScope === "synergies"
-                  ? "bg-corp-navy text-white shadow-xs"
-                  : "bg-corp-ice text-corp-muted hover:text-corp-ink border border-slate-200 hover:border-slate-300"
-              }`}
-            >
-              Additional Services
-            </button>
-            <button
-              aria-pressed={viewScope === "all"}
-              onClick={() => setViewScope("all")}
-              className={`px-3.5 py-2 rounded-md text-xs sm:text-sm font-semibold transition-all ${
-                viewScope === "all"
-                  ? "bg-corp-navy text-white shadow-xs"
-                  : "bg-corp-ice text-corp-muted hover:text-corp-ink border border-slate-200 hover:border-slate-300"
-              }`}
-            >
-              All 15 Capabilities
-            </button>
-          </div>
         </div>
 
-        {/* 4 Strategic Pillars Overview Bar */}
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <div className="p-3.5 rounded-lg bg-gradient-to-br from-white to-sky-50/60 border border-slate-200 border-t-4 border-t-sky-500">
-            <span className="text-[10px] font-bold text-corp-blue uppercase tracking-wider block">Pillar I</span>
-            <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Strategic PMO &amp; Governance</h4>
-            <span className="text-[11px] text-corp-muted mt-1 block">Delivered by PUL Consulting HQ</span>
-          </div>
-          <div className="p-3.5 rounded-lg bg-gradient-to-br from-white to-indigo-50/60 border border-slate-200 border-t-4 border-t-indigo-500">
-            <span className="text-[10px] font-bold text-sky-600 uppercase tracking-wider block">Pillar II</span>
-            <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Technology &amp; Enterprise AI</h4>
-            <span className="text-[11px] text-corp-muted mt-1 block">With Quantu Tech LLC</span>
-          </div>
-          <div className="p-3.5 rounded-lg bg-gradient-to-br from-white to-teal-50/60 border border-slate-200 border-t-4 border-t-teal-500">
-            <span className="text-[10px] font-bold text-corp-blue uppercase tracking-wider block">Pillar III</span>
-            <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Workforce &amp; Operations</h4>
-            <span className="text-[11px] text-corp-muted mt-1 block">Delivered by PUL Consulting HQ</span>
-          </div>
-          <div className="p-3.5 rounded-lg bg-gradient-to-br from-white to-amber-50/60 border border-slate-200 border-t-4 border-t-amber-500">
-            <span className="text-[10px] font-bold text-sky-600 uppercase tracking-wider block">Pillar IV</span>
-            <h4 className="text-xs sm:text-sm font-bold text-corp-ink mt-0.5">Language &amp; Logistics</h4>
-            <span className="text-[11px] text-corp-muted mt-1 block">With Linguist Point International</span>
+        {/* Capability category filters */}
+        <div className="mt-7">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-corp-muted">Browse capabilities by area</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            {CAPABILITY_GROUPS.map((group) => {
+              const isSelected = activeGroup === group.id;
+              return (
+                <button
+                  key={group.id}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => setActiveGroup(group.id)}
+                  className={`min-h-32 text-left p-4 rounded-lg border border-t-4 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-corp-blue focus-visible:ring-offset-2 ${group.accent} ${
+                    isSelected
+                      ? `${group.selected} shadow-sm`
+                      : "border-slate-200 bg-gradient-to-br from-white to-corp-ice hover:border-slate-300 hover:shadow-sm"
+                  }`}
+                >
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-corp-blue">{SERVICE_CARDS_15.filter((card) => group.capabilityIds.includes(card.id)).length} capabilities</span>
+                  <span className="mt-1 block text-sm font-bold leading-snug text-corp-ink">{group.label}</span>
+                  <span className="mt-1.5 block text-[11px] leading-relaxed text-corp-muted">{group.description}</span>
+                </button>
+              );
+            })}
+            <button
+              type="button"
+              aria-pressed={activeGroup === "all"}
+              onClick={() => setActiveGroup("all")}
+              className={`min-h-32 p-4 rounded-lg border border-t-4 border-t-corp-navy text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-corp-blue focus-visible:ring-offset-2 ${
+                activeGroup === "all"
+                  ? "border-corp-navy bg-corp-ice shadow-sm"
+                  : "border-slate-200 bg-gradient-to-br from-white to-corp-ice hover:border-slate-300 hover:shadow-sm"
+              }`}
+            >
+              <span className="text-[10px] font-bold uppercase tracking-wider text-corp-blue">Full catalogue</span>
+              <span className="mt-1 block text-sm font-bold leading-snug text-corp-ink">All 15 Capabilities</span>
+              <span className="mt-1.5 block text-[11px] leading-relaxed text-corp-muted">View every service area in one place.</span>
+            </button>
           </div>
         </div>
 
         {/* Filter status banner */}
         <div className="mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs text-corp-muted bg-slate-50 px-4 py-2.5 rounded-lg border border-slate-200">
           <span>
-            Showing <strong className="text-corp-ink font-semibold">{filteredCards.length}</strong> {viewScope === "core" ? "core services" : viewScope === "synergies" ? "additional services" : "service areas"}
+            Showing <strong className="text-corp-ink font-semibold">{filteredCards.length}</strong> {filteredCards.length === 1 ? "capability" : "capabilities"}
+            {selectedGroup && <> in <strong className="text-corp-ink font-semibold">{selectedGroup.label}</strong></>}
           </span>
           <Link href="/services" className="text-corp-blue font-semibold hover:underline inline-flex items-center gap-1 shrink-0">
             <span>Explore All Services</span>
