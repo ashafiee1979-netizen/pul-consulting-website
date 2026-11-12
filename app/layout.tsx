@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SITE_URL } from "@/lib/site-url";
+import { Analytics } from "@vercel/analytics/next";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -65,6 +66,7 @@ export default function RootLayout({
       <body className="bg-white min-h-screen text-corp-ink antialiased selection:bg-corp-blue selection:text-white">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-white focus:px-4 focus:py-3 focus:text-corp-navy focus:rounded">Skip to content</a>
         {children}
+        <Analytics />
       </body>
     </html>
   );

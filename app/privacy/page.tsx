@@ -76,7 +76,7 @@ export default function PrivacyPolicyPage() {
                     <strong className="text-corp-ink">Consultation &amp; Inquiries:</strong> When submitting an RFP or consultation request, we collect your full name, official email address, organization or institutional affiliation, telephone number, selected service domain, and scope descriptions.
                   </li>
                   <li>
-                    <strong className="text-corp-ink">Technical Metadata:</strong> Standard web server logs collect IP addresses, browser types, referring pages, and access timestamps to ensure firewall integrity, detect denial-of-service attempts, and optimize content delivery performance.
+                    <strong className="text-corp-ink">Technical Metadata &amp; Site Analytics:</strong> Vercel Web Analytics records aggregated page views, page paths, referrers, approximate location, and device, browser, and operating-system categories to help us understand site usage. It does not use cookies or retain IP addresses as visitor identifiers. Standard web server logs may separately collect IP addresses, browser types, referring pages, and access timestamps to protect the site and deliver its content.
                   </li>
                   <li>
                     <strong className="text-corp-ink">No Sensitive Payment Information:</strong> We do not process commercial consumer credit cards or store personal financial credentials through this promotional website. Payment arrangements are agreed separately for each engagement.
@@ -98,6 +98,7 @@ export default function PrivacyPolicyPage() {
                   <li>To verify organizational identity and prevent unauthorized or fraudulent inquiries.</li>
                   <li>To comply with regulatory compliance disclosures, donor fiduciary requirements, and applicable national laws.</li>
                   <li>To dispatch targeted operational proposals, capability statements, or corporate communications explicitly requested by the user.</li>
+                  <li>To understand aggregated website traffic and improve the clarity and usefulness of our public information.</li>
                 </ul>
               </div>
 
@@ -133,7 +134,7 @@ export default function PrivacyPolicyPage() {
                   Cross-Border Data Transfers
                 </h2>
                 <p>
-                  Contact and consultation submissions are emailed directly to info@pulconsulting.com using One.com. The website does not store new inquiries in a separate inquiry database or use a third-party form delivery service. Authorized PUL personnel manage inquiries in the mailbox. Our website host and One.com process information needed to operate the website and deliver messages; processing may take place outside your country.
+                  Contact and consultation submissions are emailed directly to info@pulconsulting.com using One.com. The website does not store new inquiries in a separate inquiry database or use a third-party form delivery service. Authorized PUL personnel manage inquiries in the mailbox. Vercel hosts this website and processes aggregated usage metrics through Vercel Web Analytics; One.com delivers inquiry messages. Processing may take place outside your country.
                 </p>
               </div>
 

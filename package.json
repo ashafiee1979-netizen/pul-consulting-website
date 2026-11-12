@@ -10,6 +10,7 @@
     "test": "node --test scripts/test-consultation.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.400.0",
     "next": "16.4.3",
@@ -26,11 +27,11 @@
     "@types/react-dom": "^19.3.0",
     "autoprefixer": "^10.4.19",
     "docx": "^9.8.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.4.3",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5.5.3",
-    "eslint": "^9.0.0",
-    "eslint-config-next": "16.4.3"
+    "typescript": "^5.5.3"
   },
   "engines": {
     "node": ">=20.9.0"
