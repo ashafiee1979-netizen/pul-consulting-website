@@ -85,6 +85,8 @@ export default function ConsultationModal({
     }, 50);
   }, [onClose]);
 
+  const isPartnershipInquiry = initialService === "Corporate Partnership Inquiry";
+
   // Trap focus and handle Escape
   useEffect(() => {
     if (!isOpen) return;
@@ -181,10 +183,12 @@ export default function ConsultationModal({
         <div className="px-6 py-4 border-b border-corp-navySubtle flex items-center justify-between bg-corp-navy text-white flex-shrink-0">
           <div>
             <h3 id="consultation-modal-title" className="text-base font-serif font-bold text-white">
-              Project Consultation &amp; RFP Inquiry
+              {isPartnershipInquiry ? "Corporate Partnership Inquiry" : "Project Consultation & RFP Inquiry"}
             </h3>
             <p className="text-xs text-sky-200">
-              Tell us about your project and the support you need.
+              {isPartnershipInquiry
+                ? "Tell us about your organization and the partnership opportunity you have in mind."
+                : "Tell us about your project and the support you need."}
             </p>
           </div>
           <button
